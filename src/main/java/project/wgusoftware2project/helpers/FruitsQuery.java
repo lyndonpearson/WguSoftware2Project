@@ -4,6 +4,7 @@ package project.wgusoftware2project.helpers;
 import javafx.collections.ObservableList;
 import project.wgusoftware2project.model.Appointments;
 import project.wgusoftware2project.model.Customers;
+import project.wgusoftware2project.model.Inventory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -81,7 +82,29 @@ public abstract class FruitsQuery {
         }
     }
 
-    public static ObservableList<Appointments> populateAppts(ObservableList<Appointments> inputArrayList) throws SQLException {
+//    public static ObservableList<Appointments> populateAppts(ObservableList<Appointments> inputArrayList) throws SQLException {
+//
+//        String sql = "SELECT * FROM APPOINTMENTS";
+//        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+//        ResultSet rs = ps.executeQuery();
+//        while(rs.next()){
+//            int apptID = rs.getInt("Appointment_ID");
+//            String title = rs.getString("Title");
+//            String description = rs.getString("Description");
+//            String location = rs.getString("Location");
+//            String type = rs.getString("Type");
+//            LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+//            LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+//            int customerID = rs.getInt("Customer_ID");
+//            int userID = rs.getInt("User_ID");
+//            int contactID = rs.getInt("Contact_ID");
+//            inputArrayList.add(new Appointments(apptID, title, description, location, type, start,
+//                    end, customerID, userID, contactID));
+//        }
+//        return inputArrayList;
+//    }
+
+    public static void populateAppts() throws SQLException {
 
         String sql = "SELECT * FROM APPOINTMENTS";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -92,15 +115,16 @@ public abstract class FruitsQuery {
             String description = rs.getString("Description");
             String location = rs.getString("Location");
             String type = rs.getString("Type");
-            LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
-            LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+            String start = rs.getString("Start");
+            String end = rs.getString("End");
+            //LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+            //LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
             int contactID = rs.getInt("Contact_ID");
-            inputArrayList.add(new Appointments(apptID, title, description, location, type, start,
+            Inventory.addAppt(new Appointments(apptID, title, description, location, type, start,
                     end, customerID, userID, contactID));
         }
-        return inputArrayList;
     }
 
     public static ObservableList<Customers> populateCusts(ObservableList<Customers> inputArrayList) throws SQLException {
@@ -118,5 +142,14 @@ public abstract class FruitsQuery {
             inputArrayList.add(new Customers(custID, custName, custAddress, custPostal, custPhone, custState));
         }
         return inputArrayList;
+    }
+
+    public static int insertAppt(String fruitName, int colorID) throws SQLException {
+        String sql = "INSERT INTO FRUITS (Fruit_Name, Color_ID) VALUES(?, ?)";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, fruitName);
+        ps.setInt(2, colorID);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
     }
 }

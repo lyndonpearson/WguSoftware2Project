@@ -28,9 +28,9 @@
             <TableColumn fx:id="contactIdCol" prefWidth="67.0" text="Contact ID" />
         </columns>
       </TableView>
-      <Button layoutX="14.0" layoutY="217.0" mnemonicParsing="false" text="Add" />
-      <Button fx:id="updateApptBtn" layoutX="75.0" layoutY="217.0" mnemonicParsing="false" text="Update" />
-      <Button fx:id="deleteApptBtn" layoutX="141.0" layoutY="217.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="14.0" layoutY="217.0" mnemonicParsing="false" onAction="#onAddBtnClick" text="Add" />
+      <Button fx:id="updateApptBtn" layoutX="75.0" layoutY="217.0" mnemonicParsing="false" onAction="#onUpdateBtnClick" text="Update" />
+      <Button fx:id="deleteApptBtn" layoutX="141.0" layoutY="217.0" mnemonicParsing="false" onAction="#onDeleteBtnClick" text="Delete" />
       <Pane layoutY="253.0" prefHeight="249.0" prefWidth="600.0">
          <children>
             <Label layoutX="33.0" layoutY="15.0" text="Customers" />

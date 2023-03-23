@@ -31,8 +31,6 @@ public class mainController {
         System.out.println("UserName: " + userNameTextField.getText());
         System.out.println("Password: " + passwordTextField.getText());
 
-        FruitsQuery.selectUser(userNameTextField.getText(), passwordTextField.getText());
-
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
         scene = FXMLLoader.load(getClass().getResource("/project/wgusoftware2project/apptCustomer.fxml"));
