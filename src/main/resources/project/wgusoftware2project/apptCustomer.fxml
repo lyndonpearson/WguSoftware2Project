@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane fx:id="addApptBtn" prefHeight="505.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.wgusoftware2project.controllers.apptCustomerController">
+   <children>
+      <Label layoutX="47.0" layoutY="40.0" text="Appointments" />
+      <RadioButton fx:id="currentWeekBtn" layoutX="257.0" layoutY="49.0" mnemonicParsing="false" text="Current Week" />
+      <RadioButton fx:id="currentMonthBtn" layoutX="357.0" layoutY="49.0" mnemonicParsing="false" text="Current Month" />
+      <RadioButton fx:id="allBtn" layoutX="471.0" layoutY="49.0" mnemonicParsing="false" text="All " />
+      <TableView fx:id="apptTable" layoutX="15.0" layoutY="74.0" prefHeight="125.0" prefWidth="568.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="31.0" text="ID" />
+          <TableColumn fx:id="titleCol" prefWidth="46.0" text="Title" />
+            <TableColumn fx:id="descCol" prefWidth="58.0" text="Desc." />
+            <TableColumn fx:id="locCol" prefWidth="52.0" text="Loc." />
+            <TableColumn fx:id="typeCol" prefWidth="52.0" text="Type" />
+            <TableColumn fx:id="startCol" prefWidth="61.0" text="Start" />
+            <TableColumn fx:id="endTable" prefWidth="72.0" text="End" />
+            <TableColumn fx:id="custIdCol" prefWidth="82.0" text="Customer ID" />
+            <TableColumn fx:id="userIdCol" prefWidth="46.0" text="User ID" />
+            <TableColumn fx:id="contactIdCol" prefWidth="67.0" text="Contact ID" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="217.0" mnemonicParsing="false" text="Add" />
+      <Button fx:id="updateApptBtn" layoutX="75.0" layoutY="217.0" mnemonicParsing="false" text="Update" />
+      <Button fx:id="deleteApptBtn" layoutX="141.0" layoutY="217.0" mnemonicParsing="false" text="Delete" />
+      <Pane layoutY="253.0" prefHeight="249.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="33.0" layoutY="15.0" text="Customers" />
+            <TableView fx:id="custTable" layoutX="16.0" layoutY="54.0" prefHeight="125.0" prefWidth="419.0">
+               <columns>
+                  <TableColumn fx:id="custIdCol" prefWidth="38.0" text="ID" />
+                  <TableColumn fx:id="custName" prefWidth="70.0" text="Name" />
+                  <TableColumn fx:id="custAddress" prefWidth="62.0" text="Address" />
+                  <TableColumn fx:id="custPhone" prefWidth="94.0" text="Phone Number" />
+                  <TableColumn fx:id="custState" prefWidth="76.0" text="State/Prov" />
+                  <TableColumn fx:id="custPostal" prefWidth="77.0" text="Postal Code" />
+               </columns>
+            </TableView>
+            <Button fx:id="addCustomerBtn" layoutX="12.0" layoutY="190.0" mnemonicParsing="false" text="Add" />
+            <Button fx:id="updateCustomerBtn" layoutX="73.0" layoutY="190.0" mnemonicParsing="false" text="Update" />
+            <Button fx:id="deleteCustomerBtn" layoutX="139.0" layoutY="190.0" mnemonicParsing="false" text="Delete" />
+            <Button fx:id="reportsBtn" layoutX="471.0" layoutY="154.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="111.0" text="Reports" />
+            <Button fx:id="logoutBtn" layoutX="471.0" layoutY="196.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="111.0" text="Logout" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
