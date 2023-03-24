@@ -132,8 +132,21 @@ public class apptCustomerController implements Initializable {
     }
 
     @FXML
-    void onUpdateBtnClick(ActionEvent event) {
+    void onUpdateBtnClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/project/wgusoftware2project/changeAppt.fxml"));
+        loader.load();
+        changeApptController CAController = loader.getController();
 
+        CAController.receiveInAppt((Appointments) apptTable.getSelectionModel().getSelectedItem());
+
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+
+        Parent scene = loader.getRoot();
+
+        stage.setScene(new Scene(scene));
+
+        stage.show();
     }
 
     @Override

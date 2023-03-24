@@ -2,6 +2,7 @@ package project.wgusoftware2project.helpers;
 
 
 import javafx.collections.ObservableList;
+import project.wgusoftware2project.App;
 import project.wgusoftware2project.model.Appointments;
 import project.wgusoftware2project.model.Customers;
 import project.wgusoftware2project.model.Inventory;
@@ -172,4 +173,32 @@ public abstract class FruitsQuery {
         return rowsAffected;
 
     }
+
+    public static int updateAppt(Appointments addAppt) throws SQLException {
+        String sql = "UPDATE APPOINTMENTS SET Title = ?, Description = ?, Location = ?, " +
+                "Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE APPOINTMENT_ID = " +
+                String.valueOf(addAppt.getAppointmentID());
+
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+
+        //   WORKING WITH VALID FOREIGN KEYS (CUSTOMER/USER/CONTACT IDS) ONLY
+        ps.setString(1, addAppt.getTitle());
+        ps.setString(2, addAppt.getDescription());
+        ps.setString(3, addAppt.getLocation());
+        ps.setString(4, addAppt.getType());
+        // TEMP WORKAROUND - NEED TO ACCEPT INPUTS AS DATE/TIME
+        Timestamp ts = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
+        ps.setTimestamp(5, ts);
+        Timestamp ts2 = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
+        ps.setTimestamp(6, ts2);
+        // NEED TO INCORPORATE BELOW AS PRIMARY KEYS/FOREIGN KEYS
+        ps.setInt(7, addAppt.getCustomerID());
+        ps.setInt(8, addAppt.getUserID());
+        ps.setInt(9, addAppt.getUserID());
+
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+
+    }
+
 }
