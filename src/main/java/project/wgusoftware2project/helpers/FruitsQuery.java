@@ -9,7 +9,9 @@ import project.wgusoftware2project.model.Inventory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public abstract class FruitsQuery {
     public static int insert(String fruitName, int colorID) throws SQLException {
@@ -144,12 +146,30 @@ public abstract class FruitsQuery {
         return inputArrayList;
     }
 
-    public static int insertAppt(String fruitName, int colorID) throws SQLException {
-        String sql = "INSERT INTO FRUITS (Fruit_Name, Color_ID) VALUES(?, ?)";
+    public static int insertAppt(Appointments addAppt) throws SQLException {
+        String sql = "INSERT INTO APPOINTMENTS (Appointment_ID, Title, Description, Location, " +
+                "Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setString(1, fruitName);
-        ps.setInt(2, colorID);
+
+        //   WORKING WITH VALID FOREIGN KEYS (CUSTOMER/USER/CONTACT IDS) ONLY
+        ps.setInt(1, addAppt.getAppointmentID());
+        ps.setString(2, addAppt.getTitle());
+        ps.setString(3, addAppt.getDescription());
+        ps.setString(4, addAppt.getLocation());
+        ps.setString(5, addAppt.getType());
+        // TEMP WORKAROUND - NEED TO ACCEPT INPUTS AS DATE/TIME
+        Timestamp ts = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
+        ps.setTimestamp(6, ts);
+        Timestamp ts2 = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
+        ps.setTimestamp(7, ts2);
+          // NEED TO INCORPORATE BELOW AS PRIMARY KEYS/FOREIGN KEYS
+        ps.setInt(8, addAppt.getCustomerID());
+        ps.setInt(9, addAppt.getUserID());
+        ps.setInt(10, addAppt.getUserID());
+
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
+
     }
 }

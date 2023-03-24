@@ -8,10 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import project.wgusoftware2project.App;
+import project.wgusoftware2project.helpers.FruitsQuery;
 import project.wgusoftware2project.model.Appointments;
 import project.wgusoftware2project.model.Inventory;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class addApptController {
@@ -65,7 +68,7 @@ public class addApptController {
     }
 
     @FXML
-    void onSaveBtnClick(ActionEvent event) throws IOException {
+    void onSaveBtnClick(ActionEvent event) throws IOException, SQLException {
         int id = 0;
         String title;
         String description;
@@ -88,7 +91,13 @@ public class addApptController {
         userId = Integer.parseInt(userIdText.getText());
         contactId = Integer.parseInt(contactIdText.getText());
 
-        Inventory.addAppt(new Appointments(id, title, description, location, type, start, end, customerId, userId, contactId));
+        Appointments newAppt = new Appointments(id, title, description, location, type, start, end, customerId, userId, contactId);
+        Inventory.addAppt(newAppt);
+        if (FruitsQuery.insertAppt(newAppt) > 0){
+            System.out.println("Successfully inserted into DB");
+        } else {
+            System.out.println("Failed to insert in DB");
+        }
 
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
 

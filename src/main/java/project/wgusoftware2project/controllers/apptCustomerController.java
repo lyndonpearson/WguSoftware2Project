@@ -83,7 +83,10 @@ public class apptCustomerController implements Initializable {
     private TableColumn<?, ?> endTable;
 
     @FXML
-    private TableColumn<Appointments,Integer> idCol;
+    private TableColumn<?, ?> idCol;
+
+    @FXML
+    private TableColumn<?, ?> apptCustIdCol;
 
     @FXML
     private TableColumn<?, ?> locCol;
@@ -149,14 +152,14 @@ public class apptCustomerController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        idCol.setCellValueFactory(new PropertyValueFactory<Appointments, Integer>("appointmentID"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
         endTable.setCellValueFactory(new PropertyValueFactory<>("end"));
-        custIdCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        apptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
 
