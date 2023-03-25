@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -132,8 +129,18 @@ public class apptCustomerController implements Initializable {
         if(Inventory.deleteAppt(selectedAppt.getAppointmentID())) {
             apptTable.getItems().remove(selectedAppt);
             FruitsQuery.deleteAppt(selectedAppt.getAppointmentID());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Deleted Appointment");
+            alert.setContentText("Appointment ID# " + selectedAppt.getAppointmentID() + " of type " +
+                    selectedAppt.getType() + " has been canceled.");
+            alert.showAndWait();
         }
-        else System.out.println("Error in deleting Appointment");
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Deletion Error");
+            alert.setContentText("ERROR! Appointment was not canceled");
+            alert.showAndWait();
+        }
     }
 
     @FXML

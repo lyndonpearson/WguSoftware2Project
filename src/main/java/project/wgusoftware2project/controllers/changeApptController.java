@@ -16,6 +16,10 @@ import project.wgusoftware2project.model.Inventory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class changeApptController implements Initializable {
@@ -74,22 +78,28 @@ public class changeApptController implements Initializable {
         String title;
         String description;
         String location;
-
         String type;
-        String start;
-        String end;
+        Instant start;
+        Instant end;
         int customerID;
         int userID;
         int contactID;
-
+        ZoneId zone = ZoneId.of("UTC");
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
 
         appointmentID = Integer.parseInt(idText.getText());
         title = titleText.getText();
         description = descText.getText();
         location = locText.getText();
         type = typeText.getText();
-        start = startText.getText();
-        end = endText.getText();
+
+        String startTimeText = startText.getText();
+        ZonedDateTime zdt = ZonedDateTime.parse(startTimeText, fmt);
+        start = zdt.toInstant();
+        String endTimeText = endText.getText();
+        ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
+        end = zdtEnd.toInstant();
+
         customerID = Integer.parseInt(customerIdText.getText());
         userID = Integer.parseInt(userIdText.getText());
         contactID = Integer.parseInt(contactIdText.getText());
@@ -116,8 +126,10 @@ public class changeApptController implements Initializable {
         descText.setText(String.valueOf(inAppt.getDescription()));
         locText.setText(String.valueOf(inAppt.getLocation()));
         typeText.setText(String.valueOf(inAppt.getType()));
-        startText.setText(String.valueOf(inAppt.getStart()));
-        endText.setText(inAppt.getEnd());
+
+        startText.setText(inAppt.getStart().toString());
+        endText.setText(inAppt.getEnd().toString());
+
         customerIdText.setText(String.valueOf(inAppt.getCustomerID()));
         userIdText.setText(String.valueOf(inAppt.getUserID()));
         contactIdText.setText(String.valueOf(inAppt.getContactID()));

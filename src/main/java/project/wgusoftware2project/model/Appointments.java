@@ -1,4 +1,5 @@
 package project.wgusoftware2project.model;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class Appointments {
@@ -8,13 +9,13 @@ public class Appointments {
     String location;
 
     String type;
-    String start;
-    String end;
+    Instant start;
+    Instant end;
     int customerID;
     int userID;
     int contactID;
 
-    public Appointments(int appointmentID, String title, String description, String location, String type, String start, String end, int customerID, int userID, int contactID) {
+    public Appointments(int appointmentID, String title, String description, String location, String type, Instant start, Instant end, int customerID, int userID, int contactID) {
         this.appointmentID = appointmentID;
         this.title = title;
         this.description = description;
@@ -67,19 +68,19 @@ public class Appointments {
         this.type = type;
     }
 
-    public String getStart() {
+    public Instant getStart() {
         return start;
     }
 
-    public void setStart(String start) {
+    public void setStart(Instant start) {
         this.start = start;
     }
 
-    public String getEnd() {
+    public Instant getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(Instant end) {
         this.end = end;
     }
 

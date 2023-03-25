@@ -20,7 +20,12 @@ import project.wgusoftware2project.model.Inventory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class addApptController implements Initializable {
@@ -83,19 +88,28 @@ public class addApptController implements Initializable {
         String description;
         String location;
         String type;
-        String start;
-        String end;
+        Instant start;
+        Instant end;
         int customerId = 0;
         int userId = 0;
         int contactId = 0;
+        ZoneId zone = ZoneId.of("UTC");
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
 
         id = Integer.parseInt(idText.getText());
         title = titleText.getText();
         description = descText.getText();
         location = locText.getText();
         type = typeText.getText();
-        start = startText.getText();
-        end = startText.getText();
+
+        String startTimeText = startText.getText();
+        ZonedDateTime zdt = ZonedDateTime.parse(startTimeText, fmt);
+        start = zdt.toInstant();
+        String endTimeText = endText.getText();
+        ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
+        end = zdtEnd.toInstant();
+
+
         customerId = Integer.parseInt(customerIdText.getText());
         userId = Integer.parseInt(userIdText.getText());
         contactId = contactIdCombo.getValue().getContactID();
@@ -134,5 +148,9 @@ public class addApptController implements Initializable {
         ObservableList<Appointments> apptList = FXCollections.observableArrayList();
         apptList = Inventory.getAllAppts();
         contactIdCombo.setItems(apptList);
+        Random rand = new Random();
+        int nextId = rand.nextInt(10000);
+        idText.setText(String.valueOf(nextId));
+        idText.setDisable(true);
     }
 }
