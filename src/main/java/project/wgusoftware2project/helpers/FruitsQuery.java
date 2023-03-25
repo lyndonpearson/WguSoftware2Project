@@ -3,9 +3,7 @@ package project.wgusoftware2project.helpers;
 
 import javafx.collections.ObservableList;
 import project.wgusoftware2project.App;
-import project.wgusoftware2project.model.Appointments;
-import project.wgusoftware2project.model.Customers;
-import project.wgusoftware2project.model.Inventory;
+import project.wgusoftware2project.model.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,6 +37,7 @@ public abstract class FruitsQuery {
                     end, customerID, userID, contactID));
         }
     }
+
 
     public static ObservableList<Customers> populateCusts(ObservableList<Customers> inputArrayList) throws SQLException {
 
@@ -119,6 +118,31 @@ public abstract class FruitsQuery {
         ps.setInt(1, apptID);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
+    }
+
+    public static void getCountries() throws SQLException {
+
+        String sql = "SELECT * FROM COUNTRIES";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            int countryId = rs.getInt("Country_ID");
+            String country= rs.getString("Country");
+            Inventory.addCountry(new Countries(countryId, country));
+        }
+    }
+
+    public static void getStates() throws SQLException {
+
+        String sql = "SELECT * FROM FIRST_LEVEL_DIVISIONS";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            int divisionId = rs.getInt("Division_ID");
+            String division = rs.getString("Division");
+            int countryId = rs.getInt("COUNTRY_ID");
+            Inventory.addState(new States(divisionId, division, countryId));
+        }
     }
 
 }

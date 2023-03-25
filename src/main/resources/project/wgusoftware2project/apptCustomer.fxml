@@ -44,9 +44,9 @@
                   <TableColumn fx:id="custPostal" prefWidth="77.0" text="Postal Code" />
                </columns>
             </TableView>
-            <Button fx:id="addCustomerBtn" layoutX="12.0" layoutY="190.0" mnemonicParsing="false" text="Add" />
-            <Button fx:id="updateCustomerBtn" layoutX="73.0" layoutY="190.0" mnemonicParsing="false" text="Update" />
-            <Button fx:id="deleteCustomerBtn" layoutX="139.0" layoutY="190.0" mnemonicParsing="false" text="Delete" />
+            <Button fx:id="addCustomerBtn" layoutX="12.0" layoutY="190.0" mnemonicParsing="false" onAction="#onAddCustBtnClick" text="Add" />
+            <Button fx:id="updateCustomerBtn" layoutX="73.0" layoutY="190.0" mnemonicParsing="false" onAction="#onUpdateCustClick" text="Update" />
+            <Button fx:id="deleteCustomerBtn" layoutX="139.0" layoutY="190.0" mnemonicParsing="false" onAction="#onDeleteCustClick" text="Delete" />
             <Button fx:id="reportsBtn" layoutX="471.0" layoutY="154.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="111.0" text="Reports" />
             <Button fx:id="logoutBtn" layoutX="471.0" layoutY="196.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="111.0" text="Logout" />
          </children>

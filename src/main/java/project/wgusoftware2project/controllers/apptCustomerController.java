@@ -197,4 +197,25 @@ public class apptCustomerController implements Initializable {
         custPostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
     }
 
+    @FXML
+    void onDeleteCustClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onUpdateCustClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onAddCustBtnClick(ActionEvent event) throws IOException {
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+
+        scene = FXMLLoader.load(getClass().getResource("/project/wgusoftware2project/addCustomer.fxml"));
+
+        stage.setScene(new Scene(scene));
+
+        stage.show();
+    }
+
 }

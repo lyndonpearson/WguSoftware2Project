@@ -2,19 +2,35 @@ package project.wgusoftware2project.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import project.wgusoftware2project.App;
 
 public class Inventory {
 
     public static ObservableList<Appointments> allAppts = FXCollections.observableArrayList();
+    public static ObservableList<Customers> allCusts = FXCollections.observableArrayList();
+    public static ObservableList<Countries> allCountries = FXCollections.observableArrayList();
+    public static ObservableList<States> allStates = FXCollections.observableArrayList();
 
     public static void addAppt(Appointments addAppt){
         allAppts.add(addAppt);
     }
 
+    public static void addCountry(Countries addCountry){
+        allCountries.add(addCountry);
+    }
+
+    public static void addState(States addState){
+        allStates.add(addState);
+    }
+
     public static ObservableList getAllAppts(){
         return allAppts;
+    }
+
+    public static ObservableList getAllCountries(){
+        return allCountries;
+    }
+    public static ObservableList getAllStates(){
+        return allStates;
     }
 
     public static void clearAllAppts() {
