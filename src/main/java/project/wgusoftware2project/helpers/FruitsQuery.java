@@ -201,4 +201,12 @@ public abstract class FruitsQuery {
 
     }
 
+    public static int deleteAppt(int apptID) throws SQLException {
+        String sql = "DELETE FROM APPOINTMENTS WHERE Appointment_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, apptID);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
+
 }

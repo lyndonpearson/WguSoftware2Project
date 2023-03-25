@@ -127,8 +127,13 @@ public class apptCustomerController implements Initializable {
     }
 
     @FXML
-    void onDeleteBtnClick(ActionEvent event) {
-
+    void onDeleteBtnClick(ActionEvent event) throws SQLException {
+        Appointments selectedAppt = apptTable.getSelectionModel(). getSelectedItem();
+        if(Inventory.deleteAppt(selectedAppt.getAppointmentID())) {
+            apptTable.getItems().remove(selectedAppt);
+            FruitsQuery.deleteAppt(selectedAppt.getAppointmentID());
+        }
+        else System.out.println("Error in deleting Appointment");
     }
 
     @FXML

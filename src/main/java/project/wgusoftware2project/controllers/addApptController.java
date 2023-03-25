@@ -1,11 +1,15 @@
 package project.wgusoftware2project.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import project.wgusoftware2project.App;
@@ -14,12 +18,17 @@ import project.wgusoftware2project.model.Appointments;
 import project.wgusoftware2project.model.Inventory;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
-public class addApptController {
+public class addApptController implements Initializable {
     Stage stage;
     Parent scene;
+
+    @FXML
+    public ComboBox<Appointments> contactIdCombo;
     @FXML
     private Button cancelBtn;
 
@@ -89,7 +98,7 @@ public class addApptController {
         end = startText.getText();
         customerId = Integer.parseInt(customerIdText.getText());
         userId = Integer.parseInt(userIdText.getText());
-        contactId = Integer.parseInt(contactIdText.getText());
+        contactId = contactIdCombo.getValue().getContactID();
 
         Appointments newAppt = new Appointments(id, title, description, location, type, start, end, customerId, userId, contactId);
         Inventory.addAppt(newAppt);
@@ -109,4 +118,21 @@ public class addApptController {
 
     }
 
+    @FXML
+    void onContactIdComboClick(ActionEvent event) {
+        int contactSelected = -1;
+        for(Appointments appt: contactIdCombo.getItems()){
+            if(contactSelected == appt.getContactID()){
+                contactIdCombo.setValue(appt);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Appointments> apptList = FXCollections.observableArrayList();
+        apptList = Inventory.getAllAppts();
+        contactIdCombo.setItems(apptList);
+    }
 }

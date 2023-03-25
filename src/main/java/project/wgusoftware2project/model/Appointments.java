@@ -106,4 +106,9 @@ public class Appointments {
     public void setContactID(int contactID) {
         this.contactID = contactID;
     }
+
+    @Override
+    public String toString(){
+        return ("Contact ID: " + Integer.toString(contactID));
+    }
 }

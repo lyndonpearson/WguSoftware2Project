@@ -31,4 +31,16 @@ public class Inventory {
                 Inventory.getAllAppts().set(loopIndex, selectedAppt);
         }
     }
+
+    public static boolean deleteAppt(int apptID){
+        int loopIndex = -1;
+        for (Appointments appt : allAppts) {
+            loopIndex++;
+            if (appt.getAppointmentID() == apptID) {
+                allAppts.remove(loopIndex);
+                return true;
+            }
+        }
+        return false;
+    }
 }
