@@ -11,18 +11,18 @@
       <Label layoutX="96.0" layoutY="54.0" text="ID" />
       <TextField fx:id="idText" layoutX="163.0" layoutY="52.0" />
       <Label layoutX="96.0" layoutY="79.0" text="Name" />
-      <TextField fx:id="titleText" layoutX="163.0" layoutY="77.0" />
+      <TextField fx:id="nameText" layoutX="163.0" layoutY="77.0" />
       <Label layoutX="96.0" layoutY="104.0" text="Address" />
-      <TextField fx:id="descText" layoutX="163.0" layoutY="102.0" />
+      <TextField fx:id="addressText" layoutX="163.0" layoutY="102.0" />
       <Label layoutX="96.0" layoutY="129.0" text="Phone" />
-      <TextField fx:id="locText" layoutX="163.0" layoutY="127.0" />
+      <TextField fx:id="phoneText" layoutX="163.0" layoutY="127.0" />
       <Label layoutX="100.0" layoutY="181.0" text="State/Prov" />
       <Label layoutX="96.0" layoutY="156.0" text="Postal" />
-      <TextField fx:id="startText" layoutX="163.0" layoutY="152.0" />
+      <TextField fx:id="postalText" layoutX="163.0" layoutY="152.0" />
       <Label layoutX="97.0" layoutY="206.0" text="Country" />
       <Button fx:id="saveBtn" layoutX="375.0" layoutY="339.0" mnemonicParsing="false" onAction="#onSaveBtnClick" text="Save" />
       <Button fx:id="cancelBtn" layoutX="441.0" layoutY="339.0" mnemonicParsing="false" onAction="#onCancelBtnClick" text="Cancel" />
-      <ComboBox fx:id="stateCombo" layoutX="163.0" layoutY="177.0" onAction="#onStateComboClick" prefWidth="150.0" promptText="State/Prov" />
-      <ComboBox fx:id="countryCombo" layoutX="163.0" layoutY="202.0" onAction="#onCountryComboClick" prefWidth="150.0" promptText="Country" />
+      <ComboBox fx:id="stateCombo" layoutX="163.0" layoutY="177.0" onAction="#onStateComboClick" prefHeight="25.0" prefWidth="209.0" promptText="State/Prov" />
+      <ComboBox fx:id="countryCombo" layoutX="163.0" layoutY="202.0" onAction="#onCountryComboClick" prefHeight="25.0" prefWidth="209.0" promptText="Country" />
    </children>
 </AnchorPane>

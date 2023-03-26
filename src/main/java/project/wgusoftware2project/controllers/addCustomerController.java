@@ -12,12 +12,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import project.wgusoftware2project.model.Countries;
-import project.wgusoftware2project.model.Inventory;
-import project.wgusoftware2project.model.States;
+import project.wgusoftware2project.helpers.FruitsQuery;
+import project.wgusoftware2project.model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -31,25 +35,25 @@ public class addCustomerController implements Initializable {
     private ComboBox<Countries> countryCombo;
 
     @FXML
-    private TextField descText;
+    private TextField nameText;
 
     @FXML
     private TextField idText;
 
     @FXML
-    private TextField locText;
+    private TextField addressText;
 
     @FXML
     private Button saveBtn;
 
     @FXML
-    private TextField startText;
+    private TextField phoneText;
 
     @FXML
     private ComboBox<States> stateCombo;
 
     @FXML
-    private TextField titleText;
+    private TextField postalText;
 
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
@@ -85,8 +89,38 @@ public class addCustomerController implements Initializable {
     }
 
     @FXML
-    void onSaveBtnClick(ActionEvent event) {
+    void onSaveBtnClick(ActionEvent event) throws IOException, SQLException {
+        int id = 0;
+        String name;
+        String address;
+        String phone;
+        String postal;
 
+        String divisionId;
+
+
+        id = Integer.parseInt(idText.getText());
+        name = nameText.getText();
+        address = addressText.getText();
+        phone = phoneText.getText();
+        postal = postalText.getText();
+        divisionId = String.valueOf(stateCombo.getValue());
+
+        Customers newCust = new Customers(id, name, address, phone, postal, divisionId);
+        Inventory.addCust(newCust);
+        if (FruitsQuery.insertCust(newCust) > 0){
+            System.out.println("Successfully inserted Customer into DB");
+        } else {
+            System.out.println("Failed to insert Customer in DB");
+        }
+
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+
+        scene = FXMLLoader.load(getClass().getResource("/project/wgusoftware2project/apptCustomer.fxml"));
+
+        stage.setScene(new Scene(scene));
+
+        stage.show();
     }
 
     @FXML

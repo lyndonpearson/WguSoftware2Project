@@ -29,6 +29,6 @@
       <Label layoutX="96.0" layoutY="275.0" text="Contact ID" />
       <Button fx:id="saveBtn" layoutX="375.0" layoutY="339.0" mnemonicParsing="false" onAction="#onSaveBtnClick" text="Save" />
       <Button fx:id="cancelBtn" layoutX="441.0" layoutY="339.0" mnemonicParsing="false" onAction="#onCancelBtnClick" text="Cancel" />
-      <ComboBox fx:id="contactIdCombo" layoutX="163.0" layoutY="271.0" onAction="#onContactIdComboClick" prefWidth="150.0" promptText="Select Contact ID" />
+      <ComboBox fx:id="contactIdCombo" layoutX="163.0" layoutY="271.0" onAction="#onContactIdComboClick" prefHeight="25.0" prefWidth="211.0" promptText="Select Contact ID" />
    </children>
 </AnchorPane>

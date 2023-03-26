@@ -1,23 +1,20 @@
 package project.wgusoftware2project.model;
 
-import java.sql.Time;
-import java.util.Date;
-
 public class Customers {
     int customerID;
     String customerName;
     String address;
     String postalCode;
     String phone;
-    String state;
+    String divisionId;
 
-    public Customers(int customerID, String customerName, String address, String postalCode, String phone, String state) {
+    public Customers(int customerID, String customerName, String address, String postalCode, String phone, String divisionId) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
-        this.state = state;
+        this.divisionId = divisionId;
     }
 
     public int getCustomerID() {
@@ -60,11 +57,11 @@ public class Customers {
         this.phone = phone;
     }
 
-    public String getState() {
-        return state;
+    public String getDivisionId() {
+        return divisionId;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setDivisionId(String divisionId) {
+        this.divisionId = divisionId;
     }
 }

@@ -161,21 +161,30 @@ public class apptCustomerController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    void onUpdateCustClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/project/wgusoftware2project/changeCustomer.fxml"));
+        loader.load();
+        changeCustomerController CCController = loader.getController();
+
+        CCController.receiveInCustomer((Customers) custTable.getSelectionModel().getSelectedItem());
+
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+
+        Parent scene = loader.getRoot();
+
+        stage.setScene(new Scene(scene));
+
+        stage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //ObservableList<Appointments> apptArrayList = FXCollections.observableArrayList();
-        ObservableList<Customers> custArrayList = FXCollections.observableArrayList();
 
-        try {
-            //apptTable.setItems(FruitsQuery.populateAppts());
-            //FruitsQuery.populateAppts();
-            apptTable.setItems(Inventory.getAllAppts());
-            custTable.setItems(FruitsQuery.populateCusts(custArrayList));
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        apptTable.setItems(Inventory.getAllAppts());
+        custTable.setItems(Inventory.getallCusts());
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -192,19 +201,28 @@ public class apptCustomerController implements Initializable {
         custName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         custAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         custPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        custState.setCellValueFactory(new PropertyValueFactory<>("state"));
+        custState.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
         //CURRENTLY PRINTING DIVISION ID - USE THAT KEY TO RETRIEVE STATE
         custPostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
     }
 
     @FXML
-    void onDeleteCustClick(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onUpdateCustClick(ActionEvent event) {
-
+    void onDeleteCustClick(ActionEvent event) throws SQLException {
+        Customers selectedCust = custTable.getSelectionModel(). getSelectedItem();
+        if(Inventory.deleteCust(selectedCust.getCustomerID())) {
+            custTable.getItems().remove(selectedCust);
+            FruitsQuery.deleteCust(selectedCust.getCustomerID());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Deleted Customer");
+            alert.setContentText("Customer ID# " + selectedCust.getCustomerID() + " has been deleted.");
+            alert.showAndWait();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Deletion Error");
+            alert.setContentText("ERROR! Customer was not deleted");
+            alert.showAndWait();
+        }
     }
 
     @FXML

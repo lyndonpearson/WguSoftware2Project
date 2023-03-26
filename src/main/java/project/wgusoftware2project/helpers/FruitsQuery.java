@@ -39,7 +39,24 @@ public abstract class FruitsQuery {
     }
 
 
-    public static ObservableList<Customers> populateCusts(ObservableList<Customers> inputArrayList) throws SQLException {
+//    public static ObservableList<Customers> populateCusts(ObservableList<Customers> inputArrayList) throws SQLException {
+//
+//        String sql = "SELECT * FROM CUSTOMERS";
+//        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+//        ResultSet rs = ps.executeQuery();
+//        while(rs.next()){
+//            int custID = rs.getInt("Customer_ID");
+//            String custName = rs.getString("Customer_Name");
+//            String custAddress = rs.getString("Address");
+//            String custPostal = rs.getString("Postal_Code");
+//            String custPhone = rs.getString("Phone");
+//            String custState = rs.getString("Division_ID");
+//            inputArrayList.add(new Customers(custID, custName, custAddress, custPostal, custPhone, custState));
+//        }
+//        return inputArrayList;
+//    }
+
+    public static void populateCusts() throws SQLException {
 
         String sql = "SELECT * FROM CUSTOMERS";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -51,9 +68,8 @@ public abstract class FruitsQuery {
             String custPostal = rs.getString("Postal_Code");
             String custPhone = rs.getString("Phone");
             String custState = rs.getString("Division_ID");
-            inputArrayList.add(new Customers(custID, custName, custAddress, custPostal, custPhone, custState));
+            Inventory.addCust(new Customers(custID, custName, custAddress, custPostal, custPhone, custState));
         }
-        return inputArrayList;
     }
 
     public static int insertAppt(Appointments addAppt) throws SQLException {
@@ -78,6 +94,24 @@ public abstract class FruitsQuery {
         ps.setInt(8, addAppt.getCustomerID());
         ps.setInt(9, addAppt.getUserID());
         ps.setInt(10, addAppt.getUserID());
+
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+
+    }
+
+    public static int insertCust(Customers addCust) throws SQLException {
+        String sql = "INSERT INTO CUSTOMERS (CUSTOMER_ID, CUSTOMER_NAME, ADDRESS, POSTAL_CODE, " +
+                "PHONE, DIVISION_ID) VALUES(?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+
+        ps.setInt(1, addCust.getCustomerID());
+        ps.setString(2, addCust.getCustomerName());
+        ps.setString(3, addCust.getAddress());
+        ps.setString(4, addCust.getPostalCode());
+        ps.setString(5, addCust.getPhone());
+        ps.setInt(6, Inventory.divisionIdByDivision(addCust.getDivisionId()));
 
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
@@ -112,10 +146,18 @@ public abstract class FruitsQuery {
 
     }
 
-    public static int deleteAppt(int apptID) throws SQLException {
+    public static int deleteAppt(int apptId) throws SQLException {
         String sql = "DELETE FROM APPOINTMENTS WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setInt(1, apptID);
+        ps.setInt(1, apptId);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
+
+    public static int deleteCust(int custId) throws SQLException {
+        String sql = "DELETE FROM CUSTOMERS WHERE CUSTOMER_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, custId);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }
@@ -132,6 +174,7 @@ public abstract class FruitsQuery {
         }
     }
 
+
     public static void getStates() throws SQLException {
 
         String sql = "SELECT * FROM FIRST_LEVEL_DIVISIONS";
@@ -144,5 +187,6 @@ public abstract class FruitsQuery {
             Inventory.addState(new States(divisionId, division, countryId));
         }
     }
+
 
 }
