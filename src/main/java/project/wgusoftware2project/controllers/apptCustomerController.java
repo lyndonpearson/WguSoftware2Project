@@ -20,6 +20,11 @@ import project.wgusoftware2project.model.Inventory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.IsoFields;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class apptCustomerController implements Initializable {
@@ -63,6 +68,9 @@ public class apptCustomerController implements Initializable {
 
     @FXML
     private RadioButton currentMonthBtn;
+
+    @FXML
+    private ToggleGroup apptViewGroup;
 
     @FXML
     private RadioButton currentWeekBtn;
@@ -237,6 +245,50 @@ public class apptCustomerController implements Initializable {
         stage.setScene(new Scene(scene));
 
         stage.show();
+    }
+
+    @FXML
+    void onAllClick(ActionEvent event) {
+        apptTable.setItems(Inventory.getAllAppts());
+    }
+
+    @FXML
+    void onCurrentMonthClick(ActionEvent event) {
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int year = cal.get(Calendar.YEAR);
+        ObservableList<Appointments> items = FXCollections.observableArrayList();
+        ObservableList<Appointments> allAppts = Inventory.getAllAppts();
+        for (Appointments appt: allAppts){
+            int apptMonth = appt.getStart().atZone(ZoneId.systemDefault()).getMonth().getValue();
+            int apptYear = appt.getStart().atZone(ZoneId.systemDefault()).getYear();
+            if (apptMonth == month && apptYear == year){
+                items.add(appt);
+            }
+        }
+        apptTable.setItems(items);
+    }
+
+    @FXML
+    void onCurrentWeekClick(ActionEvent event) {
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int week = cal.get(Calendar.WEEK_OF_YEAR);
+        int year = cal.get(Calendar.YEAR);
+        ObservableList<Appointments> items = FXCollections.observableArrayList();
+        ObservableList<Appointments> allAppts = Inventory.getAllAppts();
+        for (Appointments appt: allAppts){
+            ZonedDateTime apptWeek = ZonedDateTime.ofInstant(appt.getStart(), ZoneId.systemDefault());
+            int apptWeekInt = apptWeek.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
+            int apptYear = appt.getStart().atZone(ZoneId.systemDefault()).getYear();
+            if (apptWeekInt == week && apptYear == year){
+                items.add(appt);
+            }
+        }
+        apptTable.setItems(items);
     }
 
 }
