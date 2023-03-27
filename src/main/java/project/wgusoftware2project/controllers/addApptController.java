@@ -32,6 +32,7 @@ public class addApptController implements Initializable {
     Stage stage;
     Parent scene;
 
+
     @FXML
     public ComboBox<Appointments> contactIdCombo;
     @FXML
@@ -79,6 +80,8 @@ public class addApptController implements Initializable {
         stage.setScene(new Scene(scene));
 
         stage.show();
+
+
     }
 
     @FXML

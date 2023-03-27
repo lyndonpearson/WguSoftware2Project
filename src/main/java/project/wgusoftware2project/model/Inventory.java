@@ -3,6 +3,8 @@ package project.wgusoftware2project.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.List;
+
 public class Inventory {
 
     public static ObservableList<Appointments> allAppts = FXCollections.observableArrayList();
@@ -110,6 +112,22 @@ public class Inventory {
             }
         }
         return false;
+    }
+
+    public static void deleteApptByCustId(int custId){
+        int loopIndex = -1;
+        ObservableList<Appointments> deleteAppts = FXCollections.observableArrayList();
+        for (Appointments appt : allAppts) {
+            loopIndex++;
+            System.out.println(appt.getCustomerID());
+            if (appt.getCustomerID() == custId) {
+                //allAppts.remove(loopIndex);
+                deleteAppts.add(appt);
+            }
+        }
+        System.out.println("Delete array size at end is: " + deleteAppts.size());
+        allAppts.removeAll(deleteAppts);
+        System.out.println("Array size at end is: " + allAppts.size());
     }
 
     public static boolean deleteCust(int custId){

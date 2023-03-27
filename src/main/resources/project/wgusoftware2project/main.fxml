@@ -9,9 +9,10 @@
    <children>
       <TextField fx:id="userNameTextField" layoutX="232.0" layoutY="86.0" />
       <TextField fx:id="passwordTextField" layoutX="232.0" layoutY="144.0" />
-      <Label layoutX="104.0" layoutY="90.0" text="User Name" />
-      <Label layoutX="104.0" layoutY="148.0" text="Password" />
-      <Label layoutX="104.0" layoutY="249.0" text="Current Location" />
-      <Button fx:id="loginBtn" layoutX="329.0" layoutY="245.0" mnemonicParsing="false" onAction="#onLoginBtnClick" text="Login" />
+      <Label fx:id="userNameLabel" layoutX="104.0" layoutY="90.0" text="UserName" />
+      <Label fx:id="passwordLabel" layoutX="104.0" layoutY="148.0" text="Password" />
+      <Label fx:id="locationLabel" layoutX="104.0" layoutY="249.0" text="Location" />
+      <Button fx:id="loginBtn" layoutX="387.0" layoutY="245.0" mnemonicParsing="false" onAction="#onLoginBtnClick" text="Login" />
+      <TextField fx:id="locationText" layoutX="158.0" layoutY="245.0" prefHeight="25.0" prefWidth="157.0" />
    </children>
 </AnchorPane>

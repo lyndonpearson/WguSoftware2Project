@@ -155,6 +155,10 @@ public abstract class FruitsQuery {
     }
 
     public static int deleteCust(int custId) throws SQLException {
+        String apptSql = "DELETE FROM APPOINTMENTS WHERE CUSTOMER_ID = ?";
+        PreparedStatement psAppt = JDBC.connection.prepareStatement(apptSql);
+        psAppt.setInt(1, custId);
+        psAppt.executeUpdate();
         String sql = "DELETE FROM CUSTOMERS WHERE CUSTOMER_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1, custId);

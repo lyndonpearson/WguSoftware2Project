@@ -8,24 +8,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="addApptBtn" prefHeight="505.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.wgusoftware2project.controllers.apptCustomerController">
+<AnchorPane fx:id="addApptBtn" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.wgusoftware2project.controllers.apptCustomerController">
    <children>
       <Label layoutX="47.0" layoutY="40.0" text="Appointments" />
       <RadioButton fx:id="currentWeekBtn" layoutX="257.0" layoutY="49.0" mnemonicParsing="false" text="Current Week" />
       <RadioButton fx:id="currentMonthBtn" layoutX="357.0" layoutY="49.0" mnemonicParsing="false" text="Current Month" />
       <RadioButton fx:id="allBtn" layoutX="471.0" layoutY="49.0" mnemonicParsing="false" text="All " />
-      <TableView fx:id="apptTable" layoutX="15.0" layoutY="74.0" prefHeight="125.0" prefWidth="568.0">
+      <TableView fx:id="apptTable" layoutX="15.0" layoutY="74.0" prefHeight="125.0" prefWidth="806.0">
         <columns>
-          <TableColumn fx:id="idCol" prefWidth="31.0" text="ID" />
-          <TableColumn fx:id="titleCol" prefWidth="46.0" text="Title" />
-            <TableColumn fx:id="descCol" prefWidth="58.0" text="Desc." />
-            <TableColumn fx:id="locCol" prefWidth="52.0" text="Loc." />
-            <TableColumn fx:id="typeCol" prefWidth="52.0" text="Type" />
-            <TableColumn fx:id="startCol" prefWidth="61.0" text="Start" />
-            <TableColumn fx:id="endTable" prefWidth="72.0" text="End" />
-            <TableColumn fx:id="apptCustIdCol" prefWidth="82.0" text="Customer ID" />
-            <TableColumn fx:id="userIdCol" prefWidth="46.0" text="User ID" />
-            <TableColumn fx:id="contactIdCol" prefWidth="67.0" text="Contact ID" />
+          <TableColumn fx:id="idCol" prefWidth="42.0" text="ID" />
+          <TableColumn fx:id="titleCol" prefWidth="52.0" text="Title" />
+            <TableColumn fx:id="descCol" prefWidth="84.0" text="Desc." />
+            <TableColumn fx:id="locCol" prefWidth="60.0" text="Loc." />
+            <TableColumn fx:id="typeCol" prefWidth="105.0" text="Type" />
+            <TableColumn fx:id="startCol" prefWidth="135.0" text="Start" />
+            <TableColumn fx:id="endTable" prefWidth="133.0" text="End" />
+            <TableColumn fx:id="apptCustIdCol" prefWidth="79.0" text="Customer ID" />
+            <TableColumn fx:id="userIdCol" prefWidth="51.0" text="User ID" />
+            <TableColumn fx:id="contactIdCol" prefWidth="64.0" text="Contact ID" />
         </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="217.0" mnemonicParsing="false" onAction="#onAddBtnClick" text="Add" />
@@ -34,21 +34,21 @@
       <Pane layoutY="253.0" prefHeight="249.0" prefWidth="600.0">
          <children>
             <Label layoutX="33.0" layoutY="15.0" text="Customers" />
-            <TableView fx:id="custTable" layoutX="16.0" layoutY="54.0" prefHeight="125.0" prefWidth="419.0">
+            <TableView fx:id="custTable" layoutX="16.0" layoutY="54.0" prefHeight="125.0" prefWidth="568.0">
                <columns>
-                  <TableColumn fx:id="custIdCol" prefWidth="38.0" text="ID" />
-                  <TableColumn fx:id="custName" prefWidth="70.0" text="Name" />
-                  <TableColumn fx:id="custAddress" prefWidth="62.0" text="Address" />
-                  <TableColumn fx:id="custPhone" prefWidth="94.0" text="Phone Number" />
-                  <TableColumn fx:id="custState" prefWidth="76.0" text="State/Prov" />
-                  <TableColumn fx:id="custPostal" prefWidth="77.0" text="Postal Code" />
+                  <TableColumn fx:id="custIdCol" prefWidth="59.0" text="ID" />
+                  <TableColumn fx:id="custName" prefWidth="116.0" text="Name" />
+                  <TableColumn fx:id="custAddress" prefWidth="106.0" text="Address" />
+                  <TableColumn fx:id="custPhone" prefWidth="102.0" text="Phone Number" />
+                  <TableColumn fx:id="custState" prefWidth="87.0" text="State/Prov" />
+                  <TableColumn fx:id="custPostal" prefWidth="97.0" text="Postal Code" />
                </columns>
             </TableView>
             <Button fx:id="addCustomerBtn" layoutX="12.0" layoutY="190.0" mnemonicParsing="false" onAction="#onAddCustBtnClick" text="Add" />
             <Button fx:id="updateCustomerBtn" layoutX="73.0" layoutY="190.0" mnemonicParsing="false" onAction="#onUpdateCustClick" text="Update" />
             <Button fx:id="deleteCustomerBtn" layoutX="139.0" layoutY="190.0" mnemonicParsing="false" onAction="#onDeleteCustClick" text="Delete" />
-            <Button fx:id="reportsBtn" layoutX="471.0" layoutY="154.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="111.0" text="Reports" />
-            <Button fx:id="logoutBtn" layoutX="471.0" layoutY="196.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="111.0" text="Logout" />
+            <Button fx:id="reportsBtn" layoutX="367.0" layoutY="203.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="111.0" text="Reports" />
+            <Button fx:id="logoutBtn" layoutX="489.0" layoutY="203.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="111.0" text="Logout" />
          </children>
       </Pane>
    </children>

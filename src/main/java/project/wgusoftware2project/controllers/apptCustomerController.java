@@ -211,10 +211,13 @@ public class apptCustomerController implements Initializable {
         Customers selectedCust = custTable.getSelectionModel(). getSelectedItem();
         if(Inventory.deleteCust(selectedCust.getCustomerID())) {
             custTable.getItems().remove(selectedCust);
+            Inventory.deleteApptByCustId(selectedCust.getCustomerID());
             FruitsQuery.deleteCust(selectedCust.getCustomerID());
+            apptTable.setItems(Inventory.getAllAppts());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Deleted Customer");
-            alert.setContentText("Customer ID# " + selectedCust.getCustomerID() + " has been deleted.");
+            alert.setContentText("Customer ID# " + selectedCust.getCustomerID() + " has been deleted " +
+                    "along with all associated appointments.");
             alert.showAndWait();
         }
         else {
