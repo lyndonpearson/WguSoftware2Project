@@ -10,10 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import project.wgusoftware2project.helpers.FruitsQuery;
 import project.wgusoftware2project.model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class changeCustomerController implements Initializable {
@@ -60,9 +62,38 @@ public class changeCustomerController implements Initializable {
     }
 
     @FXML
-    void onSaveBtnClick(ActionEvent event) {
+    void onSaveBtnClick(ActionEvent event) throws SQLException, IOException {
+        int id = 0;
+        String name;
+        String address;
+        String phone;
+        String postal;
+        String divisionId;
+        String state;
 
+
+        id = Integer.parseInt(idText.getText());
+        name = nameText.getText();
+        address = addressText.getText();
+        phone = phoneText.getText();
+        postal = postalText.getText();
+        divisionId = Inventory.getDivisonIdFromState(String.valueOf(stateCombo.getValue()));
+        state = String.valueOf(stateCombo.getValue());
+
+        Customers newCust = new Customers(id, name, address, phone, postal, divisionId, state);
+        Inventory.updateCustomer(id, newCust);
+        FruitsQuery.updateCustomer(newCust);
+
+
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+
+        scene = FXMLLoader.load(getClass().getResource("/project/wgusoftware2project/apptCustomer.fxml"));
+
+        stage.setScene(new Scene(scene));
+
+        stage.show();
     }
+
 
     @FXML
     void onStateComboClick(ActionEvent event) {

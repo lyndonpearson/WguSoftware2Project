@@ -72,6 +72,17 @@ public class Inventory {
         return null;
     }
 
+    public static String getDivisonIdFromState(String stateName){
+        ObservableList<States> tempOL;
+        tempOL = Inventory.getAllStates();
+        for (States state : tempOL) {
+            if (state.getDivision() == stateName) {
+                return String.valueOf(state.getDivisionId());
+            }
+        }
+        return null;
+    }
+
     public static int countryIdByDivId(int divId){
         ObservableList<States> tempOL;
         tempOL = Inventory.getAllStates();
@@ -113,6 +124,17 @@ public class Inventory {
             loopIndex++;
             if (appt.getAppointmentID() == apptID)
                 Inventory.getAllAppts().set(loopIndex, selectedAppt);
+        }
+    }
+
+    public static void updateCustomer(int custId, Customers selectedCustomer){
+        int loopIndex = -1;
+        ObservableList<Customers> tempOL;
+        tempOL = Inventory.getAllCusts();
+        for (Customers customer : tempOL) {
+            loopIndex++;
+            if (customer.getCustomerID() == custId)
+                Inventory.getAllCusts().set(loopIndex, selectedCustomer);
         }
     }
 

@@ -39,23 +39,6 @@ public abstract class FruitsQuery {
     }
 
 
-//    public static ObservableList<Customers> populateCusts(ObservableList<Customers> inputArrayList) throws SQLException {
-//
-//        String sql = "SELECT * FROM CUSTOMERS";
-//        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-//        ResultSet rs = ps.executeQuery();
-//        while(rs.next()){
-//            int custID = rs.getInt("Customer_ID");
-//            String custName = rs.getString("Customer_Name");
-//            String custAddress = rs.getString("Address");
-//            String custPostal = rs.getString("Postal_Code");
-//            String custPhone = rs.getString("Phone");
-//            String custState = rs.getString("Division_ID");
-//            inputArrayList.add(new Customers(custID, custName, custAddress, custPostal, custPhone, custState));
-//        }
-//        return inputArrayList;
-//    }
-
     public static void populateCusts() throws SQLException {
 
         String sql = "SELECT * FROM CUSTOMERS";
@@ -167,6 +150,24 @@ public abstract class FruitsQuery {
         ps.setInt(7, addAppt.getCustomerID());
         ps.setInt(8, addAppt.getUserID());
         ps.setInt(9, addAppt.getUserID());
+
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+
+    }
+
+    public static int updateCustomer(Customers addCustomer) throws SQLException {
+        String sql = "UPDATE CUSTOMERS SET Customer_Name = ?, Address = ?, Postal_Code = ?, " +
+                "Phone = ? WHERE CUSTOMER_ID = " + String.valueOf(addCustomer.getCustomerID());
+        // CANNOT UPDATE DIVISION ID DUE TO FOREIGN KEY CONSTRAINTS
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+
+        ps.setString(1, addCustomer.getCustomerName());
+        ps.setString(2, addCustomer.getAddress());
+        ps.setString(3, addCustomer.getPostalCode());
+        ps.setString(4, addCustomer.getPhone());
+        //ps.setString(5, addCustomer.getDivisionId());
+        //ps.setInt(5, 777);
 
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
