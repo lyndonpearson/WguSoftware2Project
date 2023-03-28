@@ -84,7 +84,7 @@ public class changeApptController implements Initializable {
         int customerID;
         int userID;
         int contactID;
-        ZoneId zone = ZoneId.of("UTC");
+        ZoneId zone = ZoneId.of(String.valueOf(ZoneId.systemDefault()));
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
 
         appointmentID = Integer.parseInt(idText.getText());
@@ -100,12 +100,15 @@ public class changeApptController implements Initializable {
         ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
         end = zdtEnd.toInstant();
 
+        ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
+        ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
+
         customerID = Integer.parseInt(customerIdText.getText());
         userID = Integer.parseInt(userIdText.getText());
         contactID = Integer.parseInt(contactIdText.getText());
 
         Appointments newAppt = new Appointments(appointmentID, title, description, location, type, start,
-                end, customerID, userID, contactID);
+                startLocal, end, endLocal, customerID, userID, contactID);
 
         Inventory.updateAppt(appointmentID, newAppt);
         FruitsQuery.updateAppt(newAppt);
@@ -127,8 +130,8 @@ public class changeApptController implements Initializable {
         locText.setText(String.valueOf(inAppt.getLocation()));
         typeText.setText(String.valueOf(inAppt.getType()));
 
-        startText.setText(inAppt.getStart().toString());
-        endText.setText(inAppt.getEnd().toString());
+        startText.setText(inAppt.getStartLocal().toString());
+        endText.setText(inAppt.getEndLocal().toString());
 
         customerIdText.setText(String.valueOf(inAppt.getCustomerID()));
         userIdText.setText(String.valueOf(inAppt.getUserID()));

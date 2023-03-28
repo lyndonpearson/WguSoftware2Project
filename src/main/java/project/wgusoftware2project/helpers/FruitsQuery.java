@@ -5,13 +5,8 @@ import javafx.collections.ObservableList;
 import project.wgusoftware2project.App;
 import project.wgusoftware2project.model.*;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.sql.*;
+import java.time.*;
 
 public abstract class FruitsQuery {
 
@@ -26,15 +21,18 @@ public abstract class FruitsQuery {
             String description = rs.getString("Description");
             String location = rs.getString("Location");
             String type = rs.getString("Type");
-//            String start = rs.getString("Start");
-//            String end = rs.getString("End");
+
             Instant start = rs.getTimestamp("Start").toInstant();
+            ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
             Instant end = rs.getTimestamp("End").toInstant();
+            ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
             int contactID = rs.getInt("Contact_ID");
+            System.out.println(start);
+            System.out.println(startLocal);
             Inventory.addAppt(new Appointments(apptID, title, description, location, type, start,
-                    end, customerID, userID, contactID));
+                    startLocal, end, endLocal, customerID, userID, contactID));
         }
     }
 
@@ -141,9 +139,9 @@ public abstract class FruitsQuery {
         ps.setString(3, addAppt.getLocation());
         ps.setString(4, addAppt.getType());
 
-        Timestamp timestampStart = Timestamp.from(addAppt.getStart());
+        Timestamp timestampStart = Timestamp.from(addAppt.getStartLocal().toInstant());
         ps.setTimestamp(5, timestampStart);
-        Timestamp timestampEnd = Timestamp.from(addAppt.getEnd());
+        Timestamp timestampEnd = Timestamp.from(addAppt.getEndLocal().toInstant());
         ps.setTimestamp(6, timestampEnd);
 
         // NEED TO INCORPORATE BELOW AS PRIMARY KEYS/FOREIGN KEYS

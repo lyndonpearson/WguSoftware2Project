@@ -71,6 +71,16 @@ public class Inventory {
         allAppts.clear();
     }
 
+    public static ObservableList getAllAppointmentsLocalTime(){
+        ObservableList<Appointments> allAppts = Inventory.getAllAppts();
+        ObservableList<ZonedDateTime> allZdtLocal = FXCollections.observableArrayList();
+        for (Appointments appointment : allAppts){
+            allZdtLocal.add(appointment.getStart().atZone(ZoneId.systemDefault()));
+        }
+        return allZdtLocal;
+    }
+
+
     public static States lookupState(int stateId){
         ObservableList<States> tempOL;
         tempOL = Inventory.getAllStates();

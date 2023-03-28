@@ -107,13 +107,16 @@ public class addApptController implements Initializable {
         String endTimeText = endText.getText();
         ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
         end = zdtEnd.toInstant();
+        ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
+        ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
 
 
         customerId = custIdCombo.getValue().getCustomerID();
         userId = userIdCombo.getValue().getUserId();
         contactId = contactIdCombo.getValue().getContactId();
 
-        Appointments newAppt = new Appointments(id, title, description, location, type, start, end, customerId, userId, contactId);
+        Appointments newAppt = new Appointments(id, title, description, location, type, start,
+                startLocal, end, endLocal, customerId, userId, contactId);
         Inventory.addAppt(newAppt);
         if (FruitsQuery.insertAppt(newAppt) > 0){
             System.out.println("Successfully inserted into DB");

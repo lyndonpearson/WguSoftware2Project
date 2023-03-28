@@ -199,8 +199,8 @@ public class apptCustomerController implements Initializable {
         descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endTable.setCellValueFactory(new PropertyValueFactory<>("end"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startLocal"));
+        endTable.setCellValueFactory(new PropertyValueFactory<>("endLocal"));
         apptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
