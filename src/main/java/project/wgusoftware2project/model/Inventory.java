@@ -2,6 +2,16 @@ package project.wgusoftware2project.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import project.wgusoftware2project.App;
+
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.*;
+import java.time.temporal.ChronoField;
+
+import static java.lang.Math.abs;
 
 public class Inventory {
 
@@ -71,6 +81,54 @@ public class Inventory {
         }
         return null;
     }
+
+    public static void checkAppointmentTimes(){
+
+        // CURRENTLY TIME STORED IN TABLEVIEW IS IN UTC AND CALCULATIONS
+        // RETURN 15 MINUTE WARNING FOR UTC VALUES. SHOULD PROBABLY
+        // BE EITHER SYSTEM LOCAL TIME OR EST
+
+        ObservableList<Appointments> tempOL;
+        tempOL = Inventory.getAllAppts();
+        String locationZone = String.valueOf(ZoneId.systemDefault());
+        for (Appointments appt: tempOL){
+            LocalTime timeAppt = appt.getStart().atZone(ZoneId.of(locationZone)).toLocalTime();
+            Instant nowInstant = Instant.now();
+            LocalTime timeNow = nowInstant.atZone(ZoneId.of(locationZone)).toLocalTime();
+
+
+            int apptHour = appt.getStart().atZone(ZoneId.of(locationZone)).getHour();
+            // get minute
+            int apptMinute = appt.getStart().atZone(ZoneId.of(locationZone)).getMinute();
+            // get second
+            int apptSecond = appt.getStart().atZone(ZoneId.of(locationZone)).getSecond();
+
+
+            // get hour
+            int hour = nowInstant.atZone(ZoneId.of(locationZone)).getHour();
+            // get minute
+            int minute = nowInstant.atZone(ZoneId.of(locationZone)).getMinute();
+            // get second
+            int second = nowInstant.atZone(ZoneId.of(locationZone)).getSecond();
+
+            if ((apptHour - hour) == 0 && abs(apptMinute - minute) <= 15){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Appointment Warning");
+                alert.setContentText("Appointment within 15 minutes! \n " +
+                        "Appointment ID: " + appt.getAppointmentID() +
+                        " Appointment time: " + timeAppt);
+                alert.showAndWait();
+                return;
+            }
+
+        }
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("No Appointments Soon");
+        alert.setContentText("No upcoming appointments");
+        alert.showAndWait();
+    }
+
+
 
     public static String getDivisonIdFromState(String stateName){
         ObservableList<States> tempOL;
