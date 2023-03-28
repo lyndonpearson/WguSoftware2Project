@@ -3,14 +3,14 @@ package project.wgusoftware2project.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.List;
-
 public class Inventory {
 
     public static ObservableList<Appointments> allAppts = FXCollections.observableArrayList();
     public static ObservableList<Customers> allCusts = FXCollections.observableArrayList();
     public static ObservableList<Countries> allCountries = FXCollections.observableArrayList();
     public static ObservableList<States> allStates = FXCollections.observableArrayList();
+    public static ObservableList<Users> allUsers = FXCollections.observableArrayList();
+    public static ObservableList<Contacts> allContacts = FXCollections.observableArrayList();
 
     public static void addAppt(Appointments addAppt){
         allAppts.add(addAppt);
@@ -28,10 +28,18 @@ public class Inventory {
         allStates.add(addState);
     }
 
+    public static void addUser(Users addUser){
+        allUsers.add(addUser);
+    }
+
+    public static void addContact(Contacts addContact){
+        allContacts.add(addContact);
+    }
+
     public static ObservableList getAllAppts(){
         return allAppts;
     }
-    public static ObservableList getallCusts(){
+    public static ObservableList getAllCusts(){
         return allCusts;
     }
 
@@ -41,7 +49,13 @@ public class Inventory {
     public static ObservableList getAllStates(){
         return allStates;
     }
+    public static ObservableList getAllUsers(){
+        return allUsers;
+    }
 
+    public static ObservableList getAllContacts(){
+        return allContacts;
+    }
 
     public static void clearAllAppts() {
         allAppts.clear();

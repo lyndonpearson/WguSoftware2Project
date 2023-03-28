@@ -192,7 +192,7 @@ public class apptCustomerController implements Initializable {
 
 
         apptTable.setItems(Inventory.getAllAppts());
-        custTable.setItems(Inventory.getallCusts());
+        custTable.setItems(Inventory.getAllCusts());
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -209,8 +209,7 @@ public class apptCustomerController implements Initializable {
         custName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         custAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         custPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        custState.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
-        //CURRENTLY PRINTING DIVISION ID - USE THAT KEY TO RETRIEVE STATE
+        custState.setCellValueFactory(new PropertyValueFactory<>("state"));
         custPostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
     }
 

@@ -20,10 +20,13 @@ public class App extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+
         FruitsQuery.populateAppts();
-        FruitsQuery.populateCusts();
-        FruitsQuery.getCountries();
         FruitsQuery.getStates();
+        FruitsQuery.populateCusts();
+        FruitsQuery.populateContacts();
+        FruitsQuery.populateUsers();
+        FruitsQuery.getCountries();
 
     }
 

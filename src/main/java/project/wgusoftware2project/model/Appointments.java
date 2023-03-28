@@ -108,8 +108,5 @@ public class Appointments {
         this.contactID = contactID;
     }
 
-    @Override
-    public String toString(){
-        return ("Contact ID: " + Integer.toString(contactID));
-    }
+
 }

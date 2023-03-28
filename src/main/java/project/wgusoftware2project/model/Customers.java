@@ -1,5 +1,14 @@
 package project.wgusoftware2project.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
+import java.net.URL;
+import java.util.Random;
+import java.util.ResourceBundle;
+
 public class Customers {
     int customerID;
     String customerName;
@@ -7,14 +16,22 @@ public class Customers {
     String postalCode;
     String phone;
     String divisionId;
+    String state;
 
-    public Customers(int customerID, String customerName, String address, String postalCode, String phone, String divisionId) {
+    public Customers(int customerID, String customerName, String address, String postalCode, String phone, String divisionId, String state) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
         this.divisionId = divisionId;
+        this.state = state;
+    }
+
+
+    @Override
+    public String toString() {
+        return (Integer.toString(customerID));
     }
 
     public int getCustomerID() {
@@ -63,5 +80,13 @@ public class Customers {
 
     public void setDivisionId(String divisionId) {
         this.divisionId = divisionId;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

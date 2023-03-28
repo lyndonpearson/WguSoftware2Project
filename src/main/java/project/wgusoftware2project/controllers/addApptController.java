@@ -12,16 +12,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import project.wgusoftware2project.App;
 import project.wgusoftware2project.helpers.FruitsQuery;
-import project.wgusoftware2project.model.Appointments;
-import project.wgusoftware2project.model.Inventory;
+import project.wgusoftware2project.model.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,15 +31,17 @@ public class addApptController implements Initializable {
 
 
     @FXML
-    public ComboBox<Appointments> contactIdCombo;
+    public ComboBox<Contacts> contactIdCombo;
+
+    @FXML
+    private ComboBox<Customers> custIdCombo;
+
+    @FXML
+    private ComboBox<Users> userIdCombo;
     @FXML
     private Button cancelBtn;
 
-    @FXML
-    private TextField contactIdText;
 
-    @FXML
-    private TextField customerIdText;
 
     @FXML
     private TextField descText;
@@ -67,9 +66,6 @@ public class addApptController implements Initializable {
 
     @FXML
     private TextField typeText;
-
-    @FXML
-    private TextField userIdText;
 
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
@@ -113,9 +109,9 @@ public class addApptController implements Initializable {
         end = zdtEnd.toInstant();
 
 
-        customerId = Integer.parseInt(customerIdText.getText());
-        userId = Integer.parseInt(userIdText.getText());
-        contactId = contactIdCombo.getValue().getContactID();
+        customerId = custIdCombo.getValue().getCustomerID();
+        userId = userIdCombo.getValue().getUserId();
+        contactId = contactIdCombo.getValue().getContactId();
 
         Appointments newAppt = new Appointments(id, title, description, location, type, start, end, customerId, userId, contactId);
         Inventory.addAppt(newAppt);
@@ -138,9 +134,32 @@ public class addApptController implements Initializable {
     @FXML
     void onContactIdComboClick(ActionEvent event) {
         int contactSelected = -1;
-        for(Appointments appt: contactIdCombo.getItems()){
-            if(contactSelected == appt.getContactID()){
-                contactIdCombo.setValue(appt);
+        for(Contacts contact: contactIdCombo.getItems()){
+            if(contactSelected == contact.getContactId()){
+                contactIdCombo.setValue(contact);
+                break;
+            }
+        }
+    }
+
+
+    @FXML
+    void onCustIdComboClick(ActionEvent event) {
+        int contactSelected = -1;
+        for(Customers customer: custIdCombo.getItems()){
+            if(contactSelected == customer.getCustomerID()){
+                custIdCombo.setValue(customer);
+                break;
+            }
+        }
+    }
+
+    @FXML
+    void onUserIdComboClick(ActionEvent event) {
+        int contactSelected = -1;
+        for(Users user: userIdCombo.getItems()){
+            if(contactSelected == user.getUserId()){
+                userIdCombo.setValue(user);
                 break;
             }
         }
@@ -148,9 +167,15 @@ public class addApptController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Appointments> apptList = FXCollections.observableArrayList();
-        apptList = Inventory.getAllAppts();
-        contactIdCombo.setItems(apptList);
+        ObservableList<Users> userList = FXCollections.observableArrayList();
+        ObservableList<Customers> custList = FXCollections.observableArrayList();
+        ObservableList<Contacts> contactList = FXCollections.observableArrayList();
+        userList = Inventory.getAllUsers();
+        custList = Inventory.getAllCusts();
+        contactList = Inventory.getAllContacts();
+        contactIdCombo.setItems(contactList);
+        custIdCombo.setItems(custList);
+        userIdCombo.setItems(userList);
         Random rand = new Random();
         int nextId = rand.nextInt(10000);
         idText.setText(String.valueOf(nextId));

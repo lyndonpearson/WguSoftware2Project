@@ -67,8 +67,35 @@ public abstract class FruitsQuery {
             String custAddress = rs.getString("Address");
             String custPostal = rs.getString("Postal_Code");
             String custPhone = rs.getString("Phone");
-            String custState = rs.getString("Division_ID");
-            Inventory.addCust(new Customers(custID, custName, custAddress, custPostal, custPhone, custState));
+            String custDivisionId = rs.getString("Division_ID");
+            String custState = Inventory.lookupState(Integer.parseInt(custDivisionId)).getDivision();
+            Inventory.addCust(new Customers(custID, custName, custAddress, custPostal, custPhone, custDivisionId, custState));
+        }
+    }
+
+    public static void populateUsers() throws SQLException {
+
+        String sql = "SELECT * FROM USERS";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            int userId = rs.getInt("User_ID");
+            String userName = rs.getString("User_Name");
+            String password = rs.getString("Password");
+            Inventory.addUser(new Users(userId, userName, password));
+        }
+    }
+
+    public static void populateContacts() throws SQLException {
+
+        String sql = "SELECT * FROM CONTACTS";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            int contactId = rs.getInt("Contact_ID");
+            String contactName = rs.getString("Contact_Name");
+            String email = rs.getString("Email");
+            Inventory.addContact(new Contacts(contactId, contactName, email));
         }
     }
 

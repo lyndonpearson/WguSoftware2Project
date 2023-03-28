@@ -95,8 +95,8 @@ public class addCustomerController implements Initializable {
         String address;
         String phone;
         String postal;
-
         String divisionId;
+        String state;
 
 
         id = Integer.parseInt(idText.getText());
@@ -105,8 +105,10 @@ public class addCustomerController implements Initializable {
         phone = phoneText.getText();
         postal = postalText.getText();
         divisionId = String.valueOf(stateCombo.getValue());
+        //state = Inventory.lookupState(Integer.parseInt(divisionId)).getDivision();
+        state = String.valueOf(stateCombo.getValue());
 
-        Customers newCust = new Customers(id, name, address, phone, postal, divisionId);
+        Customers newCust = new Customers(id, name, address, phone, postal, divisionId, state);
         Inventory.addCust(newCust);
         if (FruitsQuery.insertCust(newCust) > 0){
             System.out.println("Successfully inserted Customer into DB");
