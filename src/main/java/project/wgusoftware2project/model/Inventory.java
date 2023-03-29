@@ -23,6 +23,8 @@ public class Inventory {
     public static ObservableList<Contacts> allContacts = FXCollections.observableArrayList();
     public static ObservableList<ReportAppointment> allReportAppointments = FXCollections.observableArrayList();
 
+    public static ObservableList<ReportDivision> allReportDivisions = FXCollections.observableArrayList();
+
     public static void addAppt(Appointments addAppt){
         allAppts.add(addAppt);
     }
@@ -80,24 +82,71 @@ public class Inventory {
         return null;
     }
 
-    public static ObservableList appointmentsByMonth(){
+    public static ObservableList appointmentsByMonth() {
+        allReportAppointments.clear();
         ObservableList<Appointments> tempOL;
         tempOL = Inventory.getAllAppts();
-        for (Appointments appt : tempOL){
+
+        for (Appointments appt : tempOL) {
             int count = 0;
             int month = appt.getStartLocal().getMonthValue();
             String type = appt.getType();
-            for (Appointments apptSearch: tempOL){
-                if (apptSearch.getStartLocal().getMonthValue() == month && apptSearch.getType().equals(type)){
+            for (Appointments apptSearch : tempOL) {
+                if (apptSearch.getStartLocal().getMonthValue() == month && apptSearch.getType().equals(type)) {
                     count++;
                 }
             }
-            if (count > 0){
-                ReportAppointment addReport = new ReportAppointment(month, type, count);
+            ReportAppointment addReport = new ReportAppointment(month, type, count);
+            if (allReportAppointments.size() == 0) {
                 allReportAppointments.add(addReport);
+            } else {
+                int duplicateflag = 0;
+                int arraySize = allReportAppointments.size();
+                for (int Index = 0; Index < arraySize; Index++) {
+                    if (allReportAppointments.get(Index).getAllApptMonths() == addReport.getAllApptMonths()) {
+                        if(allReportAppointments.get(Index).getAllApptTypes().equals(addReport.getAllApptTypes()))
+                            duplicateflag++;
+                    }
+                }
+                if (duplicateflag < 1) {
+                    allReportAppointments.add(addReport);
+                }
+
             }
         }
         return allReportAppointments;
+    }
+
+    public static ObservableList customersByDivisionName(){
+        allReportDivisions.clear();
+        ObservableList<Customers> tempOL;
+        tempOL = Inventory.getAllCusts();
+
+        for (Customers customer : tempOL){
+            int total = 0;
+            for (Customers customerSearch : tempOL){
+                if(customer.getState().equals(customerSearch.getState())){
+                    total++;
+                }
+            }
+            ReportDivision reportDivision = new ReportDivision(customer.getState(), total);
+            if(allReportDivisions.size() == 0){
+                allReportDivisions.add(reportDivision);
+            }
+            else{
+                int duplicateflag = 0;
+                int arraySize = allReportDivisions.size();
+                for (int Index = 0; Index < arraySize; Index++){
+                    if(allReportDivisions.get(Index).getState().equals(reportDivision.getState())){
+                        duplicateflag++;
+                    }
+                }
+                if(duplicateflag < 1){
+                    allReportDivisions.add(reportDivision);
+                }
+            }
+        }
+        return allReportDivisions;
     }
     public static void checkAppointmentTimes(){
 

@@ -14,10 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import project.wgusoftware2project.App;
-import project.wgusoftware2project.model.Appointments;
-import project.wgusoftware2project.model.Contacts;
-import project.wgusoftware2project.model.Inventory;
-import project.wgusoftware2project.model.ReportAppointment;
+import project.wgusoftware2project.model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +42,7 @@ public class reportController implements Initializable {
     private TableColumn<?, ?> descCol;
 
     @FXML
-    private TableView<?> divisionTable;
+    private TableView<ReportDivision> divisionTable;
 
     @FXML
     private TableColumn<?, ?> endTable;
@@ -135,11 +132,17 @@ public class reportController implements Initializable {
         contactComboBox.setItems(contactList);
         ObservableList<ReportAppointment> apptReport =  Inventory.appointmentsByMonth();
         monthApptTable.setItems(apptReport);
+        ObservableList<ReportDivision> divisionList = Inventory.customersByDivisionName();
+        divisionTable.setItems(divisionList);
 
         //DOUBLE COUNTING THROUGH OBSERVABLE LISTS
         apptMonthCol.setCellValueFactory(new PropertyValueFactory<>("allApptMonths"));
         apptTypeCol.setCellValueFactory(new PropertyValueFactory<>("allApptTypes"));
         totalApptCol.setCellValueFactory(new PropertyValueFactory<>("allTotalAppts"));
+
+
+        divisionNameCol.setCellValueFactory(new PropertyValueFactory<>("state"));
+        totalCustomersCol.setCellValueFactory(new PropertyValueFactory<>("total"));
     }
 }
 
