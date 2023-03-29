@@ -19,9 +19,9 @@
          <children>
             <TableView fx:id="monthApptTable" layoutX="6.0" layoutY="332.0" prefHeight="200.0" prefWidth="412.0">
                <columns>
-                  <TableColumn prefWidth="138.0" text="Appointment Month" />
-                  <TableColumn prefWidth="131.0" text="Appointment Type" />
-                  <TableColumn prefWidth="142.0" text="Total Appointments" />
+                  <TableColumn fx:id="apptMonthCol" prefWidth="138.0" text="Appointment Month" />
+                  <TableColumn fx:id="apptTypeCol" prefWidth="131.0" text="Appointment Type" />
+                  <TableColumn fx:id="totalApptCol" prefWidth="142.0" text="Total Appointments" />
                </columns>
             </TableView>
             <Button fx:id="backBtn" layoutX="462.0" layoutY="505.0" mnemonicParsing="false" onAction="#onBackBtnClick" text="Back" />
@@ -50,8 +50,8 @@
       </Label>
       <TableView fx:id="divisionTable" layoutX="631.0" layoutY="337.0" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="97.0" text="Divison Name" />
-          <TableColumn prefWidth="102.0" text="Total Customers" />
+          <TableColumn fx:id="divisionNameCol" prefWidth="97.0" text="Divison Name" />
+          <TableColumn fx:id="totalCustomersCol" prefWidth="102.0" text="Total Customers" />
         </columns>
       </TableView>
    </children>

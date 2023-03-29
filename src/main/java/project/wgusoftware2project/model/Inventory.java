@@ -21,6 +21,7 @@ public class Inventory {
     public static ObservableList<States> allStates = FXCollections.observableArrayList();
     public static ObservableList<Users> allUsers = FXCollections.observableArrayList();
     public static ObservableList<Contacts> allContacts = FXCollections.observableArrayList();
+    public static ObservableList<ReportAppointment> allReportAppointments = FXCollections.observableArrayList();
 
     public static void addAppt(Appointments addAppt){
         allAppts.add(addAppt);
@@ -52,7 +53,6 @@ public class Inventory {
     public static ObservableList getAllCusts(){
         return allCusts;
     }
-
     public static ObservableList getAllCountries(){
         return allCountries;
     }
@@ -62,24 +62,12 @@ public class Inventory {
     public static ObservableList getAllUsers(){
         return allUsers;
     }
-
     public static ObservableList getAllContacts(){
         return allContacts;
     }
-
     public static void clearAllAppts() {
         allAppts.clear();
     }
-
-    public static ObservableList getAllAppointmentsLocalTime(){
-        ObservableList<Appointments> allAppts = Inventory.getAllAppts();
-        ObservableList<ZonedDateTime> allZdtLocal = FXCollections.observableArrayList();
-        for (Appointments appointment : allAppts){
-            allZdtLocal.add(appointment.getStart().atZone(ZoneId.systemDefault()));
-        }
-        return allZdtLocal;
-    }
-
 
     public static States lookupState(int stateId){
         ObservableList<States> tempOL;
@@ -92,11 +80,26 @@ public class Inventory {
         return null;
     }
 
+    public static ObservableList appointmentsByMonth(){
+        ObservableList<Appointments> tempOL;
+        tempOL = Inventory.getAllAppts();
+        for (Appointments appt : tempOL){
+            int count = 0;
+            int month = appt.getStartLocal().getMonthValue();
+            String type = appt.getType();
+            for (Appointments apptSearch: tempOL){
+                if (apptSearch.getStartLocal().getMonthValue() == month && apptSearch.getType().equals(type)){
+                    count++;
+                }
+            }
+            if (count > 0){
+                ReportAppointment addReport = new ReportAppointment(month, type, count);
+                allReportAppointments.add(addReport);
+            }
+        }
+        return allReportAppointments;
+    }
     public static void checkAppointmentTimes(){
-
-        // CURRENTLY TIME STORED IN TABLEVIEW IS IN UTC AND CALCULATIONS
-        // RETURN 15 MINUTE WARNING FOR UTC VALUES. SHOULD PROBABLY
-        // BE EITHER SYSTEM LOCAL TIME OR EST
 
         ObservableList<Appointments> tempOL;
         tempOL = Inventory.getAllAppts();
@@ -104,22 +107,13 @@ public class Inventory {
         for (Appointments appt: tempOL){
             LocalTime timeAppt = appt.getStart().atZone(ZoneId.of(locationZone)).toLocalTime();
             Instant nowInstant = Instant.now();
-            LocalTime timeNow = nowInstant.atZone(ZoneId.of(locationZone)).toLocalTime();
-
 
             int apptHour = appt.getStart().atZone(ZoneId.of(locationZone)).getHour();
-            // get minute
             int apptMinute = appt.getStart().atZone(ZoneId.of(locationZone)).getMinute();
-            // get second
-            int apptSecond = appt.getStart().atZone(ZoneId.of(locationZone)).getSecond();
 
 
-            // get hour
             int hour = nowInstant.atZone(ZoneId.of(locationZone)).getHour();
-            // get minute
             int minute = nowInstant.atZone(ZoneId.of(locationZone)).getMinute();
-            // get second
-            int second = nowInstant.atZone(ZoneId.of(locationZone)).getSecond();
 
             if ((apptHour - hour) == 0 && abs(apptMinute - minute) <= 15){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -150,6 +144,20 @@ public class Inventory {
         }
         return null;
     }
+
+    public static ObservableList getAppointmentsByCustId(int contactId){
+        ObservableList<Appointments> tempOL;
+        tempOL = Inventory.getAllAppts();
+        ObservableList<Appointments> contactApptList = FXCollections.observableArrayList();
+        for (Appointments appt : tempOL) {
+            if (appt.getContactID() == contactId) {
+                contactApptList.add(appt);
+            }
+        }
+        return contactApptList;
+    }
+
+
 
     public static int countryIdByDivId(int divId){
         ObservableList<States> tempOL;

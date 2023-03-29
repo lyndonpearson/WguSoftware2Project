@@ -1,19 +1,29 @@
 package project.wgusoftware2project.controllers;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import project.wgusoftware2project.App;
+import project.wgusoftware2project.model.Appointments;
+import project.wgusoftware2project.model.Contacts;
+import project.wgusoftware2project.model.Inventory;
+import project.wgusoftware2project.model.ReportAppointment;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class reportController {
+public class reportController implements Initializable {
     Stage stage;
     Parent scene;
     @FXML
@@ -23,10 +33,10 @@ public class reportController {
     private Button backBtn;
 
     @FXML
-    private TableView<?> contactApptTable;
+    private TableView<Appointments> contactApptTable;
 
     @FXML
-    private ComboBox<?> contactComboBox;
+    private ComboBox<Contacts> contactComboBox;
 
     @FXML
     private TableColumn<?, ?> contactIdCol;
@@ -50,7 +60,7 @@ public class reportController {
     private Button logoutBtn;
 
     @FXML
-    private TableView<?> monthApptTable;
+    private TableView<ReportAppointment> monthApptTable;
 
     @FXML
     private TableColumn<?, ?> startCol;
@@ -65,6 +75,21 @@ public class reportController {
     private TableColumn<?, ?> userIdCol;
 
     @FXML
+    private TableColumn<?, ?> apptMonthCol;
+
+    @FXML
+    private TableColumn<?, ?> apptTypeCol;
+
+    @FXML
+    private TableColumn<?, ?> divisionNameCol;
+
+    @FXML
+    private TableColumn<?, ?> totalApptCol;
+
+    @FXML
+    private TableColumn<?, ?> totalCustomersCol;
+
+    @FXML
     void onBackBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
 
@@ -77,7 +102,26 @@ public class reportController {
 
     @FXML
     void onContactComboBoxClick(ActionEvent event) {
+        int contactSelected = -1;
+        for(Contacts contact: contactComboBox.getItems()){
+            if(contactSelected == contact.getContactId()){
+                contactComboBox.setValue(contact);
+                break;
+            }
+        }
+        ObservableList<Appointments> contactAppointments = Inventory.getAppointmentsByCustId(contactComboBox.getValue().getContactId());
+        contactApptTable.setItems(contactAppointments);
 
+        idCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startLocal"));
+        endTable.setCellValueFactory(new PropertyValueFactory<>("endLocal"));
+        apptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
     }
 
     @FXML
@@ -85,5 +129,17 @@ public class reportController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Contacts> contactList = Inventory.getAllContacts();
+        contactComboBox.setItems(contactList);
+        ObservableList<ReportAppointment> apptReport =  Inventory.appointmentsByMonth();
+        monthApptTable.setItems(apptReport);
+
+        //DOUBLE COUNTING THROUGH OBSERVABLE LISTS
+        apptMonthCol.setCellValueFactory(new PropertyValueFactory<>("allApptMonths"));
+        apptTypeCol.setCellValueFactory(new PropertyValueFactory<>("allApptTypes"));
+        totalApptCol.setCellValueFactory(new PropertyValueFactory<>("allTotalAppts"));
+    }
 }
 
