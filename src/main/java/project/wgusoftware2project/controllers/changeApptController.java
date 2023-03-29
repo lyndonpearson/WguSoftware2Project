@@ -96,6 +96,7 @@ public class changeApptController implements Initializable {
         String startTimeText = startText.getText();
         ZonedDateTime zdt = ZonedDateTime.parse(startTimeText, fmt);
         start = zdt.toInstant();
+
         String endTimeText = endText.getText();
         ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
         end = zdtEnd.toInstant();

@@ -29,8 +29,6 @@ public abstract class FruitsQuery {
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
             int contactID = rs.getInt("Contact_ID");
-            System.out.println(start);
-            System.out.println(startLocal);
             Inventory.addAppt(new Appointments(apptID, title, description, location, type, start,
                     startLocal, end, endLocal, customerID, userID, contactID));
         }
@@ -86,19 +84,20 @@ public abstract class FruitsQuery {
 
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 
-        //   WORKING WITH VALID FOREIGN KEYS (CUSTOMER/USER/CONTACT IDS) ONLY
         ps.setInt(1, addAppt.getAppointmentID());
         ps.setString(2, addAppt.getTitle());
         ps.setString(3, addAppt.getDescription());
         ps.setString(4, addAppt.getLocation());
         ps.setString(5, addAppt.getType());
 
-        Timestamp timestampStart = Timestamp.from(addAppt.getStart());
-        ps.setTimestamp(6, timestampStart);
-        Timestamp timestampEnd = Timestamp.from(addAppt.getEnd());
-        ps.setTimestamp(7, timestampEnd);
+        Instant timestampStart = Timestamp.from(addAppt.getStart()).toInstant();
+        ZonedDateTime utcTimeStart = timestampStart.atZone(ZoneId.of("UTC"));
+        ps.setTimestamp(6, Timestamp.valueOf(utcTimeStart.toLocalDateTime()));
 
-        // NEED TO INCORPORATE BELOW AS PRIMARY KEYS/FOREIGN KEYS
+        Instant timestampEnd = Timestamp.from(addAppt.getEnd()).toInstant();
+        ZonedDateTime utcTime = timestampEnd.atZone(ZoneId.of("UTC"));
+        ps.setTimestamp(7, Timestamp.valueOf(utcTime.toLocalDateTime()));
+
         ps.setInt(8, addAppt.getCustomerID());
         ps.setInt(9, addAppt.getUserID());
         ps.setInt(10, addAppt.getUserID());
@@ -139,12 +138,14 @@ public abstract class FruitsQuery {
         ps.setString(3, addAppt.getLocation());
         ps.setString(4, addAppt.getType());
 
-        Timestamp timestampStart = Timestamp.from(addAppt.getStartLocal().toInstant());
-        ps.setTimestamp(5, timestampStart);
-        Timestamp timestampEnd = Timestamp.from(addAppt.getEndLocal().toInstant());
-        ps.setTimestamp(6, timestampEnd);
+        Instant timestampStart = Timestamp.from(addAppt.getStart()).toInstant();
+        ZonedDateTime utcTimeStart = timestampStart.atZone(ZoneId.of("UTC"));
+        ps.setTimestamp(5, Timestamp.valueOf(utcTimeStart.toLocalDateTime()));
 
-        // NEED TO INCORPORATE BELOW AS PRIMARY KEYS/FOREIGN KEYS
+        Instant timestampEnd = Timestamp.from(addAppt.getEnd()).toInstant();
+        ZonedDateTime utcTime = timestampEnd.atZone(ZoneId.of("UTC"));
+        ps.setTimestamp(6, Timestamp.valueOf(utcTime.toLocalDateTime()));
+
         ps.setInt(7, addAppt.getCustomerID());
         ps.setInt(8, addAppt.getUserID());
         ps.setInt(9, addAppt.getUserID());
@@ -157,15 +158,12 @@ public abstract class FruitsQuery {
     public static int updateCustomer(Customers addCustomer) throws SQLException {
         String sql = "UPDATE CUSTOMERS SET Customer_Name = ?, Address = ?, Postal_Code = ?, " +
                 "Phone = ? WHERE CUSTOMER_ID = " + String.valueOf(addCustomer.getCustomerID());
-        // CANNOT UPDATE DIVISION ID DUE TO FOREIGN KEY CONSTRAINTS
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 
         ps.setString(1, addCustomer.getCustomerName());
         ps.setString(2, addCustomer.getAddress());
         ps.setString(3, addCustomer.getPostalCode());
         ps.setString(4, addCustomer.getPhone());
-        //ps.setString(5, addCustomer.getDivisionId());
-        //ps.setInt(5, 777);
 
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;

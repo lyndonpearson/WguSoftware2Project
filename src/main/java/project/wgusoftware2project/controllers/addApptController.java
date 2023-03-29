@@ -92,7 +92,7 @@ public class addApptController implements Initializable {
         int customerId = 0;
         int userId = 0;
         int contactId = 0;
-        ZoneId zone = ZoneId.of("UTC");
+        ZoneId zone = ZoneId.of(String.valueOf(ZoneId.systemDefault()));
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
 
         id = Integer.parseInt(idText.getText());
@@ -104,9 +104,11 @@ public class addApptController implements Initializable {
         String startTimeText = startText.getText();
         ZonedDateTime zdt = ZonedDateTime.parse(startTimeText, fmt);
         start = zdt.toInstant();
+
         String endTimeText = endText.getText();
         ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
         end = zdtEnd.toInstant();
+
         ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
         ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
 
@@ -117,6 +119,7 @@ public class addApptController implements Initializable {
 
         Appointments newAppt = new Appointments(id, title, description, location, type, start,
                 startLocal, end, endLocal, customerId, userId, contactId);
+
         Inventory.addAppt(newAppt);
         if (FruitsQuery.insertAppt(newAppt) > 0){
             System.out.println("Successfully inserted into DB");
