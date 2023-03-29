@@ -41,8 +41,6 @@ public class addApptController implements Initializable {
     @FXML
     private Button cancelBtn;
 
-
-
     @FXML
     private TextField descText;
 

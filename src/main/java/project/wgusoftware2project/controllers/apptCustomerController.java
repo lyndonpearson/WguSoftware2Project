@@ -292,4 +292,21 @@ public class apptCustomerController implements Initializable {
         apptTable.setItems(items);
     }
 
+
+    @FXML
+    void onLogoutBtnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onReportsBtnClick(ActionEvent event) throws IOException {
+        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+
+        scene = FXMLLoader.load(getClass().getResource("/project/wgusoftware2project/report.fxml"));
+
+        stage.setScene(new Scene(scene));
+
+        stage.show();
+    }
+
 }
