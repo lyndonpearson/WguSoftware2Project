@@ -103,8 +103,17 @@ public class changeApptController implements Initializable {
 
         Timestamp startLocal = Timestamp.from(start);
         Timestamp endLocal = Timestamp.from(end);
-        //ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
-        //ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
+
+        ZonedDateTime test = start.atZone(ZoneId.of("America/New_York"));
+
+        String dayEST = String.valueOf(test.getDayOfWeek());
+        int hourEST = test.getHour();
+
+        if(dayEST.equals("SATURDAY") || dayEST.equals("SUNDAY")){
+            System.out.println("ERROR! OUTSIDE OF WORKING DAYS");
+        } else if(hourEST < 8 || hourEST > 21){
+            System.out.println("PROBLEM! APPOINTMENT TOO LATE OUTSIDE WORKING HOURS");
+        }
 
         customerID = Integer.parseInt(customerIdText.getText());
         userID = Integer.parseInt(userIdText.getText());
