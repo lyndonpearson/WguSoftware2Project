@@ -121,7 +121,7 @@ public class Inventory {
         allReportDivisions.clear();
         ObservableList<Customers> tempOL;
         tempOL = Inventory.getAllCusts();
-
+        GeneralInterface stateCompare = (String state1, String state2) -> {return state1.equals(state2);};
         for (Customers customer : tempOL){
             int total = 0;
             for (Customers customerSearch : tempOL){
@@ -137,7 +137,7 @@ public class Inventory {
                 int duplicateflag = 0;
                 int arraySize = allReportDivisions.size();
                 for (int Index = 0; Index < arraySize; Index++){
-                    if(allReportDivisions.get(Index).getState().equals(reportDivision.getState())){
+                    if(stateCompare.compareStates(allReportDivisions.get(Index).getState(), reportDivision.getState())){
                         duplicateflag++;
                     }
                 }
@@ -160,11 +160,17 @@ public class Inventory {
             int apptHour = appt.getStart().atZone(ZoneId.of(locationZone)).getHour();
             int apptMinute = appt.getStart().atZone(ZoneId.of(locationZone)).getMinute();
 
-
             int hour = nowInstant.atZone(ZoneId.of(locationZone)).getHour();
             int minute = nowInstant.atZone(ZoneId.of(locationZone)).getMinute();
 
-            if ((apptHour - hour) == 0 && abs(apptMinute - minute) <= 15){
+            TimeInterface timeTest = (int apptHourInput, int apptMinuteInput, int hourInput, int minuteInput) -> {
+                double apptHours = apptHourInput + (apptMinuteInput / 60.0);
+                double currentHours = hourInput + (minuteInput / 60.0);
+                return ((apptHours - currentHours) <= 0.25);
+            };
+
+
+            if (timeTest.timeCalculation(apptHour, apptMinute, hour, minute)){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Appointment Warning");
                 alert.setContentText("Appointment within 15 minutes! \n " +
@@ -282,13 +288,10 @@ public class Inventory {
             loopIndex++;
             System.out.println(appt.getCustomerID());
             if (appt.getCustomerID() == custId) {
-                //allAppts.remove(loopIndex);
                 deleteAppts.add(appt);
             }
         }
-        System.out.println("Delete array size at end is: " + deleteAppts.size());
         allAppts.removeAll(deleteAppts);
-        System.out.println("Array size at end is: " + allAppts.size());
     }
 
     public static boolean deleteCust(int custId){
