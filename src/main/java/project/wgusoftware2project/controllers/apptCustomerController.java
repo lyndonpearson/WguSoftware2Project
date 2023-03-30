@@ -212,7 +212,7 @@ public class apptCustomerController implements Initializable {
         custState.setCellValueFactory(new PropertyValueFactory<>("state"));
         custPostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
 
-        Inventory.checkAppointmentTimes();
+        //Inventory.checkAppointmentTimes();
     }
 
     @FXML

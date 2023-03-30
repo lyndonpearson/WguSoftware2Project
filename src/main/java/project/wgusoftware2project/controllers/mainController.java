@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import project.wgusoftware2project.helpers.FruitsQuery;
+import project.wgusoftware2project.model.Inventory;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
 
 
 public class mainController implements Initializable {
-    Stage stage;
     Parent scene;
     @FXML
     private Button loginBtn;
@@ -67,6 +66,8 @@ public class mainController implements Initializable {
         stage.setHeight(600);
 
         stage.show();
+
+        Inventory.checkAppointmentTimes();
     }
 
     @Override

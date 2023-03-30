@@ -14,14 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import project.wgusoftware2project.helpers.FruitsQuery;
 import project.wgusoftware2project.model.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -76,12 +71,6 @@ public class addCustomerController implements Initializable {
                 break;
             }
         }
-        // #################################################################
-        // #################################################################
-        //NEED TO CREATE INVENTORY METHOD THAT FILTERS STATE/PROV BY COUNTRY
-        // #################################################################
-        // #################################################################
-        // #################################################################
 
         ObservableList<States> stateList = FXCollections.observableArrayList();
         stateList = Inventory.getAllStates();
@@ -105,7 +94,6 @@ public class addCustomerController implements Initializable {
         phone = phoneText.getText();
         postal = postalText.getText();
         divisionId = String.valueOf(stateCombo.getValue());
-        //state = Inventory.lookupState(Integer.parseInt(divisionId)).getDivision();
         state = String.valueOf(stateCombo.getValue());
 
         Customers newCust = new Customers(id, name, address, phone, postal, divisionId, state);

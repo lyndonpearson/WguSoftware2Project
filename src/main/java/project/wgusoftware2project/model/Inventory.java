@@ -3,15 +3,10 @@ package project.wgusoftware2project.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import project.wgusoftware2project.App;
 
-import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.*;
-import java.time.temporal.ChronoField;
-
-import static java.lang.Math.abs;
 
 public class Inventory {
 
@@ -66,9 +61,6 @@ public class Inventory {
     }
     public static ObservableList getAllContacts(){
         return allContacts;
-    }
-    public static void clearAllAppts() {
-        allAppts.clear();
     }
 
     public static States lookupState(int stateId){

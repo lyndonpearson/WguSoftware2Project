@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import project.wgusoftware2project.helpers.FruitsQuery;
 import project.wgusoftware2project.model.Appointments;
 import project.wgusoftware2project.model.Inventory;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

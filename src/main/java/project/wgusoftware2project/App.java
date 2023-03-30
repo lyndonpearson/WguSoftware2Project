@@ -6,12 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import project.wgusoftware2project.helpers.FruitsQuery;
 import project.wgusoftware2project.helpers.JDBC;
-import project.wgusoftware2project.model.GeneralInterface;
-import project.wgusoftware2project.model.TimeInterface;
-
-
 import java.io.IOException;
-import java.io.PrintStream;
 import java.sql.SQLException;
 
 public class App extends Application {

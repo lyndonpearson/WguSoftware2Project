@@ -36,10 +36,6 @@ public class Appointments {
         return appointmentID;
     }
 
-    public void setAppointmentID(int appointmentID) {
-        this.appointmentID = appointmentID;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -50,10 +46,6 @@ public class Appointments {
 
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getLocation() {
@@ -84,47 +76,24 @@ public class Appointments {
         return startLocal;
     }
 
-    public void setStartLocal(ZonedDateTime startLocal) {
-        this.startLocal = startLocal;
-    }
-
     public Instant getEnd() {
         return end;
-    }
-
-    public void setEnd(Instant end) {
-        this.end = end;
     }
 
     public ZonedDateTime getEndLocal() {
         return endLocal;
     }
 
-    public void setEndLocal(ZonedDateTime endLocal) {
-        this.endLocal = endLocal;
-    }
-
     public int getCustomerID() {
         return customerID;
-    }
-
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
     }
 
     public int getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
     public int getContactID() {
         return contactID;
     }
 
-    public void setContactID(int contactID) {
-        this.contactID = contactID;
-    }
 }

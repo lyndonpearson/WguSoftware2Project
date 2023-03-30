@@ -132,7 +132,6 @@ public abstract class FruitsQuery {
 
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 
-        //   WORKING WITH VALID FOREIGN KEYS (CUSTOMER/USER/CONTACT IDS) ONLY
         ps.setString(1, addAppt.getTitle());
         ps.setString(2, addAppt.getDescription());
         ps.setString(3, addAppt.getLocation());
