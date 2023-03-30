@@ -81,10 +81,11 @@ public class Inventory {
 
         for (Appointments appt : tempOL) {
             int count = 0;
-            int month = appt.getStartLocal().getMonthValue();
+            int month = appt.getStartLocal().getMonth() + 1;
             String type = appt.getType();
             for (Appointments apptSearch : tempOL) {
-                if (apptSearch.getStartLocal().getMonthValue() == month && apptSearch.getType().equals(type)) {
+                int searchMonth = apptSearch.getStartLocal().getMonth() + 1;
+                if (searchMonth == month && apptSearch.getType().equals(type)) {
                     count++;
                 }
             }
@@ -158,7 +159,8 @@ public class Inventory {
             TimeInterface timeTest = (int apptHourInput, int apptMinuteInput, int hourInput, int minuteInput) -> {
                 double apptHours = apptHourInput + (apptMinuteInput / 60.0);
                 double currentHours = hourInput + (minuteInput / 60.0);
-                return ((apptHours - currentHours) <= 0.25);
+                double result = apptHours - currentHours;
+                return (0 <= result && result <= 0.25);
             };
 
 

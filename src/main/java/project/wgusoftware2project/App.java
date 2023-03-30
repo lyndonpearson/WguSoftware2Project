@@ -4,10 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import project.wgusoftware2project.helpers.FruitsQuery;
+import project.wgusoftware2project.helpers.MySqlQuery;
 import project.wgusoftware2project.helpers.JDBC;
 import java.io.IOException;
 import java.sql.SQLException;
+
 
 public class App extends Application {
     @Override
@@ -19,12 +20,12 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
 
-        FruitsQuery.populateAppts();
-        FruitsQuery.getStates();
-        FruitsQuery.populateCusts();
-        FruitsQuery.populateContacts();
-        FruitsQuery.populateUsers();
-        FruitsQuery.getCountries();
+        MySqlQuery.populateAppts();
+        MySqlQuery.getStates();
+        MySqlQuery.populateCusts();
+        MySqlQuery.populateContacts();
+        MySqlQuery.populateUsers();
+        MySqlQuery.getCountries();
 
     }
 

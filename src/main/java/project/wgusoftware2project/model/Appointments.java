@@ -1,4 +1,5 @@
 package project.wgusoftware2project.model;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -10,14 +11,14 @@ public class Appointments {
     String location;
     String type;
     Instant start;
-    ZonedDateTime startLocal;
+    Timestamp startLocal;
     Instant end;
-    ZonedDateTime endLocal;
+    Timestamp endLocal;
     int customerID;
     int userID;
     int contactID;
 
-    public Appointments(int appointmentID, String title, String description, String location, String type, Instant start, ZonedDateTime startLocal, Instant end, ZonedDateTime endLocal, int customerID, int userID, int contactID) {
+    public Appointments(int appointmentID, String title, String description, String location, String type, Instant start, Timestamp startLocal, Instant end, Timestamp endLocal, int customerID, int userID, int contactID) {
         this.appointmentID = appointmentID;
         this.title = title;
         this.description = description;
@@ -72,7 +73,7 @@ public class Appointments {
         this.start = start;
     }
 
-    public ZonedDateTime getStartLocal() {
+    public Timestamp getStartLocal() {
         return startLocal;
     }
 
@@ -80,7 +81,7 @@ public class Appointments {
         return end;
     }
 
-    public ZonedDateTime getEndLocal() {
+    public Timestamp getEndLocal() {
         return endLocal;
     }
 

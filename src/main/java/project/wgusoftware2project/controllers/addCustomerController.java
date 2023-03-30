@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import project.wgusoftware2project.helpers.FruitsQuery;
+import project.wgusoftware2project.helpers.MySqlQuery;
 import project.wgusoftware2project.model.*;
 import java.io.IOException;
 import java.net.URL;
@@ -98,7 +98,7 @@ public class addCustomerController implements Initializable {
 
         Customers newCust = new Customers(id, name, address, phone, postal, divisionId, state);
         Inventory.addCust(newCust);
-        if (FruitsQuery.insertCust(newCust) > 0){
+        if (MySqlQuery.insertCust(newCust) > 0){
             System.out.println("Successfully inserted Customer into DB");
         } else {
             System.out.println("Failed to insert Customer in DB");

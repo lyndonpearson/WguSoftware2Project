@@ -9,12 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import project.wgusoftware2project.helpers.FruitsQuery;
+import project.wgusoftware2project.helpers.MySqlQuery;
 import project.wgusoftware2project.model.Appointments;
 import project.wgusoftware2project.model.Inventory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -100,8 +101,10 @@ public class changeApptController implements Initializable {
         ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
         end = zdtEnd.toInstant();
 
-        ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
-        ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
+        Timestamp startLocal = Timestamp.from(start);
+        Timestamp endLocal = Timestamp.from(end);
+        //ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
+        //ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
 
         customerID = Integer.parseInt(customerIdText.getText());
         userID = Integer.parseInt(userIdText.getText());
@@ -111,7 +114,7 @@ public class changeApptController implements Initializable {
                 startLocal, end, endLocal, customerID, userID, contactID);
 
         Inventory.updateAppt(appointmentID, newAppt);
-        FruitsQuery.updateAppt(newAppt);
+        MySqlQuery.updateAppt(newAppt);
 
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 

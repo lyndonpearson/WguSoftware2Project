@@ -12,12 +12,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import project.wgusoftware2project.helpers.FruitsQuery;
+import project.wgusoftware2project.helpers.MySqlQuery;
 import project.wgusoftware2project.model.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -107,8 +108,10 @@ public class addApptController implements Initializable {
         ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
         end = zdtEnd.toInstant();
 
-        ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
-        ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
+        Timestamp startLocal = Timestamp.from(start);
+        Timestamp endLocal = Timestamp.from(end);
+        //ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
+        //ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
 
 
         customerId = custIdCombo.getValue().getCustomerID();
@@ -119,7 +122,7 @@ public class addApptController implements Initializable {
                 startLocal, end, endLocal, customerId, userId, contactId);
 
         Inventory.addAppt(newAppt);
-        if (FruitsQuery.insertAppt(newAppt) > 0){
+        if (MySqlQuery.insertAppt(newAppt) > 0){
             System.out.println("Successfully inserted into DB");
         } else {
             System.out.println("Failed to insert in DB");
@@ -184,5 +187,7 @@ public class addApptController implements Initializable {
         int nextId = rand.nextInt(10000);
         idText.setText(String.valueOf(nextId));
         idText.setDisable(true);
+        startText.setText("YYYY-MM-DD HH:MM");
+        endText.setText("YYYY-MM-DD HH:MM");
     }
 }

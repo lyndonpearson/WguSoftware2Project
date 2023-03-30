@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import project.wgusoftware2project.helpers.FruitsQuery;
+import project.wgusoftware2project.helpers.MySqlQuery;
 import project.wgusoftware2project.model.Appointments;
 import project.wgusoftware2project.model.Customers;
 import project.wgusoftware2project.model.Inventory;
@@ -136,7 +136,7 @@ public class apptCustomerController implements Initializable {
         Appointments selectedAppt = apptTable.getSelectionModel(). getSelectedItem();
         if(Inventory.deleteAppt(selectedAppt.getAppointmentID())) {
             apptTable.getItems().remove(selectedAppt);
-            FruitsQuery.deleteAppt(selectedAppt.getAppointmentID());
+            MySqlQuery.deleteAppt(selectedAppt.getAppointmentID());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Deleted Appointment");
             alert.setContentText("Appointment ID# " + selectedAppt.getAppointmentID() + " of type " +
@@ -212,7 +212,6 @@ public class apptCustomerController implements Initializable {
         custState.setCellValueFactory(new PropertyValueFactory<>("state"));
         custPostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
 
-        //Inventory.checkAppointmentTimes();
     }
 
     @FXML
@@ -221,7 +220,7 @@ public class apptCustomerController implements Initializable {
         if(Inventory.deleteCust(selectedCust.getCustomerID())) {
             custTable.getItems().remove(selectedCust);
             Inventory.deleteApptByCustId(selectedCust.getCustomerID());
-            FruitsQuery.deleteCust(selectedCust.getCustomerID());
+            MySqlQuery.deleteCust(selectedCust.getCustomerID());
             apptTable.setItems(Inventory.getAllAppts());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Deleted Customer");

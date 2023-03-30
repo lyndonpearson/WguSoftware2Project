@@ -1,14 +1,11 @@
 package project.wgusoftware2project.helpers;
 
 
-import javafx.collections.ObservableList;
-import project.wgusoftware2project.App;
 import project.wgusoftware2project.model.*;
-
 import java.sql.*;
 import java.time.*;
 
-public abstract class FruitsQuery {
+public abstract class MySqlQuery {
 
     public static void populateAppts() throws SQLException {
 
@@ -22,10 +19,18 @@ public abstract class FruitsQuery {
             String location = rs.getString("Location");
             String type = rs.getString("Type");
 
-            Instant start = rs.getTimestamp("Start").toInstant();
-            ZonedDateTime startLocal = start.atZone(ZoneId.systemDefault());
-            Instant end = rs.getTimestamp("End").toInstant();
-            ZonedDateTime endLocal = end.atZone(ZoneId.systemDefault());
+            Timestamp test = rs.getTimestamp("Start");
+            OffsetDateTime test2 = OffsetDateTime.of(test.toLocalDateTime(), ZoneOffset.UTC);
+            Instant start = Instant.from(test2);
+            Timestamp startLocal = Timestamp.from(start);
+
+
+            Timestamp endTest = rs.getTimestamp("End");
+            OffsetDateTime endTest2 = OffsetDateTime.of(endTest.toLocalDateTime(), ZoneOffset.UTC);
+            Instant end = Instant.from(endTest2);
+            Timestamp endLocal = Timestamp.from(end);
+
+
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
             int contactID = rs.getInt("Contact_ID");
