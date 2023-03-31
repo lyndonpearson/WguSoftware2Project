@@ -82,11 +82,12 @@ public class changeApptController implements Initializable {
         String type;
         Instant start;
         Instant end;
-        int customerID;
+        int customerID = 0;
         int userID;
         int contactID;
         ZoneId zone = ZoneId.of(String.valueOf(ZoneId.systemDefault()));
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
+        boolean noOverlap = false;
 
         try {
             appointmentID = Integer.parseInt(idText.getText());
@@ -106,10 +107,11 @@ public class changeApptController implements Initializable {
             Timestamp startLocal = Timestamp.from(start);
             Timestamp endLocal = Timestamp.from(end);
 
-            ZonedDateTime test = start.atZone(ZoneId.of("America/New_York"));
+            ZonedDateTime estZdt = start.atZone(ZoneId.of("America/New_York"));
 
-            String dayEST = String.valueOf(test.getDayOfWeek());
-            int hourEST = test.getHour();
+            String dayEST = String.valueOf(estZdt.getDayOfWeek());
+            int hourEST = estZdt.getHour();
+            int minuteEST = estZdt.getMinute();
 
             if (dayEST.equals("SATURDAY") || dayEST.equals("SUNDAY")) {
                 throw new Exception();
@@ -121,9 +123,13 @@ public class changeApptController implements Initializable {
             userID = Integer.parseInt(userIdText.getText());
             contactID = Integer.parseInt(contactIdText.getText());
 
+            noOverlap = Inventory.checkAppointmentOverlap(customerID, hourEST, minuteEST);
+            if(!noOverlap){
+                throw new Exception();
+            }
+
             Appointments newAppt = new Appointments(appointmentID, title, description, location, type, start,
                     startLocal, end, endLocal, customerID, userID, contactID);
-
             Inventory.updateAppt(appointmentID, newAppt);
             MySqlQuery.updateAppt(newAppt);
 
@@ -135,10 +141,18 @@ public class changeApptController implements Initializable {
 
             stage.show();
         } catch (Exception msg) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning Dialog");
-            alert.getDialogPane().setPrefSize(400, 200);
-            alert.setContentText("Appointments can only be scheduled on Weekdays from 8AM-10PM EST");
+            Alert alert;
+            if (!noOverlap) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Appointment Warning");
+                alert.setContentText("Appointment will overlap existing appointments " +
+                        "for customer: " + customerID);
+            }else {
+                alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning Dialog");
+                alert.getDialogPane().setPrefSize(400, 200);
+                alert.setContentText("Appointments can only be scheduled on Weekdays from 8AM-10PM EST");
+            }
             alert.showAndWait();
         }
     }

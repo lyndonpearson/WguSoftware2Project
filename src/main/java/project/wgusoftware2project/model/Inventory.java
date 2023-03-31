@@ -191,6 +191,18 @@ public class Inventory {
         alert.showAndWait();
     }
 
+    public static boolean checkAppointmentOverlap(int customerId, int hourStart, int minuteStart){
+            for (Appointments appt : allAppts) {
+                ZonedDateTime estEndDateTime = appt.getEnd().atZone(ZoneId.of("America/New_York"));
+                int hourEndEST = estEndDateTime.getHour();
+                int minuteEndEST = estEndDateTime.getMinute();
+                if (appt.getCustomerID() == customerId && hourEndEST == hourStart && minuteStart < minuteEndEST) {
+                    return false;
+                }
+            }
+            return true;
+            }
+
 
 
     public static String getDivisonIdFromState(String stateName){
