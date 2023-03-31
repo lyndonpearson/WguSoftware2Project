@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -50,24 +51,41 @@ public class mainController implements Initializable {
         System.out.println("UserName: " + userNameTextField.getText());
         System.out.println("Password: " + passwordTextField.getText());
 
-        String filename = "src/logins.txt";
-        FileWriter fwriter = new FileWriter(filename, true);
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        fwriter.write("Successful login: " + timestamp + "\n");
-        fwriter.close();
+        try {
+            if (Inventory.checkLogin(userNameTextField.getText(), passwordTextField.getText())) {
+                String filename = "src/logins.txt";
+                FileWriter fwriter = new FileWriter(filename, true);
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                fwriter.write("Unsuccessful login: " + timestamp + "\n");
+                fwriter.close();
+                throw new Exception();
+            }
 
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            String filename = "src/logins.txt";
+            FileWriter fwriter = new FileWriter(filename, true);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            fwriter.write("Successful login: " + timestamp + "\n");
+            fwriter.close();
 
-        scene = FXMLLoader.load(getClass().getResource("/project/wgusoftware2project/apptCustomer.fxml"));
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
-        stage.setScene(new Scene(scene));
+            scene = FXMLLoader.load(getClass().getResource("/project/wgusoftware2project/apptCustomer.fxml"));
 
-        stage.setWidth(900);
-        stage.setHeight(600);
+            stage.setScene(new Scene(scene));
 
-        stage.show();
+            stage.setWidth(900);
+            stage.setHeight(600);
 
-        Inventory.checkAppointmentTimes();
+            stage.show();
+
+            Inventory.checkAppointmentTimes();
+        } catch(Exception msg){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.getDialogPane().setPrefSize(400, 200);
+            alert.setContentText("Invalid login credentials");
+            alert.showAndWait();
+        }
     }
 
     @Override

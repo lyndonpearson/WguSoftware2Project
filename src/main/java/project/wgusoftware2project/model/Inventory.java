@@ -74,6 +74,16 @@ public class Inventory {
         return null;
     }
 
+    public static boolean checkLogin(String user, String password){
+        ObservableList<Users> userList = getAllUsers();
+        for(Users userSearch: userList){
+            if (userSearch.getUserName().equals(user) && userSearch.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static ObservableList appointmentsByMonth() {
         allReportAppointments.clear();
         ObservableList<Appointments> tempOL;

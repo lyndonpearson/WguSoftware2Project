@@ -23,4 +23,12 @@ public class Users {
     public String toString(){
         return (Integer.toString(userId));
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
 }

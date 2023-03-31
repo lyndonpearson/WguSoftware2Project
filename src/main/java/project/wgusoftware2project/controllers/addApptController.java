@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -94,55 +95,57 @@ public class addApptController implements Initializable {
         ZoneId zone = ZoneId.of(String.valueOf(ZoneId.systemDefault()));
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
 
-        id = Integer.parseInt(idText.getText());
-        title = titleText.getText();
-        description = descText.getText();
-        location = locText.getText();
-        type = typeText.getText();
+        try {
+            id = Integer.parseInt(idText.getText());
+            title = titleText.getText();
+            description = descText.getText();
+            location = locText.getText();
+            type = typeText.getText();
 
-        String startTimeText = startText.getText();
-        ZonedDateTime zdt = ZonedDateTime.parse(startTimeText, fmt);
-        start = zdt.toInstant();
+            String startTimeText = startText.getText();
+            ZonedDateTime zdt = ZonedDateTime.parse(startTimeText, fmt);
+            start = zdt.toInstant();
 
-        String endTimeText = endText.getText();
-        ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
-        end = zdtEnd.toInstant();
+            String endTimeText = endText.getText();
+            ZonedDateTime zdtEnd = ZonedDateTime.parse(endTimeText, fmt);
+            end = zdtEnd.toInstant();
 
-        Timestamp startLocal = Timestamp.from(start);
-        Timestamp endLocal = Timestamp.from(end);
+            Timestamp startLocal = Timestamp.from(start);
+            Timestamp endLocal = Timestamp.from(end);
 
-        ZonedDateTime test = start.atZone(ZoneId.of("America/New_York"));
+            ZonedDateTime test = start.atZone(ZoneId.of("America/New_York"));
 
-        String dayEST = String.valueOf(test.getDayOfWeek());
-        int hourEST = test.getHour();
+            String dayEST = String.valueOf(test.getDayOfWeek());
+            int hourEST = test.getHour();
 
-        if(dayEST.equals("SATURDAY") || dayEST.equals("SUNDAY")){
-            System.out.println("ERROR! OUTSIDE OF WORKING DAYS");
-        } else if(hourEST < 8 || hourEST > 21){
-            System.out.println("PROBLEM! APPOINTMENT TOO LATE OUTSIDE WORKING HOURS");
+            if (dayEST.equals("SATURDAY") || dayEST.equals("SUNDAY")) {
+                throw new Exception();
+            } else if (hourEST < 8 || hourEST > 21) {
+                throw new Exception();
+            }
+
+            customerId = custIdCombo.getValue().getCustomerID();
+            userId = userIdCombo.getValue().getUserId();
+            contactId = contactIdCombo.getValue().getContactId();
+
+            Appointments newAppt = new Appointments(id, title, description, location, type, start,
+                    startLocal, end, endLocal, customerId, userId, contactId);
+            Inventory.addAppt(newAppt);
+
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+
+            scene = FXMLLoader.load(getClass().getResource("/project/wgusoftware2project/apptCustomer.fxml"));
+
+            stage.setScene(new Scene(scene));
+
+            stage.show();
+        } catch (Exception msg) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.getDialogPane().setPrefSize(400, 200);
+            alert.setContentText("Appointments can only be scheduled on Weekdays from 8AM-10PM EST");
+            alert.showAndWait();
         }
-
-        customerId = custIdCombo.getValue().getCustomerID();
-        userId = userIdCombo.getValue().getUserId();
-        contactId = contactIdCombo.getValue().getContactId();
-
-        Appointments newAppt = new Appointments(id, title, description, location, type, start,
-                startLocal, end, endLocal, customerId, userId, contactId);
-
-        Inventory.addAppt(newAppt);
-        if (MySqlQuery.insertAppt(newAppt) > 0){
-            System.out.println("Successfully inserted into DB");
-        } else {
-            System.out.println("Failed to insert in DB");
-        }
-
-        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
-
-        scene = FXMLLoader.load(getClass().getResource("/project/wgusoftware2project/apptCustomer.fxml"));
-
-        stage.setScene(new Scene(scene));
-
-        stage.show();
 
     }
 
