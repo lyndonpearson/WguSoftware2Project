@@ -1,15 +1,14 @@
 package project.wgusoftware2project.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import project.wgusoftware2project.model.Inventory;
 
@@ -45,6 +44,14 @@ public class mainController implements Initializable {
 
     @FXML
     private Label locationLabel;
+
+    @FXML
+    private ComboBox<String> languageComboBox;
+
+    @FXML
+    private Label languageLabel;
+
+
 
     @FXML
     void onLoginBtnClick(ActionEvent event) throws SQLException, IOException {
@@ -88,23 +95,35 @@ public class mainController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // UNCOMMENT TO TEST FRENCH LANGUAGE SETTINGS
-//        Locale france = new Locale("fr", "FR");
-//        Locale.setDefault(france);
-        String locationZone = String.valueOf(ZoneId.systemDefault());
-        locationText.setText(locationZone);
+    @FXML
+    void onLanguageComboBoxClick(ActionEvent event) {
+        String selectedLanguage = languageComboBox.getSelectionModel().getSelectedItem();
 
-        if (Locale.getDefault().toString().equals("fr_FR")) {
-            ResourceBundle rb = ResourceBundle.getBundle("Nat", Locale.getDefault());
+        if (selectedLanguage.equals("French")) {
+            Locale.setDefault(new Locale("fr", "FR"));
+            ResourceBundle rb = ResourceBundle.getBundle("Nat");
             System.out.println(rb.getString("UserName") + rb.getString("Password") +
                     rb.getString("Location") + rb.getString("Login"));
             loginBtn.setText(rb.getString("Login"));
             userNameLabel.setText(rb.getString("UserName"));
             passwordLabel.setText(rb.getString("Password"));
             locationLabel.setText(rb.getString("Location"));
+            languageLabel.setText(rb.getString("Language"));
+            languageComboBox.setPromptText(rb.getString("Selection"));
         }
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        String locationZone = String.valueOf(ZoneId.systemDefault());
+        locationText.setText(locationZone);
+
+        ObservableList<String> language = FXCollections.observableArrayList();
+        language.add("English");
+        language.add("French");
+        languageComboBox.setItems(language);
     }
 }
 

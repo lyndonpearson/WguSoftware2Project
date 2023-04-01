@@ -8,14 +8,7 @@ import project.wgusoftware2project.helpers.MySqlQuery;
 import project.wgusoftware2project.helpers.JDBC;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+
 
 
 public class App extends Application {
@@ -46,5 +39,3 @@ public class App extends Application {
         JDBC.closeConnection();
     }
 }
-
-//2023-03-30 10:30:00.0

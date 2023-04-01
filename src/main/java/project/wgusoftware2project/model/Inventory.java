@@ -3,10 +3,10 @@ package project.wgusoftware2project.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.*;
+
 /** Static class for containing and interfacing with all program models. */
 public class Inventory {
 
@@ -79,6 +79,13 @@ public class Inventory {
         return null;
     }
 
+    /** Searches User ObservableList by userId and password properties and returns
+     * true if valid login - otherwise returns false.
+     @param user String parameter for login
+     @param password String parameter for password
+     @return true if there is a user matching login and password parameter
+     @return false if there is no matching user
+     */
     public static boolean checkLogin(String user, String password){
         ObservableList<Users> userList = getAllUsers();
         for(Users userSearch: userList){
@@ -89,6 +96,11 @@ public class Inventory {
         return false;
     }
 
+    /** Searches Appointments ObservableList and
+     * organizes them by month and number of occurrences.
+     @return allReportAppointments ObservableList of ReportAppointment
+     objects
+     */
     public static ObservableList appointmentsByMonth() {
         allReportAppointments.clear();
         ObservableList<Appointments> tempOL;
@@ -125,6 +137,11 @@ public class Inventory {
         return allReportAppointments;
     }
 
+    /** Searches Customers ObservableList and
+     * organizes them by state and number of occurrences.
+     @return allReportDivisions ObservableList of ReportDivision
+     objects
+     */
     public static ObservableList customersByDivisionName(){
         allReportDivisions.clear();
         ObservableList<Customers> tempOL;
@@ -156,6 +173,11 @@ public class Inventory {
         }
         return allReportDivisions;
     }
+
+    /** Searches Appointments ObservableList and
+     * compares their starting time with the current system local time.
+     * A warning is displayed if an appointment is starting within 15 minutes.
+     */
     public static void checkAppointmentTimes(){
 
         ObservableList<Appointments> tempOL;
@@ -196,6 +218,15 @@ public class Inventory {
         alert.showAndWait();
     }
 
+    /** Searches Appointments ObservableList by customerID,
+     * and starting time. If there is an appointment already in
+     * the timeslot return true - otherwise returns false.
+     @param customerId String parameter for customer Id
+     @param hourStart Int parameter for starting hour
+     @param minuteStart Int parameter for starting minute
+     @return true if there is already an appointment in timeslot
+     @return false if the timeslot is available
+     */
     public static boolean checkAppointmentOverlap(int customerId, int hourStart, int minuteStart){
             for (Appointments appt : allAppts) {
                 ZonedDateTime estEndDateTime = appt.getEnd().atZone(ZoneId.of("America/New_York"));
@@ -209,7 +240,13 @@ public class Inventory {
             }
 
 
-
+    /** Searches States ObservableList by String stateName,
+     * If there is a match, return the matches divisionId
+     * if not return null.
+     @param stateName String parameter for stateName
+     @return divisionId String of matching State
+     @return null if no match
+     */
     public static String getDivisonIdFromState(String stateName){
         ObservableList<States> tempOL;
         tempOL = Inventory.getAllStates();
@@ -221,6 +258,11 @@ public class Inventory {
         return null;
     }
 
+    /** Searches States ObservableList by Int countryId,
+     * Add matches to ObservableList of matching states.
+     @param countryId Int parameter for countryId
+     @return filteredList States Observable list of matches
+     */
     public static ObservableList getStatesByCountry(int countryId){
         ObservableList<States> tempOL = allStates;
         ObservableList<States> filteredList = FXCollections.observableArrayList();
@@ -232,6 +274,11 @@ public class Inventory {
         return filteredList;
     }
 
+    /** Searches Appointments ObservableList by Int contactId,
+     * Add matches to ObservableList of matching Appointments.
+     @param contactId Int parameter for contactId
+     @return filteredList Appointments Observable list of matches
+     */
     public static ObservableList getAppointmentsByCustId(int contactId){
         ObservableList<Appointments> tempOL;
         tempOL = Inventory.getAllAppts();
@@ -244,8 +291,11 @@ public class Inventory {
         return contactApptList;
     }
 
-
-
+    /** Searches States ObservableList by Int divId,
+     * If there is a matching state/prov return its countryId
+     @param divId Int parameter for divisionId
+     @return countryId Int of matching state/prov
+     */
     public static int countryIdByDivId(int divId){
         ObservableList<States> tempOL;
         tempOL = Inventory.getAllStates();
@@ -257,6 +307,11 @@ public class Inventory {
         return 0;
     }
 
+    /** Searches States ObservableList by String division,
+     * If there is a match, return the matches divisionId
+     @param division String parameter for state/prov
+     @return divisionId Int of matching state/prov ID
+     */
     public static int divisionIdByDivision(String division){
         ObservableList<States> tempOL;
         tempOL = Inventory.getAllStates();
@@ -268,6 +323,13 @@ public class Inventory {
         return 0;
     }
 
+    /** Searches Countries ObservableList by Int countryId,
+     * If there is a match, return the matching Countries Object
+     * if not return null.
+     @param countryId Int parameter for countryId
+     @return country Countries object of matching country
+     @return null if no match
+     */
     public static Countries lookupCountry(int countryId){
         ObservableList<Countries> tempOL;
         tempOL = Inventory.getAllCountries();
@@ -279,6 +341,13 @@ public class Inventory {
         return null;
     }
 
+    /** Searches Appointments ObservableList by Int apptId,
+     * and input Appointments object.
+     * If there is a match, update the existing Appointment
+     * with the new Appointment object.
+     @param apptID int parameter for Appointment to be updated
+     @param selectedAppt Appointments object used for updating
+     */
     public static void updateAppt(int apptID, Appointments selectedAppt){
         int loopIndex = -1;
         ObservableList<Appointments> tempOL;
@@ -290,6 +359,13 @@ public class Inventory {
         }
     }
 
+    /** Searches Customers ObservableList by Int custId,
+     * and input Customers object.
+     * If there is a match, update the existing Customer
+     * with the new Customers object.
+     @param custId int parameter for Customers to be updated
+     @param selectedCustomer Customers object used for updating
+     */
     public static void updateCustomer(int custId, Customers selectedCustomer){
         int loopIndex = -1;
         ObservableList<Customers> tempOL;
@@ -301,6 +377,12 @@ public class Inventory {
         }
     }
 
+    /** Searches Appointments ObservableList by Int apptId,
+     * If there is a match, delete the matching Appointment
+     @param apptID int parameter for Appointment to be removed
+     @return true If successful in deletion of Appointment
+     @return false if deletion operation was unsuccessful
+     */
     public static boolean deleteAppt(int apptID){
         int loopIndex = -1;
         for (Appointments appt : allAppts) {
@@ -313,6 +395,12 @@ public class Inventory {
         return false;
     }
 
+    /** Searches Appointments ObservableList by Int custId,
+     * If there is a match, adds the matching Appointment
+     * to deletion ObservableList. Deletes all matching
+     * Appointments at conclusion
+     @param custId int parameter for Customer of search
+     */
     public static void deleteApptByCustId(int custId){
         int loopIndex = -1;
         ObservableList<Appointments> deleteAppts = FXCollections.observableArrayList();
@@ -326,6 +414,12 @@ public class Inventory {
         allAppts.removeAll(deleteAppts);
     }
 
+    /** Searches Customers ObservableList by Int custId,
+     * If there is a match, delete the matching Customer
+     @param custId int parameter for Customer to be removed
+     @return true If successful in deletion of Customer
+     @return false if deletion operation was unsuccessful
+     */
     public static boolean deleteCust(int custId){
         int loopIndex = -1;
         for (Customers cust : allCusts) {
