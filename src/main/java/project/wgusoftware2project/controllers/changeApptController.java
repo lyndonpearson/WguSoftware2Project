@@ -21,6 +21,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 public class changeApptController implements Initializable {
@@ -140,6 +141,11 @@ public class changeApptController implements Initializable {
             stage.setScene(new Scene(scene));
 
             stage.show();
+        } catch(DateTimeParseException inputError) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setContentText("Please enter time in YYYY-MM-DD HH:MM format in Start and End fields");
+            alert.showAndWait();
         } catch (Exception msg) {
             Alert alert;
             if (!noOverlap) {

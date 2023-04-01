@@ -73,7 +73,7 @@ public class addCustomerController implements Initializable {
         }
 
         ObservableList<States> stateList = FXCollections.observableArrayList();
-        stateList = Inventory.getAllStates();
+        stateList = Inventory.getStatesByCountry(countryCombo.getValue().getCountryId());
         stateCombo.setItems(stateList);
     }
 
@@ -115,6 +115,7 @@ public class addCustomerController implements Initializable {
 
     @FXML
     void onStateComboClick(ActionEvent event) {
+
         int contactSelected = -1;
         for(States state: stateCombo.getItems()){
             if(contactSelected == state.getCountryId()){

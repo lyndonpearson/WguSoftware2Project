@@ -152,21 +152,31 @@ public class apptCustomerController implements Initializable {
     }
 
     @FXML
-    void onUpdateBtnClick(ActionEvent event) throws IOException {
+    void onUpdateBtnClick(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/project/wgusoftware2project/changeAppt.fxml"));
         loader.load();
         changeApptController CAController = loader.getController();
+        try {
+            if (apptTable.getSelectionModel().getSelectedItem() == null) {
+                throw new Exception();
+            }
 
-        CAController.receiveInAppt((Appointments) apptTable.getSelectionModel().getSelectedItem());
+            CAController.receiveInAppt((Appointments) apptTable.getSelectionModel().getSelectedItem());
 
-        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
-        Parent scene = loader.getRoot();
+            Parent scene = loader.getRoot();
 
-        stage.setScene(new Scene(scene));
+            stage.setScene(new Scene(scene));
 
-        stage.show();
+            stage.show();
+        } catch (Exception msg){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Please select an appointment to update");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -175,16 +185,22 @@ public class apptCustomerController implements Initializable {
         loader.setLocation(getClass().getResource("/project/wgusoftware2project/changeCustomer.fxml"));
         loader.load();
         changeCustomerController CCController = loader.getController();
+        try {
+            CCController.receiveInCustomer((Customers) custTable.getSelectionModel().getSelectedItem());
 
-        CCController.receiveInCustomer((Customers) custTable.getSelectionModel().getSelectedItem());
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
-        stage = (Stage)((Button) event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
 
-        Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
 
-        stage.setScene(new Scene(scene));
-
-        stage.show();
+            stage.show();
+        } catch (Exception msg){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Please select a customer to update");
+            alert.showAndWait();
+        }
     }
 
     @Override

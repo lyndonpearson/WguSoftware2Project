@@ -1,5 +1,7 @@
 package project.wgusoftware2project.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,7 +59,17 @@ public class changeCustomerController implements Initializable {
 
     @FXML
     void onCountryComboClick(ActionEvent event) {
+        int contactSelected = -1;
+        for(Countries country: countryCombo.getItems()){
+            if(contactSelected == country.getCountryId()){
+                countryCombo.setValue(country);
+                break;
+            }
+        }
 
+        ObservableList<States> stateList = FXCollections.observableArrayList();
+        stateList = Inventory.getStatesByCountry(countryCombo.getValue().getCountryId());
+        stateCombo.setItems(stateList);
     }
 
     @FXML
@@ -96,7 +108,13 @@ public class changeCustomerController implements Initializable {
 
     @FXML
     void onStateComboClick(ActionEvent event) {
-
+        int contactSelected = -1;
+        for(States state: stateCombo.getItems()){
+            if(contactSelected == state.getCountryId()){
+                stateCombo.setValue(state);
+                break;
+            }
+        }
     }
 
     public void receiveInCustomer(Customers inCustomer){

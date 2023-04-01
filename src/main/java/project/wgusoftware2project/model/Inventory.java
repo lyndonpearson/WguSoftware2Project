@@ -216,6 +216,17 @@ public class Inventory {
         return null;
     }
 
+    public static ObservableList getStatesByCountry(int countryId){
+        ObservableList<States> tempOL = allStates;
+        ObservableList<States> filteredList = FXCollections.observableArrayList();
+        for (States stateSearch : tempOL){
+            if (stateSearch.getCountryId() == countryId){
+                filteredList.add(stateSearch);
+            }
+        }
+        return filteredList;
+    }
+
     public static ObservableList getAppointmentsByCustId(int contactId){
         ObservableList<Appointments> tempOL;
         tempOL = Inventory.getAllAppts();
