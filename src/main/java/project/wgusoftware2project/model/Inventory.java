@@ -7,7 +7,7 @@ import javafx.scene.control.Alert;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.*;
-
+/** Static class for containing and interfacing with all program models. */
 public class Inventory {
 
     public static ObservableList<Appointments> allAppts = FXCollections.observableArrayList();
@@ -63,6 +63,11 @@ public class Inventory {
         return allContacts;
     }
 
+    /** Searches State ObservableList by stateId property and returns
+     * state object if found - otherwise returns null.
+     @param stateId Integer parameter and object property used to search ObservableList.
+     @return state Object containing matching stateId property.
+     */
     public static States lookupState(int stateId){
         ObservableList<States> tempOL;
         tempOL = Inventory.getAllStates();
