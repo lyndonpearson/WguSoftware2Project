@@ -162,6 +162,10 @@ public class Inventory {
                 int duplicateflag = 0;
                 int arraySize = allReportDivisions.size();
                 for (int Index = 0; Index < arraySize; Index++){
+                    /** GeneralInterface compareStates method implemented to check if
+                     * two state strings are equal. Used here as a clear, concise method to check
+                     * if a state already exists in a list of states and their associated customers.
+                     * */
                     if(stateCompare.compareStates(allReportDivisions.get(Index).getState(), reportDivision.getState())){
                         duplicateflag++;
                     }
@@ -193,13 +197,17 @@ public class Inventory {
             int hour = nowInstant.atZone(ZoneId.of(locationZone)).getHour();
             int minute = nowInstant.atZone(ZoneId.of(locationZone)).getMinute();
 
+            /** Interface TimeInterface method implemented to calculate
+             * the current time in units of hours and compare to appointment time
+             * in units of hours. Used here as a clear, concise method to check
+             * if an upcoming appointment exists.
+             * */
             TimeInterface timeTest = (int apptHourInput, int apptMinuteInput, int hourInput, int minuteInput) -> {
                 double apptHours = apptHourInput + (apptMinuteInput / 60.0);
                 double currentHours = hourInput + (minuteInput / 60.0);
                 double result = apptHours - currentHours;
                 return (0 <= result && result <= 0.25);
             };
-
 
             if (timeTest.timeCalculation(apptHour, apptMinute, hour, minute)){
                 Alert alert = new Alert(Alert.AlertType.WARNING);

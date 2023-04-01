@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import project.wgusoftware2project.model.Inventory;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -21,7 +20,10 @@ import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-
+/** mainController class created with initialization capabilities.
+ The controller interfaces with the comboBoxes, labels, text fields,
+ and buttons shown in main.fxml
+ */
 public class mainController implements Initializable {
     Parent scene;
     @FXML
@@ -53,6 +55,14 @@ public class mainController implements Initializable {
 
 
 
+    /** This method is called if the Login
+     button is clicked. The input userId and password are validated.
+     If incorrect, a log file is updated with an unsuccessful entry and timestamp
+     along with an alert displayed
+     If correct, the log file is updated with a successful entry and timestamp
+     The view is then changed to apptCustomer.fxml
+     @param event The event of the Login Button being clicked
+     */
     @FXML
     void onLoginBtnClick(ActionEvent event) throws SQLException, IOException {
         System.out.println("UserName: " + userNameTextField.getText());
@@ -95,6 +105,11 @@ public class mainController implements Initializable {
         }
     }
 
+    /** This method is called if the Language ComboBox
+     is clicked. If French is selected, all labels and text are translated
+     to French. Otherwise the text is set to English.
+     @param event The event of the Language ComboBox being clicked
+     */
     @FXML
     void onLanguageComboBoxClick(ActionEvent event) {
         String selectedLanguage = languageComboBox.getSelectionModel().getSelectedItem();
@@ -114,6 +129,12 @@ public class mainController implements Initializable {
 
     }
 
+    /** This method is called when the main.fxml file is loaded.
+     The location TextField is updated to the system's default.
+     The Language ComboBox is populated with English and French options.
+     @param location The location of the relative path of the root object.
+     @param resources Resource used to localize the root object; can be null if absolute path.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

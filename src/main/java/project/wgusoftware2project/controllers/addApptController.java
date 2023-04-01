@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import project.wgusoftware2project.helpers.MySqlQuery;
 import project.wgusoftware2project.model.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -28,11 +27,13 @@ import java.time.format.DateTimeParseException;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+/** addApptController class created with initialization capabilities.
+ The controller interfaces with the comboBoxes, labels, text fields,
+ and buttons show in addAppt.fxml
+ */
 public class addApptController implements Initializable {
     Stage stage;
     Parent scene;
-
-
     @FXML
     public ComboBox<Contacts> contactIdCombo;
 
@@ -68,6 +69,10 @@ public class addApptController implements Initializable {
     @FXML
     private TextField typeText;
 
+    /** This method is called after if the Cancel
+     button is clicked. The window is switched to the apptCustomer.fxml file.
+     @param event The event of the Cancel Button being clicked
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
@@ -78,9 +83,15 @@ public class addApptController implements Initializable {
 
         stage.show();
 
-
     }
 
+    /** This method is called if the Save
+     button is selected. The appointment time fields are validated and, if in
+     the correct format and during EST business hours, a new Appointment
+     object is created and it is added to the Inventory ObservableList as well
+     as the mySQL database. The window is then returned to the apptCustomer.fxml file.
+     @param event The event of the Save button being clicked
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException, SQLException {
         int id = 0;
@@ -170,6 +181,10 @@ public class addApptController implements Initializable {
         }
     }
 
+    /** This method is called after if the ContactIdComboBox is
+     clicked. The ComboBox value is set to the user selection.
+     @param event The event of the ComboBox being clicked
+     */
     @FXML
     void onContactIdComboClick(ActionEvent event) {
         int contactSelected = -1;
@@ -181,7 +196,10 @@ public class addApptController implements Initializable {
         }
     }
 
-
+    /** This method is called after if the CustomerIdComboBox is
+     clicked. The ComboBox value is set to the user selection.
+     @param event The event of the ComboBox being clicked
+     */
     @FXML
     void onCustIdComboClick(ActionEvent event) {
         int contactSelected = -1;
@@ -193,6 +211,10 @@ public class addApptController implements Initializable {
         }
     }
 
+    /** This method is called after if the UserIdComboBox is
+     clicked. The ComboBox value is set to the user selection.
+     @param event The event of the ComboBox being clicked
+     */
     @FXML
     void onUserIdComboClick(ActionEvent event) {
         int contactSelected = -1;
@@ -204,6 +226,15 @@ public class addApptController implements Initializable {
         }
     }
 
+    /** This method is called when the addApptController.fxml file is loaded.
+     The ID text field is disabled and populated with a random value.
+     The Users ComboBox is populated with existing data from Inventory.
+     The Customers ComboBox is populated with existing data from Inventory.
+     The Contacts ComboBox is populated with existing data from Inventory.
+     The Start and End time fields have a time template set in text.
+     @param location The location of the relative path of the root object.
+     @param resources Resource used to localize the root object; can be null if absolute path.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Users> userList = FXCollections.observableArrayList();
