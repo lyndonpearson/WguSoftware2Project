@@ -102,7 +102,6 @@ public class changeCustomerController implements Initializable {
         String divisionId;
         String state;
 
-
         id = Integer.parseInt(idText.getText());
         name = nameText.getText();
         address = addressText.getText();
@@ -114,7 +113,6 @@ public class changeCustomerController implements Initializable {
         Customers newCust = new Customers(id, name, address, phone, postal, divisionId, state);
         Inventory.updateCustomer(id, newCust);
         MySqlQuery.updateCustomer(newCust);
-
 
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
 
@@ -150,9 +148,9 @@ public class changeCustomerController implements Initializable {
         nameText.setText(inCustomer.getCustomerName());
         addressText.setText(inCustomer.getAddress());
         phoneText.setText(inCustomer.getPhone());
-        postalText.setText(inCustomer.getPostalCode());
         stateCombo.setValue(Inventory.lookupState(Integer.parseInt(inCustomer.getDivisionId())));
         stateCombo.setItems(Inventory.getAllStates());
+        postalText.setText(inCustomer.getPostalCode());
         int countryID = Inventory.countryIdByDivId(Integer.parseInt(inCustomer.getDivisionId()));
         countryCombo.setValue(Inventory.lookupCountry(countryID));
         countryCombo.setItems(Inventory.getAllCountries());

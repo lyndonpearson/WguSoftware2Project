@@ -35,17 +35,18 @@
       <Button layoutX="14.0" layoutY="217.0" mnemonicParsing="false" onAction="#onAddBtnClick" text="Add" />
       <Button fx:id="updateApptBtn" layoutX="75.0" layoutY="217.0" mnemonicParsing="false" onAction="#onUpdateBtnClick" text="Update" />
       <Button fx:id="deleteApptBtn" layoutX="141.0" layoutY="217.0" mnemonicParsing="false" onAction="#onDeleteBtnClick" text="Delete" />
-      <Pane layoutY="253.0" prefHeight="249.0" prefWidth="600.0">
+      <Pane layoutX="4.0" layoutY="253.0" prefHeight="249.0" prefWidth="600.0">
          <children>
             <Label layoutX="33.0" layoutY="15.0" text="Customers" />
             <TableView fx:id="custTable" layoutX="16.0" layoutY="54.0" prefHeight="125.0" prefWidth="568.0">
                <columns>
                   <TableColumn fx:id="custIdCol" prefWidth="59.0" text="ID" />
-                  <TableColumn fx:id="custName" prefWidth="116.0" text="Name" />
-                  <TableColumn fx:id="custAddress" prefWidth="106.0" text="Address" />
-                  <TableColumn fx:id="custPhone" prefWidth="102.0" text="Phone Number" />
-                  <TableColumn fx:id="custState" prefWidth="87.0" text="State/Prov" />
-                  <TableColumn fx:id="custPostal" prefWidth="97.0" text="Postal Code" />
+                  <TableColumn fx:id="custName" prefWidth="42.0" text="Name" />
+                  <TableColumn fx:id="custAddress" prefWidth="56.0" text="Address" />
+                  <TableColumn fx:id="custPhone" prefWidth="83.0" text="Phone Number" />
+                  <TableColumn fx:id="custState" prefWidth="100.0" text="State/Prov" />
+                  <TableColumn fx:id="custPostal" minWidth="0.0" prefWidth="56.0" text="Postal Code" />
+                  <TableColumn fx:id="divisionIdCol" prefWidth="268.0" text="Division ID" />
                </columns>
             </TableView>
             <Button fx:id="addCustomerBtn" layoutX="12.0" layoutY="190.0" mnemonicParsing="false" onAction="#onAddCustBtnClick" text="Add" />

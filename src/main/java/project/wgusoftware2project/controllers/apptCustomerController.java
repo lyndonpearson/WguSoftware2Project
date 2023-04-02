@@ -115,6 +115,9 @@ public class apptCustomerController implements Initializable {
     private TableColumn<?, ?> typeCol;
 
     @FXML
+    private TableColumn<?, ?> divisionIdCol;
+
+    @FXML
     private Button updateApptBtn;
 
     @FXML
@@ -211,6 +214,8 @@ public class apptCustomerController implements Initializable {
         loader.load();
         changeCustomerController CCController = loader.getController();
         try {
+            String test = custTable.getSelectionModel().getSelectedItem().getDivisionId();
+            String test2 = custTable.getSelectionModel().getSelectedItem().getState();
             CCController.receiveInCustomer((Customers) custTable.getSelectionModel().getSelectedItem());
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -256,9 +261,11 @@ public class apptCustomerController implements Initializable {
         custIdCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         custName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         custAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-        custPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        custState.setCellValueFactory(new PropertyValueFactory<>("state"));
         custPostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        custPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        divisionIdCol.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
+        custState.setCellValueFactory(new PropertyValueFactory<>("state"));
+
 
     }
 

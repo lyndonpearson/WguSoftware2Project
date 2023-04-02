@@ -111,7 +111,7 @@ public class addCustomerController implements Initializable {
         address = addressText.getText();
         phone = phoneText.getText();
         postal = postalText.getText();
-        divisionId = String.valueOf(stateCombo.getValue());
+        divisionId = String.valueOf(Inventory.divisionIdByDivision(String.valueOf(stateCombo.getValue())));
         state = String.valueOf(stateCombo.getValue());
 
         Customers newCust = new Customers(id, name, address, phone, postal, divisionId, state);

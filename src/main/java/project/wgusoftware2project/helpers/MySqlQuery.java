@@ -163,7 +163,7 @@ public abstract class MySqlQuery {
         ps.setString(3, addCust.getAddress());
         ps.setString(4, addCust.getPostalCode());
         ps.setString(5, addCust.getPhone());
-        ps.setInt(6, Inventory.divisionIdByDivision(addCust.getDivisionId()));
+        ps.setInt(6, Inventory.divisionIdByDivision(addCust.getState()));
 
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
