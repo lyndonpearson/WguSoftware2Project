@@ -16,7 +16,6 @@ import project.wgusoftware2project.helpers.MySqlQuery;
 import project.wgusoftware2project.model.Appointments;
 import project.wgusoftware2project.model.Customers;
 import project.wgusoftware2project.model.Inventory;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -27,6 +26,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+/** apptCustomerController class created with initialization capabilities.
+ The controller interfaces with the comboBoxes, labels, text fields,
+ and buttons show in apptCustomer.fxml
+ */
 public class apptCustomerController implements Initializable {
     Stage stage;
     Parent scene;
@@ -120,6 +123,10 @@ public class apptCustomerController implements Initializable {
     @FXML
     private TableColumn<?, ?> userIdCol;
 
+    /** This method is called after if the Add button is
+     clicked. The addAppt.fxml view is loaded
+     @param event The event of the Add button being clicked
+     */
     @FXML
     void onAddBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
@@ -131,6 +138,12 @@ public class apptCustomerController implements Initializable {
         stage.show();
     }
 
+    /** This method is called after if the Delete button is
+     clicked. The selected Appointment from TableView is removed
+     from Inventory and MySQL database. An alert is created
+     either confirming the outcome of the operation.
+     @param event The event of the Delete button being clicked
+     */
     @FXML
     void onDeleteBtnClick(ActionEvent event) throws SQLException {
         Appointments selectedAppt = apptTable.getSelectionModel(). getSelectedItem();
@@ -151,6 +164,12 @@ public class apptCustomerController implements Initializable {
         }
     }
 
+    /** This method is called after if the Update button is
+     clicked. The selected Appointment from TableView is upated
+     in Inventory and MySQL database. If no Appointment is selected,
+     an alert is displayed.
+     @param event The event of the Update button being clicked
+     */
     @FXML
     void onUpdateBtnClick(ActionEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader();
@@ -179,6 +198,12 @@ public class apptCustomerController implements Initializable {
         }
     }
 
+    /** This method is called if the Update Customer button is
+     clicked. The selected Customer from TableView is upated
+     in Inventory and MySQL database. If no Customer is selected,
+     an alert is displayed.
+     @param event The event of the Update button being clicked
+     */
     @FXML
     void onUpdateCustClick(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -203,6 +228,13 @@ public class apptCustomerController implements Initializable {
         }
     }
 
+
+    /** This method is called when the apptCustomer.fxml file is loaded.
+     The Appointments TableView is populated with existing data from Inventory.
+     The Customers TableView is populated with existing data from Inventory.
+     @param url The location of the relative path of the root object.
+     @param resourceBundle Resource used to localize the root object; can be null if absolute path.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -230,6 +262,13 @@ public class apptCustomerController implements Initializable {
 
     }
 
+    /** This method is called if the Delete Customer button is
+     clicked. The selected Customer from TableView is removed
+     from Inventory and MySQL database and a confirmation alert
+     is displayed. The Appointments TableView is updated.
+     If no Customer is selected, an alert is displayed.
+     @param event The event of the Update button being clicked
+     */
     @FXML
     void onDeleteCustClick(ActionEvent event) throws SQLException {
         Customers selectedCust = custTable.getSelectionModel(). getSelectedItem();
@@ -252,6 +291,10 @@ public class apptCustomerController implements Initializable {
         }
     }
 
+    /** This method is called if the Add button is
+     clicked. The addCustomer.fxml view is loaded
+     @param event The event of the Add button being clicked
+     */
     @FXML
     void onAddCustBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
@@ -263,11 +306,21 @@ public class apptCustomerController implements Initializable {
         stage.show();
     }
 
+    /** This method is called if the All radio button is
+     clicked. The Appointment TableView is populated with
+     all Appointments in inventory
+     @param event The event of the All radio button being clicked
+     */
     @FXML
     void onAllClick(ActionEvent event) {
         apptTable.setItems(Inventory.getAllAppts());
     }
 
+    /** This method is called if the Month radio button is
+     clicked. The Appointment TableView is populated with
+     Appointments occurring in the current month.
+     @param event The event of the Month radio button being clicked
+     */
     @FXML
     void onCurrentMonthClick(ActionEvent event) {
         Date date = new Date();
@@ -287,6 +340,11 @@ public class apptCustomerController implements Initializable {
         apptTable.setItems(items);
     }
 
+    /** This method is called if the Week radio button is
+     clicked. The Appointment TableView is populated with
+     Appointments occurring in the current week.
+     @param event The event of the Week radio button being clicked
+     */
     @FXML
     void onCurrentWeekClick(ActionEvent event) {
         Date date = new Date();
@@ -307,7 +365,10 @@ public class apptCustomerController implements Initializable {
         apptTable.setItems(items);
     }
 
-
+    /** This method is called if the Logout button is
+     clicked. The main.fxml view is loaded
+     @param event The event of the Logout button being clicked
+     */
     @FXML
     void onLogoutBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
@@ -319,6 +380,10 @@ public class apptCustomerController implements Initializable {
         stage.show();
     }
 
+    /** This method is called if the Reports button is
+     clicked. The report.fxml view is loaded
+     @param event The event of the Report button being clicked
+     */
     @FXML
     void onReportsBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();

@@ -24,6 +24,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
+/** changeApptController class created with initialization capabilities.
+ The controller interfaces with the text fields,
+ and buttons show in changeAppt.fxml
+ */
 public class changeApptController implements Initializable {
     Stage stage;
     Parent scene;
@@ -63,6 +67,10 @@ public class changeApptController implements Initializable {
     @FXML
     private TextField userIdText;
 
+    /** This method is called if the Cancel
+     button is clicked. The window is switched to the apptCustomer.fxml file.
+     @param event The event of the Cancel Button being clicked
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
@@ -74,6 +82,13 @@ public class changeApptController implements Initializable {
         stage.show();
     }
 
+    /** This method is called if the Save
+     button is selected. The TextFields are parsed, a new Appointment object
+     is created and validation is done on time format and weekday business
+     hours in EST. Then the object is added to the Inventory ObservableList as well
+     as the mySQL database.
+     @param event The event of the Save button being clicked
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException, SQLException {
         int appointmentID;
@@ -163,6 +178,10 @@ public class changeApptController implements Initializable {
         }
     }
 
+    /** This method receives an Appointment object to modify from the apptCustomerController
+     The field labels (Id, title, etc.) are all used to set the corresponding text fields.
+     @param inAppt this parameter handles the input Appointment
+     */
     public void receiveInAppt(Appointments inAppt){
 
         idText.setText(String.valueOf(inAppt.getAppointmentID()));
@@ -181,6 +200,13 @@ public class changeApptController implements Initializable {
 
 
     }
+
+
+    /** This method is called when the changeAppointment.fxml file is loaded.
+     The ID text field is disabled.
+     @param url The location of the relative path of the root object.
+     @param resourceBundle Resource used to localize the root object; can be null if absolute path.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idText.setDisable(true);

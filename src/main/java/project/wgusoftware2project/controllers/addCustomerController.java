@@ -20,6 +20,10 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+/** addCustomerController class created with initialization capabilities.
+ The controller interfaces with the comboBoxes, labels, text fields,
+ and buttons show in addCustomer.fxml
+ */
 public class addCustomerController implements Initializable {
     Stage stage;
     Parent scene;
@@ -50,6 +54,10 @@ public class addCustomerController implements Initializable {
     @FXML
     private TextField postalText;
 
+    /** This method is called after if the Cancel
+     button is clicked. The window is switched to the apptCustomer.fxml file.
+     @param event The event of the Cancel Button being clicked
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
 
@@ -62,6 +70,10 @@ public class addCustomerController implements Initializable {
         stage.show();
     }
 
+    /** This method is called after if the CountryComboBox is
+     clicked. The ComboBox value is set to the user selection.
+     @param event The event of the ComboBox being clicked
+     */
     @FXML
     void onCountryComboClick(ActionEvent event) {
         int contactSelected = -1;
@@ -77,6 +89,12 @@ public class addCustomerController implements Initializable {
         stateCombo.setItems(stateList);
     }
 
+    /** This method is called if the Save
+     button is selected. The TextFields are parsed, a new Customer object
+     is created and added to the Inventory ObservableList as well
+     as the mySQL database. The window is then returned to the apptCustomer.fxml file.
+     @param event The event of the Save button being clicked
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException, SQLException {
         int id = 0;
@@ -98,11 +116,7 @@ public class addCustomerController implements Initializable {
 
         Customers newCust = new Customers(id, name, address, phone, postal, divisionId, state);
         Inventory.addCust(newCust);
-        if (MySqlQuery.insertCust(newCust) > 0){
-            System.out.println("Successfully inserted Customer into DB");
-        } else {
-            System.out.println("Failed to insert Customer in DB");
-        }
+        MySqlQuery.insertCust(newCust);
 
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
 
@@ -113,6 +127,10 @@ public class addCustomerController implements Initializable {
         stage.show();
     }
 
+    /** This method is called after if the StateComboBox is
+     clicked. The ComboBox value is set to the user selection.
+     @param event The event of the ComboBox being clicked
+     */
     @FXML
     void onStateComboClick(ActionEvent event) {
 
@@ -125,6 +143,12 @@ public class addCustomerController implements Initializable {
         }
     }
 
+    /** This method is called when the addCustomer.fxml file is loaded.
+     The ID text field is disabled and populated with a random value.
+     The Country ComboBox is populated with existing data from Inventory.
+     @param location The location of the relative path of the root object.
+     @param resources Resource used to localize the root object; can be null if absolute path.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Countries> countryList = FXCollections.observableArrayList();

@@ -19,6 +19,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/** changeCustomerController class created with initialization capabilities.
+ The controller interfaces with the comboBoxes, labels, text fields,
+ and buttons shown in changeCustomer.fxml
+ */
 public class changeCustomerController implements Initializable {
     Stage stage;
     Parent scene;
@@ -46,6 +50,10 @@ public class changeCustomerController implements Initializable {
     @FXML
     private ComboBox<States> stateCombo;
 
+    /** This method is called if the Cancel
+     button is clicked. The window is switched to the apptCustomer.fxml file.
+     @param event The event of the Cancel Button being clicked
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button) event.getSource()).getScene().getWindow();
@@ -57,6 +65,12 @@ public class changeCustomerController implements Initializable {
         stage.show();
     }
 
+    /** This method is called after if the CountryComboBox is
+     clicked. The ComboBox value is set to the user selection.
+     The StateComboBox's items are set to the selected CountryComboBox
+     value.
+     @param event The event of the ComboBox being clicked
+     */
     @FXML
     void onCountryComboClick(ActionEvent event) {
         int contactSelected = -1;
@@ -72,6 +86,12 @@ public class changeCustomerController implements Initializable {
         stateCombo.setItems(stateList);
     }
 
+    /** This method is called if the Save
+     button is selected. The TextFields are parsed, a new Customer object
+     is created and used to update the Inventory ObservableList as well
+     as the mySQL database. The window is then returned to the apptCustomer.fxml file.
+     @param event The event of the Save button being clicked
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws SQLException, IOException {
         int id = 0;
@@ -105,7 +125,10 @@ public class changeCustomerController implements Initializable {
         stage.show();
     }
 
-
+    /** This method is called after if the StateComboBox is
+     clicked. The ComboBox value is set to the user selection.
+     @param event The event of the ComboBox being clicked
+     */
     @FXML
     void onStateComboClick(ActionEvent event) {
         int contactSelected = -1;
@@ -117,6 +140,10 @@ public class changeCustomerController implements Initializable {
         }
     }
 
+    /** This method receives an Customer object to modify from the apptCustomerController
+     The field labels (Id, title, etc.) are all used to set the corresponding text fields.
+     @param inCustomer this parameter handles the input Customer
+     */
     public void receiveInCustomer(Customers inCustomer){
 
         idText.setText(String.valueOf(inCustomer.getCustomerID()));
@@ -132,6 +159,11 @@ public class changeCustomerController implements Initializable {
 
     }
 
+    /** This method is called when the changeCustomer.fxml file is loaded.
+     The ID text field is disabled.
+     @param url The location of the relative path of the root object.
+     @param resourceBundle Resource used to localize the root object; can be null if absolute path.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         idText.setDisable(true);

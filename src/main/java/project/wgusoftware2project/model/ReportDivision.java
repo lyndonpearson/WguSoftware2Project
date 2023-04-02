@@ -1,9 +1,17 @@
 package project.wgusoftware2project.model;
 
+/** ReportDivision class created to store data grouped by
+ * state.
+ */
 public class ReportDivision {
     String state;
     int total;
 
+    /** ReportDivision constructor.
+     @param state String storing state of Customer.
+     @param total Integer storing total Customers from a.
+     given state.
+     */
     public ReportDivision(String state, int total) {
         this.state = state;
         this.total = total;
