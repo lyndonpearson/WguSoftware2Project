@@ -3,6 +3,8 @@ package project.wgusoftware2project.helpers;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/** JDBC class created to connect and disconnect from MySQL database.
+ */
 public abstract class JDBC {
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";
@@ -17,6 +19,8 @@ public abstract class JDBC {
     private static final String password = "Passw0rd!";
     public static Connection connection;
 
+    /** JDBC method to open a connection with MySQL database.
+     */
     public static void openConnection(){
         try{
             Class.forName(driver);
@@ -27,6 +31,8 @@ public abstract class JDBC {
         }
     }
 
+    /** JDBC method to close a connection with MySQL database.
+     */
     public static void closeConnection(){
         try{
             connection.close();

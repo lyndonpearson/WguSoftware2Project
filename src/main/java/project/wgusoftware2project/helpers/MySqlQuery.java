@@ -5,8 +5,17 @@ import project.wgusoftware2project.model.*;
 import java.sql.*;
 import java.time.*;
 
+/** Abstract class created to interface (create, read, update, delete)
+ * with MySQL database.
+ */
 public abstract class MySqlQuery {
 
+    /** This method retrieves all Appointments from the
+     * Appointments table in MySQL database. Appointment
+     * objects are created from each row in the table
+     * and they are added to the Inventory's Appointment
+     * ObservableList
+     */
     public static void populateAppts() throws SQLException {
 
         String sql = "SELECT * FROM APPOINTMENTS";
@@ -39,7 +48,12 @@ public abstract class MySqlQuery {
         }
     }
 
-
+    /** This method retrieves all Customers from the
+     * Customers table in MySQL database. Customer
+     * objects are created from each row in the table
+     * and they are added to the Inventory's Customer
+     * ObservableList
+     */
     public static void populateCusts() throws SQLException {
 
         String sql = "SELECT * FROM CUSTOMERS";
@@ -57,6 +71,12 @@ public abstract class MySqlQuery {
         }
     }
 
+    /** This method retrieves all Users from the
+     * Users table in MySQL database. User
+     * objects are created from each row in the table
+     * and they are added to the Inventory's User
+     * ObservableList
+     */
     public static void populateUsers() throws SQLException {
 
         String sql = "SELECT * FROM USERS";
@@ -70,6 +90,12 @@ public abstract class MySqlQuery {
         }
     }
 
+    /** This method retrieves all Contacts from the
+     * Contacts table in MySQL database. Contact
+     * objects are created from each row in the table
+     * and they are added to the Inventory's Contact
+     * ObservableList
+     */
     public static void populateContacts() throws SQLException {
 
         String sql = "SELECT * FROM CONTACTS";
@@ -83,6 +109,13 @@ public abstract class MySqlQuery {
         }
     }
 
+    /** This method accepts an Appointment object as input
+     * to be added into the Appointments Table of the MySQL database.
+     * Fields are extracted from the Appointment object and used
+     * to populate the columns of a row corresponding to the object.
+     @param addAppt Appointment object to be added to MySQL database
+     @return rowsAffected Integer of Table row updated
+     */
     public static int insertAppt(Appointments addAppt) throws SQLException {
         String sql = "INSERT INTO APPOINTMENTS (Appointment_ID, Title, Description, Location, " +
                 "Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -112,6 +145,13 @@ public abstract class MySqlQuery {
 
     }
 
+    /** This method accepts a Customer object as input
+     * to be added into the Customer Table of the MySQL database.
+     * Fields are extracted from the Customer object and used
+     * to populate the columns of a row corresponding to the object.
+     @param addCust Customer object to be added to MySQL database
+     @return rowsAffected Integer of Table row updated
+     */
     public static int insertCust(Customers addCust) throws SQLException {
         String sql = "INSERT INTO CUSTOMERS (CUSTOMER_ID, CUSTOMER_NAME, ADDRESS, POSTAL_CODE, " +
                 "PHONE, DIVISION_ID) VALUES(?, ?, ?, ?, ?, ?)";
@@ -130,6 +170,15 @@ public abstract class MySqlQuery {
 
     }
 
+    /** This method accepts an Appointment object as input
+     * for updating a row of the Appointments Table of the MySQL database.
+     * The row to update is identified by the WHERE statement referencing
+     * the APPOINTMENT_ID.
+     * Fields are extracted from the Appointment object and used
+     * to update the columns of a row corresponding to the object.
+     @param addAppt Appointment object used to update Table row in MySQL database
+     @return rowsAffected Integer of Table row updated
+     */
     public static int updateAppt(Appointments addAppt) throws SQLException {
         String sql = "UPDATE APPOINTMENTS SET Title = ?, Description = ?, Location = ?, " +
                 "Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE APPOINTMENT_ID = " +
@@ -159,6 +208,15 @@ public abstract class MySqlQuery {
 
     }
 
+    /** This method accepts a Customer object as input
+     * for updating a row of the Customer Table of the MySQL database.
+     * The row to update is identified by the WHERE statement referencing
+     * the CUSTOMER_ID.
+     * Fields are extracted from the Customer object and used
+     * to update the columns of a row corresponding to the object.
+     @param addCustomer Appointment object used to update Table row in MySQL database
+     @return rowsAffected Integer of Table row updated
+     */
     public static int updateCustomer(Customers addCustomer) throws SQLException {
         String sql = "UPDATE CUSTOMERS SET Customer_Name = ?, Address = ?, Postal_Code = ?, " +
                 "Phone = ? WHERE CUSTOMER_ID = " + String.valueOf(addCustomer.getCustomerID());
@@ -174,6 +232,13 @@ public abstract class MySqlQuery {
 
     }
 
+    /** This method accepts an Integer as input
+     * for deleting the matching row of the Appointment Table of the MySQL database.
+     * The row to delete is identified by the WHERE statement referencing
+     * the APPOINTMENT_ID.
+     @param apptId Integer ID used to delete matching Table row in MySQL database
+     @return rowsAffected Integer of Table row updated
+     */
     public static int deleteAppt(int apptId) throws SQLException {
         String sql = "DELETE FROM APPOINTMENTS WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -182,6 +247,13 @@ public abstract class MySqlQuery {
         return rowsAffected;
     }
 
+    /** This method accepts an Integer as input
+     * for deleting the matching row of the Customer Table of the MySQL database.
+     * The row to delete is identified by the WHERE statement referencing
+     * the CUSTOMER_ID.
+     @param custId Integer ID used to delete matching Table row in MySQL database
+     @return rowsAffected Integer of Table row updated
+     */
     public static int deleteCust(int custId) throws SQLException {
         String apptSql = "DELETE FROM APPOINTMENTS WHERE CUSTOMER_ID = ?";
         PreparedStatement psAppt = JDBC.connection.prepareStatement(apptSql);
@@ -194,6 +266,11 @@ public abstract class MySqlQuery {
         return rowsAffected;
     }
 
+    /** This method retrieves all countries from the
+     * Country Table of the MySQL database.
+     * Each row is used to create a Country object
+     * that is stored in the Inventory's Country ObservableList
+     */
     public static void getCountries() throws SQLException {
 
         String sql = "SELECT * FROM COUNTRIES";
@@ -206,7 +283,11 @@ public abstract class MySqlQuery {
         }
     }
 
-
+    /** This method retrieves all states from the
+     * State Table of the MySQL database.
+     * Each row is used to create a State object
+     * that is stored in the Inventory's State ObservableList
+     */
     public static void getStates() throws SQLException {
 
         String sql = "SELECT * FROM FIRST_LEVEL_DIVISIONS";

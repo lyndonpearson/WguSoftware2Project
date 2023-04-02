@@ -1,9 +1,10 @@
 package project.wgusoftware2project.model;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
+/** Appointments class created to store rows extracted from
+ * Appointment Table data from MySQL database.
+ */
 public class Appointments {
     int appointmentID;
     String title;
@@ -18,6 +19,21 @@ public class Appointments {
     int userID;
     int contactID;
 
+    /** Appointments constructor to store rows extracted from
+     * Appointment Table data from MySQL database.
+     @param appointmentID Integer storing appointment_ID column of MySQL table row.
+     @param title String storing title column of MySQL table row.
+     @param description String storing description column of MySQL table row.
+     @param location String storing location column of MySQL table row.
+     @param type String storing type column of MySQL table row.
+     @param start Instant storing start column of MySQL table row.
+     @param startLocal Timestamp storing start column of MySQL table row.
+     @param end Instant storing end column of MySQL table row.
+     @param endLocal Timestamp storing end column of MySQL table row.
+     @param customerID Integer storing customer_ID column of MySQL table row.
+     @param userID Integer storing user_ID column of MySQL table row.
+     @param contactID Integer storing contact_ID column of MySQL table row.
+     */
     public Appointments(int appointmentID, String title, String description, String location, String type, Instant start, Timestamp startLocal, Instant end, Timestamp endLocal, int customerID, int userID, int contactID) {
         this.appointmentID = appointmentID;
         this.title = title;
