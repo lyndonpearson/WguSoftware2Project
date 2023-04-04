@@ -14,7 +14,7 @@ the course rubric requirements.
 </br>
 <h3>Directions</h3>
 <p>Run App.java in Intellij. This will bring up the login screen(main.fxml).
-To test the program, a dummy login of UserName "test" and password "password" 
+To test the program, a dummy login of UserName "test" and password "test" 
 can be used. The language can be changed via the ComboBox.</p> 
 
 <h3>Additional Report</h3>
