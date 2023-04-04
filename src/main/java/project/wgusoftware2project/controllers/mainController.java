@@ -69,7 +69,7 @@ public class mainController implements Initializable {
         System.out.println("Password: " + passwordTextField.getText());
 
         try {
-            if (Inventory.checkLogin(userNameTextField.getText(), passwordTextField.getText())) {
+            if (!Inventory.checkLogin(userNameTextField.getText(), passwordTextField.getText())) {
                 String filename = "src/logins.txt";
                 FileWriter fwriter = new FileWriter(filename, true);
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
