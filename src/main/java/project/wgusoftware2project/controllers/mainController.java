@@ -66,7 +66,7 @@ public class mainController implements Initializable {
 
         try {
             if (!Inventory.checkLogin(userNameTextField.getText(), passwordTextField.getText())) {
-                String filename = "src/logins.txt";
+                String filename = "login_activity.txt";
                 FileWriter fwriter = new FileWriter(filename, true);
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 fwriter.write("Unsuccessful login: " + timestamp + "\n");
@@ -74,7 +74,7 @@ public class mainController implements Initializable {
                 throw new Exception();
             }
 
-            String filename = "src/logins.txt";
+            String filename = "login_activity.txt";
             FileWriter fwriter = new FileWriter(filename, true);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             fwriter.write("Successful login: " + timestamp + "\n");
