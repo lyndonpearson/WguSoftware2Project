@@ -38,4 +38,5 @@ public class App extends Application {
 }
 
 
-//    2023-04-06 18:00
+//    I THINK this is finally working with appointment time checking for adding/updating
+//    re-check spreadsheet tomorrow.

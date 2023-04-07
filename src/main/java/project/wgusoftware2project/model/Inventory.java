@@ -235,17 +235,82 @@ public class Inventory {
      @return true if there is already an appointment in timeslot
      @return false if the timeslot is available
      */
-    public static boolean checkAppointmentOverlap(int customerId, int hourStart, int minuteStart){
+    public static boolean checkAppointmentOverlap(int customerId, int hourStart, int minuteStart, int dayOfYearStart, int hourEnd, int minuteEnd){
+            boolean isOverlap = false;
             for (Appointments appt : allAppts) {
+                ZonedDateTime estStartDateTime = appt.getStart().atZone(ZoneId.of("America/New_York"));
+                int hourStartEST = estStartDateTime.getHour();
+                int minuteStartEST = estStartDateTime.getMinute();
+                int startDay = estStartDateTime.getDayOfYear();
+
                 ZonedDateTime estEndDateTime = appt.getEnd().atZone(ZoneId.of("America/New_York"));
                 int hourEndEST = estEndDateTime.getHour();
                 int minuteEndEST = estEndDateTime.getMinute();
-                if (appt.getCustomerID() == customerId && hourEndEST == hourStart && minuteStart < minuteEndEST) {
-                    return false;
+
+
+                if (dayOfYearStart == startDay && appt.customerID == customerId){
+                    if(hourStart == hourEndEST && minuteStart > minuteStartEST && minuteStart < minuteEndEST){
+                        isOverlap = true;
+                    }else if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
+                        isOverlap = true;
+                    }else if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
+                        isOverlap = true;
+                    }else if (hourStartEST == hourStart && hourEnd < hourEndEST){
+                        isOverlap = true;
+                    }else if (hourEnd == hourStartEST && minuteEnd > minuteStartEST && minuteStart < minuteEndEST){
+                        isOverlap = true;
+                    }else if (hourStart == hourStartEST && minuteStart == minuteStartEST){
+                        isOverlap = true;
+                    }else if (hourStart < hourStartEST && hourEnd == hourEndEST && minuteEnd > minuteStartEST){
+                        isOverlap = true;
+                    }
                 }
             }
-            return true;
+            return isOverlap;
+        }
+
+    public static boolean checkOverlapChange(Appointments newAppt, int customerId, int hourStart, int minuteStart, int dayOfYearStart, int hourEnd, int minuteEnd){
+        boolean isOverlap = false;
+        ObservableList<Appointments> tempOL = FXCollections.observableArrayList();
+        ObservableList<Appointments> currentList;
+        currentList = Inventory.getAllAppts();
+        for (Appointments apptSearch : currentList){
+            if(apptSearch.getAppointmentID() != newAppt.appointmentID){
+                tempOL.add(apptSearch);
             }
+        }
+
+        for (Appointments appt : tempOL) {
+            ZonedDateTime estStartDateTime = appt.getStart().atZone(ZoneId.of("America/New_York"));
+            int hourStartEST = estStartDateTime.getHour();
+            int minuteStartEST = estStartDateTime.getMinute();
+            int startDay = estStartDateTime.getDayOfYear();
+
+            ZonedDateTime estEndDateTime = appt.getEnd().atZone(ZoneId.of("America/New_York"));
+            int hourEndEST = estEndDateTime.getHour();
+            int minuteEndEST = estEndDateTime.getMinute();
+
+
+            if (dayOfYearStart == startDay && appt.customerID == customerId){
+                if(hourStart == hourEndEST && minuteStart > minuteStartEST && minuteStart < minuteEndEST){
+                    isOverlap = true;
+                }else if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
+                    isOverlap = true;
+                }else if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
+                    isOverlap = true;
+                }else if (hourStartEST == hourStart && hourEnd < hourEndEST){
+                    isOverlap = true;
+                }else if (hourEnd == hourStartEST && minuteEnd > minuteStartEST && minuteStart < minuteEndEST){
+                    isOverlap = true;
+                }else if (hourStart == hourStartEST && minuteStart == minuteStartEST){
+                    isOverlap = true;
+                }else if (hourStart < hourStartEST && hourEnd == hourEndEST && minuteEnd > minuteStartEST){
+                    isOverlap = true;
+                }
+            }
+        }
+        return isOverlap;
+    }
 
 
     /** Searches States ObservableList by String stateName,

@@ -91,7 +91,7 @@ public class changeApptController implements Initializable {
      */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException, SQLException {
-        int appointmentID;
+        int appointmentID = 0;
         String title;
         String description;
         String location;
@@ -103,7 +103,7 @@ public class changeApptController implements Initializable {
         int contactID;
         ZoneId zone = ZoneId.of(String.valueOf(ZoneId.systemDefault()));
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
-        boolean noOverlap = false;
+        boolean Overlap = false;
 
         try {
             appointmentID = Integer.parseInt(idText.getText());
@@ -124,10 +124,14 @@ public class changeApptController implements Initializable {
             Timestamp endLocal = Timestamp.from(end);
 
             ZonedDateTime estZdt = start.atZone(ZoneId.of("America/New_York"));
+            ZonedDateTime estZdtEnd = end.atZone(ZoneId.of("America/New_York"));
 
             String dayEST = String.valueOf(estZdt.getDayOfWeek());
             int hourEST = estZdt.getHour();
             int minuteEST = estZdt.getMinute();
+            int dayNumEST = estZdt.getDayOfYear();
+            int hourESTEnd = estZdtEnd.getHour();
+            int minuteESTEnd = estZdtEnd.getMinute();
 
             if (dayEST.equals("SATURDAY") || dayEST.equals("SUNDAY")) {
                 throw new Exception();
@@ -139,13 +143,15 @@ public class changeApptController implements Initializable {
             userID = Integer.parseInt(userIdText.getText());
             contactID = Integer.parseInt(contactIdText.getText());
 
-            noOverlap = Inventory.checkAppointmentOverlap(customerID, hourEST, minuteEST);
-            if(!noOverlap){
+            Appointments newAppt = new Appointments(appointmentID, title, description, location, type, start,
+                    startLocal, end, endLocal, customerID, userID, contactID);
+
+            Overlap = Inventory.checkOverlapChange(newAppt, customerID, hourEST, minuteEST, dayNumEST, hourESTEnd, minuteESTEnd);
+            if(Overlap){
                 throw new Exception();
             }
 
-            Appointments newAppt = new Appointments(appointmentID, title, description, location, type, start,
-                    startLocal, end, endLocal, customerID, userID, contactID);
+
             Inventory.updateAppt(appointmentID, newAppt);
             MySqlQuery.updateAppt(newAppt);
 
@@ -163,7 +169,7 @@ public class changeApptController implements Initializable {
             alert.showAndWait();
         } catch (Exception msg) {
             Alert alert;
-            if (!noOverlap) {
+            if (Overlap) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Appointment Warning");
                 alert.setContentText("Appointment will overlap existing appointments " +

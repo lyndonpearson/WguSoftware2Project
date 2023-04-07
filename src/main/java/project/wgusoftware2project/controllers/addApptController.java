@@ -106,7 +106,7 @@ public class addApptController implements Initializable {
         int contactId = 0;
         ZoneId zone = ZoneId.of(String.valueOf(ZoneId.systemDefault()));
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(zone);
-        boolean noOverlap = false;
+        boolean Overlap = false;
 
         try {
             id = Integer.parseInt(idText.getText());
@@ -127,26 +127,29 @@ public class addApptController implements Initializable {
             Timestamp endLocal = Timestamp.from(end);
 
             ZonedDateTime estZdt = start.atZone(ZoneId.of("America/New_York"));
+            ZonedDateTime estZdtEnd = end.atZone(ZoneId.of("America/New_York"));
 
             String dayEST = String.valueOf(estZdt.getDayOfWeek());
             int hourEST = estZdt.getHour();
             int minuteEST = estZdt.getMinute();
+            int dayNumEST = estZdt.getDayOfYear();
+            int hourESTEnd = estZdtEnd.getHour();
+            int minuteESTEnd = estZdtEnd.getMinute();
 
-//            if (dayEST.equals("SATURDAY") || dayEST.equals("SUNDAY")) {
-//                throw new Exception();
-//            } else if (hourEST < 8 || hourEST > 21) {
-//                throw new Exception();
-//            }
+            if (dayEST.equals("SATURDAY") || dayEST.equals("SUNDAY")) {
+                throw new Exception();
+            } else if (hourEST < 8 || hourEST > 21) {
+                throw new Exception();
+            }
 
             customerId = custIdCombo.getValue().getCustomerID();
             userId = userIdCombo.getValue().getUserId();
             contactId = contactIdCombo.getValue().getContactId();
 
-            //CHECKING APPOINTMENT NOT WORKING WHEN NO APPOINTMENTS IN SYSTEM
-//            noOverlap = Inventory.checkAppointmentOverlap(customerId, hourEST, minuteEST);
-//            if(!noOverlap){
-//                throw new Exception();
-//            }
+            Overlap = Inventory.checkAppointmentOverlap(customerId, hourEST, minuteEST, dayNumEST, hourESTEnd, minuteESTEnd);
+            if(Overlap){
+                throw new Exception();
+            }
 
             Appointments newAppt = new Appointments(id, title, description, location, type, start,
                     startLocal, end, endLocal, customerId, userId, contactId);
@@ -166,21 +169,21 @@ public class addApptController implements Initializable {
             alert.setContentText("Please enter time in YYYY-MM-DD HH:MM format in Start and End fields");
             alert.showAndWait();
         }
-//        catch (Exception msg) {
-//            Alert alert;
-//            if (!noOverlap) {
-//                alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setTitle("Appointment Warning");
-//                alert.setContentText("Appointment will overlap existing appointments " +
-//                                "for customer: " + customerId);
-//            }else {
-//                alert = new Alert(Alert.AlertType.WARNING);
-//                alert.setTitle("Warning Dialog");
-//                alert.getDialogPane().setPrefSize(400, 200);
-//                alert.setContentText("Appointments can only be scheduled on Weekdays from 8AM-10PM EST");
-//            }
-//            alert.showAndWait();
-//        }
+        catch (Exception msg) {
+            Alert alert;
+            if (Overlap) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Appointment Warning");
+                alert.setContentText("Appointment will overlap existing appointments " +
+                                "for customer: " + customerId);
+            }else {
+                alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning Dialog");
+                alert.getDialogPane().setPrefSize(400, 200);
+                alert.setContentText("Appointments can only be scheduled on Weekdays from 8AM-10PM EST");
+            }
+            alert.showAndWait();
+        }
     }
 
     /** This method is called after if the ContactIdComboBox is
