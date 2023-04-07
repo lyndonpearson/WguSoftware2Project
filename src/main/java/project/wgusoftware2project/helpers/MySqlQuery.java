@@ -4,6 +4,9 @@ package project.wgusoftware2project.helpers;
 import project.wgusoftware2project.model.*;
 import java.sql.*;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 /** Abstract class created to interface (create, read, update, delete)
  * with MySQL database.
@@ -128,13 +131,31 @@ public abstract class MySqlQuery {
         ps.setString(4, addAppt.getLocation());
         ps.setString(5, addAppt.getType());
 
-        Instant timestampStart = Timestamp.from(addAppt.getStart()).toInstant();
-        ZonedDateTime utcTimeStart = timestampStart.atZone(ZoneId.of("UTC"));
-        ps.setTimestamp(6, Timestamp.valueOf(utcTimeStart.toLocalDateTime()));
+///////////////////////////////////////////////////////////////////
 
-        Instant timestampEnd = Timestamp.from(addAppt.getEnd()).toInstant();
-        ZonedDateTime utcTime = timestampEnd.atZone(ZoneId.of("UTC"));
-        ps.setTimestamp(7, Timestamp.valueOf(utcTime.toLocalDateTime()));
+
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd kk:mm:ss.S");
+
+
+        LocalDateTime ldtTest = addAppt.getStartLocal().toLocalDateTime();
+        LocalDateTime ldtEnd = addAppt.getEndLocal().toLocalDateTime();
+
+        ZoneId zid = ZoneId.systemDefault();
+
+        ZonedDateTime zdtTest = ldtTest.atZone(zid);
+        ZonedDateTime zdtEnd = ldtEnd.atZone(zid);
+
+        ZonedDateTime utcTest = zdtTest.withZoneSameInstant(ZoneId.of("UTC"));
+        ZonedDateTime utcEnd = zdtEnd.withZoneSameInstant(ZoneId.of("UTC"));
+
+        ldtTest = utcTest.toLocalDateTime();
+        ldtEnd = utcEnd.toLocalDateTime();
+
+        Timestamp testsqlts = Timestamp.valueOf(ldtTest);
+        Timestamp endsqlts = Timestamp.valueOf(ldtEnd);
+
+        ps.setTimestamp(6, testsqlts, Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())));
+        ps.setTimestamp(7, endsqlts, Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())));
 
         ps.setInt(8, addAppt.getCustomerID());
         ps.setInt(9, addAppt.getUserID());

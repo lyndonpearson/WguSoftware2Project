@@ -132,20 +132,21 @@ public class addApptController implements Initializable {
             int hourEST = estZdt.getHour();
             int minuteEST = estZdt.getMinute();
 
-            if (dayEST.equals("SATURDAY") || dayEST.equals("SUNDAY")) {
-                throw new Exception();
-            } else if (hourEST < 8 || hourEST > 21) {
-                throw new Exception();
-            }
+//            if (dayEST.equals("SATURDAY") || dayEST.equals("SUNDAY")) {
+//                throw new Exception();
+//            } else if (hourEST < 8 || hourEST > 21) {
+//                throw new Exception();
+//            }
 
             customerId = custIdCombo.getValue().getCustomerID();
             userId = userIdCombo.getValue().getUserId();
             contactId = contactIdCombo.getValue().getContactId();
 
-            noOverlap = Inventory.checkAppointmentOverlap(customerId, hourEST, minuteEST);
-            if(!noOverlap){
-                throw new Exception();
-            }
+            //CHECKING APPOINTMENT NOT WORKING WHEN NO APPOINTMENTS IN SYSTEM
+//            noOverlap = Inventory.checkAppointmentOverlap(customerId, hourEST, minuteEST);
+//            if(!noOverlap){
+//                throw new Exception();
+//            }
 
             Appointments newAppt = new Appointments(id, title, description, location, type, start,
                     startLocal, end, endLocal, customerId, userId, contactId);
@@ -164,21 +165,22 @@ public class addApptController implements Initializable {
             alert.setTitle("Warning Dialog");
             alert.setContentText("Please enter time in YYYY-MM-DD HH:MM format in Start and End fields");
             alert.showAndWait();
-        } catch (Exception msg) {
-            Alert alert;
-            if (!noOverlap) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Appointment Warning");
-                alert.setContentText("Appointment will overlap existing appointments " +
-                                "for customer: " + customerId);
-            }else {
-                alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning Dialog");
-                alert.getDialogPane().setPrefSize(400, 200);
-                alert.setContentText("Appointments can only be scheduled on Weekdays from 8AM-10PM EST");
-            }
-            alert.showAndWait();
         }
+//        catch (Exception msg) {
+//            Alert alert;
+//            if (!noOverlap) {
+//                alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Appointment Warning");
+//                alert.setContentText("Appointment will overlap existing appointments " +
+//                                "for customer: " + customerId);
+//            }else {
+//                alert = new Alert(Alert.AlertType.WARNING);
+//                alert.setTitle("Warning Dialog");
+//                alert.getDialogPane().setPrefSize(400, 200);
+//                alert.setContentText("Appointments can only be scheduled on Weekdays from 8AM-10PM EST");
+//            }
+//            alert.showAndWait();
+//        }
     }
 
     /** This method is called after if the ContactIdComboBox is

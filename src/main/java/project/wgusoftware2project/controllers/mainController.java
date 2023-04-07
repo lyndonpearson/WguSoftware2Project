@@ -47,11 +47,7 @@ public class mainController implements Initializable {
     @FXML
     private Label locationLabel;
 
-    @FXML
-    private ComboBox<String> languageComboBox;
 
-    @FXML
-    private Label languageLabel;
 
 
 
@@ -97,41 +93,26 @@ public class mainController implements Initializable {
 
             Inventory.checkAppointmentTimes();
         } catch(Exception msg){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.getDialogPane().setPrefSize(400, 200);
-            alert.setContentText("Invalid login credentials");
-            alert.showAndWait();
-        }
-    }
-
-    /** This method is called if the Language ComboBox
-     is clicked. If French is selected, all labels and text are translated
-     to French. Otherwise the text is set to English.
-     @param event The event of the Language ComboBox being clicked
-     */
-    @FXML
-    void onLanguageComboBoxClick(ActionEvent event) {
-        String selectedLanguage = languageComboBox.getSelectionModel().getSelectedItem();
-
-        if (selectedLanguage.equals("French")) {
-            Locale.setDefault(new Locale("fr", "FR"));
+            Locale systemLanguage = Locale.getDefault();
+            String systemLanguageString = systemLanguage.toString();
             ResourceBundle rb = ResourceBundle.getBundle("Nat");
-            System.out.println(rb.getString("UserName") + rb.getString("Password") +
-                    rb.getString("Location") + rb.getString("Login"));
-            loginBtn.setText(rb.getString("Login"));
-            userNameLabel.setText(rb.getString("UserName"));
-            passwordLabel.setText(rb.getString("Password"));
-            locationLabel.setText(rb.getString("Location"));
-            languageLabel.setText(rb.getString("Language"));
-            languageComboBox.setPromptText(rb.getString("Selection"));
+            if (systemLanguageString.equals("fr_FR")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.getDialogPane().setPrefSize(400, 200);
+                alert.setContentText(rb.getString("Invalid") +  " " + rb.getString("Login") + " " + rb.getString("Entry"));
+                ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText(rb.getString("OK"));
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.getDialogPane().setPrefSize(400, 200);
+                alert.setContentText("Invalid login credentials");
+                alert.showAndWait();
+            }
         }
-
     }
 
     /** This method is called when the main.fxml file is loaded.
      The location TextField is updated to the system's default.
-     The Language ComboBox is populated with English and French options.
      @param location The location of the relative path of the root object.
      @param resources Resource used to localize the root object; can be null if absolute path.
      */
@@ -142,9 +123,23 @@ public class mainController implements Initializable {
         locationText.setText(locationZone);
 
         ObservableList<String> language = FXCollections.observableArrayList();
-        language.add("English");
-        language.add("French");
-        languageComboBox.setItems(language);
+
+        // UNCOMMENT TO TEST IN FRENCH ???????????????????????????
+        //Locale.setDefault(Locale.of("French"));
+
+        Locale systemLanguage = Locale.getDefault();
+        String systemLanguageString = systemLanguage.toString();
+
+        if (systemLanguageString.equals("french")) {
+            Locale.setDefault(new Locale("fr", "FR"));
+            ResourceBundle rb = ResourceBundle.getBundle("Nat");
+            System.out.println(rb.getString("UserName") + rb.getString("Password") +
+                    rb.getString("Location") + rb.getString("Login"));
+            loginBtn.setText(rb.getString("Login"));
+            userNameLabel.setText(rb.getString("UserName"));
+            passwordLabel.setText(rb.getString("Password"));
+            locationLabel.setText(rb.getString("Location"));
+        }
     }
 }
 
