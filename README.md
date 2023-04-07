@@ -7,6 +7,7 @@ the course rubric requirements.
 <h3>Author: Lyndon Pearson</h3>
 <h3>Contact: LyndonPearson@gmail.com</h3>
 <h3>Date: 04/01/2023</h3>
+<h3>Version 1.1</h3>
 <h3>IDE: IntelliJ IDEA 2022.3.2 (Community Edition)</h3>
 <h3>JDK: Java SE 19.0.1</h3>
 <h3>JavaFX: JavaFX base 19</h3>
