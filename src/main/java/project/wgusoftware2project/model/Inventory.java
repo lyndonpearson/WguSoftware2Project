@@ -17,48 +17,88 @@ public class Inventory {
     public static ObservableList<Users> allUsers = FXCollections.observableArrayList();
     public static ObservableList<Contacts> allContacts = FXCollections.observableArrayList();
     public static ObservableList<ReportAppointment> allReportAppointments = FXCollections.observableArrayList();
-
     public static ObservableList<ReportDivision> allReportDivisions = FXCollections.observableArrayList();
 
+    /** Adds Appointment object to existing ObservableArrayList allAppts.
+     @param addAppt Appointment object parameter added to ObservableArrayList allAppts.
+     */
     public static void addAppt(Appointments addAppt){
         allAppts.add(addAppt);
     }
 
+    /** Adds Customers object to existing ObservableArrayList allCusts.
+     @param addCust Customers object parameter added to ObservableArrayList allCusts.
+     */
     public static void addCust(Customers addCust){
         allCusts.add(addCust);
     }
 
+    /** Adds Countries object to existing ObservableArrayList allCountries.
+     @param addCountry Countries object parameter added to ObservableArrayList allCountries.
+     */
     public static void addCountry(Countries addCountry){
         allCountries.add(addCountry);
     }
 
+    /** Adds States object to existing ObservableArrayList allStates.
+     @param addState States object parameter added to ObservableArrayList allStates.
+     */
     public static void addState(States addState){
         allStates.add(addState);
     }
 
+    /** Adds Users object to existing ObservableArrayList allUsers.
+     @param addUser Users object parameter added to ObservableArrayList allUsers.
+     */
     public static void addUser(Users addUser){
         allUsers.add(addUser);
     }
 
+    /** Adds Contacts object to existing ObservableArrayList allContacts.
+     @param addContact Contacts object parameter added to ObservableArrayList allContacts.
+     */
     public static void addContact(Contacts addContact){
         allContacts.add(addContact);
     }
 
+    /** Returns ObservableArrayList of Appointments (allAppts).
+     @return allAppts ObservableArrayList of all current Appointment objects
+     */
     public static ObservableList getAllAppts(){
         return allAppts;
     }
+
+    /** Returns ObservableArrayList of Customers (allCusts).
+     @return allCusts ObservableArrayList of all current Customers objects
+     */
     public static ObservableList getAllCusts(){
         return allCusts;
     }
+
+    /** Returns ObservableArrayList of Countries (allCountries).
+     @return allCountries ObservableArrayList of all current Countries objects
+     */
     public static ObservableList getAllCountries(){
         return allCountries;
     }
+
+    /** Returns ObservableArrayList of States (allStates).
+     @return allStates ObservableArrayList of all current States objects
+     */
     public static ObservableList getAllStates(){
         return allStates;
     }
+
+    /** Returns ObservableArrayList of Users (allUsers).
+     @return allUsers ObservableArrayList of all current Users objects
+     */
     public static ObservableList getAllUsers(){
         return allUsers;
     }
+
+    /** Returns ObservableArrayList of Contacts (allContacts).
+     @return allContacts ObservableArrayList of all current Contacts objects
+     */
     public static ObservableList getAllContacts(){
         return allContacts;
     }
@@ -98,8 +138,7 @@ public class Inventory {
 
     /** Searches Appointments ObservableList and
      * organizes them by month and number of occurrences.
-     @return allReportAppointments ObservableList of ReportAppointment
-     objects
+     @return allReportAppointments ObservableList of ReportAppointment objects
      */
     public static ObservableList appointmentsByMonth() {
         allReportAppointments.clear();
@@ -139,14 +178,19 @@ public class Inventory {
 
     /** Searches Customers ObservableList and
      * organizes them by state and number of occurrences.
-     @return allReportDivisions ObservableList of ReportDivision
-     objects
+     * <p>
+     * LAMBDA - Used here as a clear, concise method to check
+     * if a state already exists in a list of states and their associated customers.
+     * It is a simple, intuitively named-function that occupies one line below.
+     @return allReportDivisions ObservableList of ReportDivision objects
      */
     public static ObservableList customersByDivisionName(){
         allReportDivisions.clear();
         ObservableList<Customers> tempOL;
         tempOL = Inventory.getAllCusts();
-        GeneralInterface stateCompare = (String state1, String state2) -> {return state1.equals(state2);};
+
+        GeneralInterface stateCompare = (String state1, String state2) -> state1.equals(state2);
+
         for (Customers customer : tempOL){
             int total = 0;
             for (Customers customerSearch : tempOL){
@@ -162,10 +206,6 @@ public class Inventory {
                 int duplicateflag = 0;
                 int arraySize = allReportDivisions.size();
                 for (int Index = 0; Index < arraySize; Index++){
-                    /** GeneralInterface compareStates method implemented to check if
-                     * two state strings are equal. Used here as a clear, concise method to check
-                     * if a state already exists in a list of states and their associated customers.
-                     * */
                     if(stateCompare.compareStates(allReportDivisions.get(Index).getState(), reportDivision.getState())){
                         duplicateflag++;
                     }
@@ -181,7 +221,15 @@ public class Inventory {
     /** Searches Appointments ObservableList and
      * compares their starting time with the current system local time.
      * A warning is displayed if an appointment is starting within 15 minutes.
-     */
+     * Interface TimeInterface method implemented to calculate
+     * the current time in units of hours and compare to appointment time
+     * in units of hours.
+     * <p>
+     * LAMBDA - This implementation is a clear concise way to run this check
+     * in the body of the Inventory class. It's a clearly titled
+     * Lambda function and saves space/lines of code.
+     * */
+
     public static void checkAppointmentTimes(){
 
         ObservableList<Appointments> tempOL;
@@ -197,11 +245,6 @@ public class Inventory {
             int hour = nowInstant.atZone(ZoneId.of(locationZone)).getHour();
             int minute = nowInstant.atZone(ZoneId.of(locationZone)).getMinute();
 
-            /** Interface TimeInterface method implemented to calculate
-             * the current time in units of hours and compare to appointment time
-             * in units of hours. Used here as a clear, concise method to check
-             * if an upcoming appointment exists.
-             * */
             TimeInterface timeTest = (int apptHourInput, int apptMinuteInput, int hourInput, int minuteInput) -> {
                 double apptHours = apptHourInput + (apptMinuteInput / 60.0);
                 double currentHours = hourInput + (minuteInput / 60.0);
@@ -227,11 +270,16 @@ public class Inventory {
     }
 
     /** Searches Appointments ObservableList by customerID,
-     * and starting time. If there is an appointment already in
+     * and starting time. Performs conversions of time from UTC format
+     * of database to business time zone of EST.
+     * If there is an appointment already in
      * the timeslot return true - otherwise returns false.
-     @param customerId String parameter for customer Id
-     @param hourStart Int parameter for starting hour
-     @param minuteStart Int parameter for starting minute
+     @param customerId String parameter for customer Id for new Appointment
+     @param hourStart Int parameter for starting hour for new Appointment
+     @param minuteStart Int parameter for starting minute for new Appointment
+     @param dayOfYearStart Int parameter for day of year for new Appointment
+     @param hourEnd Int parameter for ending hour for new Appointment
+     @param minuteEnd Int parameter for ending minute for new Appointment
      @return true if there is already an appointment in timeslot
      @return false if the timeslot is available
      */
@@ -247,13 +295,8 @@ public class Inventory {
                 int hourEndEST = estEndDateTime.getHour();
                 int minuteEndEST = estEndDateTime.getMinute();
 
-
                 if (dayOfYearStart == startDay && appt.customerID == customerId){
-                    if(hourStart == hourEndEST && minuteStart > minuteStartEST && minuteStart < minuteEndEST){
-                        isOverlap = true;
-                    }else if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
-                        isOverlap = true;
-                    }else if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
+                    if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
                         isOverlap = true;
                     }else if (hourStartEST == hourStart && hourEnd < hourEndEST){
                         isOverlap = true;
@@ -261,19 +304,33 @@ public class Inventory {
                         isOverlap = true;
                     }else if (hourStart == hourStartEST && minuteStart == minuteStartEST){
                         isOverlap = true;
-                    }else if (hourStart < hourStartEST && hourEnd == hourEndEST && minuteEnd > minuteStartEST){
-                        isOverlap = true;
                     }
                 }
             }
             return isOverlap;
         }
 
+    /** Searches Appointments ObservableList by appointmentID,
+     * and starting time. Performs conversions of time from UTC format
+     * of database to business time zone of EST.
+     * If there is an appointment already in
+     * the timeslot return true - otherwise returns false.
+     @param newAppt Appointment parameter containing new Appointment
+     @param customerId String parameter for customer Id for new Appointment
+     @param hourStart Int parameter for starting hour for new Appointment
+     @param minuteStart Int parameter for starting minute for new Appointment
+     @param dayOfYearStart Int parameter for day of year for new Appointment
+     @param hourEnd Int parameter for ending hour for new Appointment
+     @param minuteEnd Int parameter for ending minute for new Appointment
+     @return true if there is already an appointment in timeslot
+     @return false if the timeslot is available
+     */
     public static boolean checkOverlapChange(Appointments newAppt, int customerId, int hourStart, int minuteStart, int dayOfYearStart, int hourEnd, int minuteEnd){
         boolean isOverlap = false;
         ObservableList<Appointments> tempOL = FXCollections.observableArrayList();
         ObservableList<Appointments> currentList;
         currentList = Inventory.getAllAppts();
+
         for (Appointments apptSearch : currentList){
             if(apptSearch.getAppointmentID() != newAppt.appointmentID){
                 tempOL.add(apptSearch);
@@ -285,26 +342,15 @@ public class Inventory {
             int hourStartEST = estStartDateTime.getHour();
             int minuteStartEST = estStartDateTime.getMinute();
             int startDay = estStartDateTime.getDayOfYear();
-
             ZonedDateTime estEndDateTime = appt.getEnd().atZone(ZoneId.of("America/New_York"));
             int hourEndEST = estEndDateTime.getHour();
-            int minuteEndEST = estEndDateTime.getMinute();
-
 
             if (dayOfYearStart == startDay && appt.customerID == customerId){
-                if(hourStart == hourEndEST && minuteStart > minuteStartEST && minuteStart < minuteEndEST){
-                    isOverlap = true;
-                }else if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
-                    isOverlap = true;
-                }else if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
+               if (hourStart < hourEndEST && minuteStart >= minuteStartEST && hourEnd == hourEndEST){
                     isOverlap = true;
                 }else if (hourStartEST == hourStart && hourEnd < hourEndEST){
                     isOverlap = true;
-                }else if (hourEnd == hourStartEST && minuteEnd > minuteStartEST && minuteStart < minuteEndEST){
-                    isOverlap = true;
-                }else if (hourStart == hourStartEST && minuteStart == minuteStartEST){
-                    isOverlap = true;
-                }else if (hourStart < hourStartEST && hourEnd == hourEndEST && minuteEnd > minuteStartEST){
+                }else if (hourEnd == hourStartEST && minuteEnd > minuteStartEST){
                     isOverlap = true;
                 }
             }

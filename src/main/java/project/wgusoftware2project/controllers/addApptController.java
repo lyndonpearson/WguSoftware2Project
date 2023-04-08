@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 
 /** addApptController class created with initialization capabilities.
  The controller interfaces with the comboBoxes, labels, text fields,
- and buttons show in addAppt.fxml
+ and buttons show in addAppt.fxml.
  */
 public class addApptController implements Initializable {
     Stage stage;
@@ -71,7 +71,7 @@ public class addApptController implements Initializable {
 
     /** This method is called after if the Cancel
      button is clicked. The window is switched to the apptCustomer.fxml file.
-     @param event The event of the Cancel Button being clicked
+     @param event The event of the Cancel Button being clicked.
      */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
@@ -90,7 +90,7 @@ public class addApptController implements Initializable {
      the correct format and during EST business hours, a new Appointment
      object is created and it is added to the Inventory ObservableList as well
      as the mySQL database. The window is then returned to the apptCustomer.fxml file.
-     @param event The event of the Save button being clicked
+     @param event The event of the Save button being clicked.
      */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException, SQLException {
@@ -188,7 +188,7 @@ public class addApptController implements Initializable {
 
     /** This method is called after if the ContactIdComboBox is
      clicked. The ComboBox value is set to the user selection.
-     @param event The event of the ComboBox being clicked
+     @param event The event of the ComboBox being clicked.
      */
     @FXML
     void onContactIdComboClick(ActionEvent event) {
@@ -203,7 +203,7 @@ public class addApptController implements Initializable {
 
     /** This method is called after if the CustomerIdComboBox is
      clicked. The ComboBox value is set to the user selection.
-     @param event The event of the ComboBox being clicked
+     @param event The event of the ComboBox being clicked.
      */
     @FXML
     void onCustIdComboClick(ActionEvent event) {
@@ -218,7 +218,7 @@ public class addApptController implements Initializable {
 
     /** This method is called after if the UserIdComboBox is
      clicked. The ComboBox value is set to the user selection.
-     @param event The event of the ComboBox being clicked
+     @param event The event of the ComboBox being clicked.
      */
     @FXML
     void onUserIdComboClick(ActionEvent event) {

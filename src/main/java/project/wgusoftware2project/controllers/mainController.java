@@ -47,10 +47,6 @@ public class mainController implements Initializable {
     @FXML
     private Label locationLabel;
 
-
-
-
-
     /** This method is called if the Login
      button is clicked. The input userId and password are validated.
      If incorrect, a log file is updated with an unsuccessful entry and timestamp
@@ -122,15 +118,10 @@ public class mainController implements Initializable {
         String locationZone = String.valueOf(ZoneId.systemDefault());
         locationText.setText(locationZone);
 
-        ObservableList<String> language = FXCollections.observableArrayList();
-
-        // UNCOMMENT TO TEST IN FRENCH ???????????????????????????
-        //Locale.setDefault(Locale.of("French"));
-
         Locale systemLanguage = Locale.getDefault();
         String systemLanguageString = systemLanguage.toString();
 
-        if (systemLanguageString.equals("french")) {
+        if (systemLanguageString.equals("fr_FR")) {
             Locale.setDefault(new Locale("fr", "FR"));
             ResourceBundle rb = ResourceBundle.getBundle("Nat");
             System.out.println(rb.getString("UserName") + rb.getString("Password") +

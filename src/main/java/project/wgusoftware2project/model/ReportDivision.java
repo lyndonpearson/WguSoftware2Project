@@ -17,18 +17,30 @@ public class ReportDivision {
         this.total = total;
     }
 
+    /** Method to return state of Customer for Report
+     @return state String storing state field.
+     */
     public String getState() {
         return state;
     }
 
+    /** Method to assign state field of Customer for Report
+     @param state String assigned to state field.
+     */
     public void setState(String state) {
         this.state = state;
     }
 
+    /** Method to return count of Customers in a state for Report
+     @return total Integer storing total field
+     */
     public int getTotal() {
         return total;
     }
 
+    /** Method to assign total field of Customer for Report
+     @param total String assigned to total field.
+     */
     public void setTotal(int total) {
         this.total = total;
     }

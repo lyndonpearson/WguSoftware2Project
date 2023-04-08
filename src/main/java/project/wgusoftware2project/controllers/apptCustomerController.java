@@ -214,8 +214,6 @@ public class apptCustomerController implements Initializable {
         loader.load();
         changeCustomerController CCController = loader.getController();
         try {
-            String test = custTable.getSelectionModel().getSelectedItem().getDivisionId();
-            String test2 = custTable.getSelectionModel().getSelectedItem().getState();
             CCController.receiveInCustomer((Customers) custTable.getSelectionModel().getSelectedItem());
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -242,7 +240,7 @@ public class apptCustomerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        allBtn.setSelected(true);
 
         apptTable.setItems(Inventory.getAllAppts());
         custTable.setItems(Inventory.getAllCusts());

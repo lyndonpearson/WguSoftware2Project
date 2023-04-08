@@ -20,15 +20,23 @@ public class States {
         this.countryId = countryId;
     }
 
+    /** Method to return States object's divisionId field
+     @return divisionId Integer storing divisionId field.
+     */
     public int getDivisionId() {
         return divisionId;
     }
 
+    /** Method to return States object's division field
+     @return division String storing division field.
+     */
     public String getDivision() {
         return division;
     }
 
-
+    /** Method to return States object's countryId field
+     @return countryId Integer storing countryId field.
+     */
     public int getCountryId() {
         return countryId;
     }

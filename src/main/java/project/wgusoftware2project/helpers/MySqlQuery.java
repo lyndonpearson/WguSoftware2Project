@@ -1,6 +1,5 @@
 package project.wgusoftware2project.helpers;
 
-
 import project.wgusoftware2project.model.*;
 import java.sql.*;
 import java.time.*;
@@ -31,17 +30,15 @@ public abstract class MySqlQuery {
             String location = rs.getString("Location");
             String type = rs.getString("Type");
 
-            Timestamp test = rs.getTimestamp("Start");
-            OffsetDateTime test2 = OffsetDateTime.of(test.toLocalDateTime(), ZoneOffset.UTC);
-            Instant start = Instant.from(test2);
+            Timestamp startTimestamp = rs.getTimestamp("Start", Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())));
+            OffsetDateTime startOdt = OffsetDateTime.of(startTimestamp.toLocalDateTime(), ZoneOffset.UTC);
+            Instant start = Instant.from(startOdt);
             Timestamp startLocal = Timestamp.from(start);
 
-
-            Timestamp endTest = rs.getTimestamp("End");
-            OffsetDateTime endTest2 = OffsetDateTime.of(endTest.toLocalDateTime(), ZoneOffset.UTC);
-            Instant end = Instant.from(endTest2);
+            Timestamp endTimeStamp = rs.getTimestamp("End",  Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault())));
+            OffsetDateTime endOdt = OffsetDateTime.of(endTimeStamp.toLocalDateTime(), ZoneOffset.UTC);
+            Instant end = Instant.from(endOdt);
             Timestamp endLocal = Timestamp.from(end);
-
 
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
@@ -131,17 +128,11 @@ public abstract class MySqlQuery {
         ps.setString(4, addAppt.getLocation());
         ps.setString(5, addAppt.getType());
 
-///////////////////////////////////////////////////////////////////
-
-
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd kk:mm:ss.S");
-
-
         LocalDateTime ldtTest = addAppt.getStartLocal().toLocalDateTime();
         LocalDateTime ldtEnd = addAppt.getEndLocal().toLocalDateTime();
 
         ZoneId zid = ZoneId.systemDefault();
-
         ZonedDateTime zdtTest = ldtTest.atZone(zid);
         ZonedDateTime zdtEnd = ldtEnd.atZone(zid);
 

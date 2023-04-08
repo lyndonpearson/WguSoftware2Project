@@ -151,7 +151,6 @@ public class changeApptController implements Initializable {
                 throw new Exception();
             }
 
-
             Inventory.updateAppt(appointmentID, newAppt);
             MySqlQuery.updateAppt(newAppt);
 
@@ -206,7 +205,6 @@ public class changeApptController implements Initializable {
 
 
     }
-
 
     /** This method is called when the changeAppointment.fxml file is loaded.
      The ID text field is disabled.

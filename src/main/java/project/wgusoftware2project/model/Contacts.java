@@ -20,6 +20,9 @@ public class Contacts {
         this.email = email;
     }
 
+    /** Method to return Contacts object's contactId field
+     @return contactId Integer storing contactId field.
+     */
     public int getContactId() {
         return contactId;
     }

@@ -28,25 +28,20 @@ public class changeCustomerController implements Initializable {
     Parent scene;
     @FXML
     private Button cancelBtn;
-
     @FXML
     private ComboBox<Countries> countryCombo;
     @FXML
     private TextField addressText;
     @FXML
     private TextField idText;
-
     @FXML
     private TextField nameText;
-
     @FXML
     private TextField phoneText;
-
     @FXML
     private TextField postalText;
     @FXML
     private Button saveBtn;
-
     @FXML
     private ComboBox<States> stateCombo;
 
@@ -80,7 +75,6 @@ public class changeCustomerController implements Initializable {
                 break;
             }
         }
-
         ObservableList<States> stateList = FXCollections.observableArrayList();
         stateList = Inventory.getStatesByCountry(countryCombo.getValue().getCountryId());
         stateCombo.setItems(stateList);

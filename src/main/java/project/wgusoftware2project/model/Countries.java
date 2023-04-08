@@ -17,6 +17,9 @@ public class Countries {
         this.country = country;
     }
 
+    /** Method to return Countries object's countryId field
+     @return countryId Integer storing countryId field.
+     */
     public int getCountryId() {
         return countryId;
     }

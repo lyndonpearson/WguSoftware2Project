@@ -22,14 +22,23 @@ public class ReportAppointment {
         this.allTotalAppts = allTotalAppts;
     }
 
+    /** Method to return month in integer format of Appointment
+     @return allApptMonths Integer storing allApptMonths field.
+     */
     public int getAllApptMonths() {
         return allApptMonths;
     }
 
+    /** Method to return type of Appointment in report
+     @return allApptTypes Integer storing allApptTypes field.
+     */
     public String getAllApptTypes() {
         return allApptTypes;
     }
 
+    /** Method to return count of Appointments in Month
+     @return allTotalAppts Integer storing allTotalAppts field.
+     */
     public int getAllTotalAppts() {
         return allTotalAppts;
     }

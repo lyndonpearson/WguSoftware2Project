@@ -6,7 +6,7 @@ the course rubric requirements.
 </br>
 <h3>Author: Lyndon Pearson</h3>
 <h3>Contact: LyndonPearson@gmail.com</h3>
-<h3>Date: 04/01/2023</h3>
+<h3>Date: 04/06/2023</h3>
 <h3>Version 1.1</h3>
 <h3>IDE: IntelliJ IDEA 2022.3.2 (Community Edition)</h3>
 <h3>JDK: Java SE 19.0.1</h3>
@@ -16,7 +16,7 @@ the course rubric requirements.
 <h3>Directions</h3>
 <p>Run App.java in Intellij. This will bring up the login screen(main.fxml).
 To test the program, a dummy login of UserName "test" and password "test" 
-can be used. The language can be changed via the ComboBox.</p> 
+can be used. The language is set to the system default of the local machine.</p> 
 
 <h3>Additional Report</h3>
 <p>The additional report calculates the number of customers by state/province.
