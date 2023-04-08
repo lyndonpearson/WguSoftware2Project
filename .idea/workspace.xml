@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="88c8463c-42d5-4f1c-b161-101edb76b593" name="Changes" comment="Included application version (1.1) in README.md.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/allclasses-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/allclasses-index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/allpackages-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/allpackages-index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/help-doc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index-files/index-9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/member-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/member-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/module-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/module-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/App.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/App.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/addApptController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/addApptController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/addCustomerController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/addCustomerController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/apptCustomerController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/apptCustomerController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/changeApptController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/changeApptController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/changeCustomerController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/changeCustomerController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/mainController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/mainController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/reportController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/controllers/reportController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/helpers/JDBC.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/helpers/JDBC.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/helpers/MySqlQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/helpers/MySqlQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/helpers/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/helpers/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/helpers/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/helpers/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Appointments.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Appointments.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Contacts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Countries.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Countries.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Customers.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Customers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/GeneralInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/GeneralInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Inventory.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Inventory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/ReportAppointment.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/ReportAppointment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/ReportDivision.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/ReportDivision.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/States.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/States.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/TimeInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/TimeInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Users.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/Users.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/model/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/project.wgusoftware2project/project/wgusoftware2project/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDocs/tag-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDocs/tag-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login_activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/addApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/addApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/apptCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/apptCustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/changeApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/changeApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/changeCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/changeCustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/mainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/helpers/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/helpers/JDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/helpers/MySqlQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/helpers/MySqlQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Appointments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Appointments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Contacts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Contacts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Countries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Countries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/GeneralInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/GeneralInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/ReportAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/ReportAppointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/ReportDivision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/ReportDivision.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/States.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/States.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/TimeInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/TimeInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/wgusoftware2project/model/Users.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="documentation" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="lyndonpearson" />
+        <option name="repository" value="WguSoftware2Project" />
+      </RepoCoordinatesHolder>
+    </option>
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="7287d3d8-76a9-4388-8b41-a49f6d9b7b88" />
+        <option name="url" value="https://github.com/lyndonpearson/WguSoftware2Project" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NP4EguTlbsOBryAQkUVcRFZRqW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lyndo/OneDrive/Desktop&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3862069&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lyndo\Documents\WguSoftware2Project\src\main\resources\project\wgusoftware2project" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lyndo\Documents\WguSoftware2Project\src\main\resources" />
+      <recent name="C:\Users\Lyndo\Documents\WguSoftware2Project\src\main" />
+      <recent name="C:\Users\Lyndo\Documents\WguSoftware2Project\src" />
+      <recent name="C:\Users\Lyndo\Documents\WguSoftware2Project\src\main\java\project\wgusoftware2project" />
+      <recent name="C:\Users\Lyndo\Documents\WguSoftware2Project\src\main\java\project\wgusoftware2project\controllers" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="88c8463c-42d5-4f1c-b161-101edb76b593" name="Changes" comment="" />
+      <created>1679552272686</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679552272686</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Appointment adding functionality included, functions further modularized, appointment TableView initializing and adding entries correctly.">
+      <created>1679556205098</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679556205098</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added method to insert new Appointment into mySQL database. Also fixed issue with duplicate customer ID columns (in Appointment &amp; Customer TableViews).">
+      <created>1679627647407</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679627647407</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added appointment update functionality including controllers and views. Update view pre-populating with existing appointment data.">
+      <created>1679693909150</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1679693909150</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added ComboBox for specifying Contact ID for adding appointments. Supporting methods included.">
+      <created>1679708276638</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1679708276638</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Changed start and end fields to proper time types (Instants/Timestamps) and updated all methods. Added cancellation message confirming appointment ID and meeting type to be cancelled.">
+      <created>1679725653182</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679725653182</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added views &amp; controllers for adding/changing customers. Added country and state/prov models. Basic functionality for adding customers.">
+      <created>1679780004826</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679780004826</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added functionality for changing and adding customers. Conversion from state/prov in combobox selection to Division_ID in mySQL database. Database now successfully adding/updating/removing customers.">
+      <created>1679809767266</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1679809767266</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added basic language functionality on login screen. Added customer appt deletion when customer is deleted. Added login.txt file with user access and timestamps.">
+      <created>1679886828298</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679886828298</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added users and contacts models as well as handling methods in Inventory &amp; Query classes. Updated TableViews to display state/province in strings instead of integer coding.">
+      <created>1679964487079</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679964487079</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updating customers working properly (state instead of Int division ID) and updating TableView and mySQL database correctly.">
+      <created>1679972682647</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679972682647</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Appointments displayed in TableView in localtime, stored in UTC for both update and add methods.">
+      <created>1680052054592</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1680052054592</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added report view and controller with Tableviews necessary to populate. Basic navigation functionality added between views.">
+      <created>1680054169067</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1680054169067</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Report view's Appointment TableView populating by contact filter correctly. Second report showing appointments by month/type basic functionality.">
+      <created>1680069622324</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1680069622324</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Reports view producing accurate reports (for contacts, appointments, and divisions).">
+      <created>1680127730887</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1680127730887</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Two interfaces added and two lambda expressions added to code (Inventory class methods).">
+      <created>1680141131090</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1680141131090</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Removed many unused Getters and Setters throughout program. Also removed obsolete comments. Login 15-minute warning now correctly functioning.">
+      <created>1680146148314</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1680146148314</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Corrected time storage issues - time being handled properly across appointment additions &amp; modifications (LT) and in database (UTC). Upcoming appointment warning corrected to only show future meetings within a 15 minute window.">
+      <created>1680160673157</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1680160673157</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Printing out console status messages when scheduling appointments on weekends or outside of business hours (0800 - 2200EST). Will convert this to input validation.">
+      <created>1680220038219</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1680220038219</updated>
+    </task>
+    <task id="LOCAL-00019" summary="functional checks in place for appointment overlaps for given customer IDs when adding or updating appointments.">
+      <created>1680241623677</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1680241623677</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added date/time input validation and non-selection validation for changing/adding appointments and users.">
+      <created>1680313818773</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1680313818773</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added language selection comboBox to main view and language translation upon selection. Complete JavaDocs documentation for Inventory model.">
+      <created>1680331663112</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1680331663112</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Complete JavaDocs documentation for all models and controllers.">
+      <created>1680404603138</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1680404603138</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Corrected bug where newly-added customer couldn't be updated. Generated current JavaDocs and included log.txt file">
+      <created>1680416205789</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1680416205789</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Corrected logical error where login statement was operating inversed.">
+      <created>1680567276515</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1680567276515</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Updated Readme.md with current dummy userName and password values.">
+      <created>1680567411247</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1680567411247</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Corrected language settings to display ALL information (including alerts) in system language. Removed language selection box as was unnecessary. Adding appointments finally working when system time zone changed (and DB staying in UTC).">
+      <created>1680841374571</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1680841374571</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Another attempt at handling Appointment additions/updates with proper exception handling...to be checked thoroughly tomorrow.">
+      <created>1680862108374</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1680862108374</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Changed log file name to &quot;login_activity.txt&quot; to match rubric and changed location to root folder of application.">
+      <created>1680862548918</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1680862548918</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Included application version (1.1) in README.md.">
+      <created>1680892762346</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1680892762346</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="83" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="86" />
+                  <entry key="Table.Space.CommitStatus.ColumnIdWidth" value="86" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changed start and end fields to proper time types (Instants/Timestamps) and updated all methods. Added cancellation message confirming appointment ID and meeting type to be cancelled." />
+    <MESSAGE value="Added views &amp; controllers for adding/changing customers. Added country and state/prov models. Basic functionality for adding customers." />
+    <MESSAGE value="Added functionality for changing and adding customers. Conversion from state/prov in combobox selection to Division_ID in mySQL database. Database now successfully adding/updating/removing customers." />
+    <MESSAGE value="Added basic language functionality on login screen. Added customer appt deletion when customer is deleted. Added login.txt file with user access and timestamps." />
+    <MESSAGE value="Added users and contacts models as well as handling methods in Inventory &amp; Query classes. Updated TableViews to display state/province in strings instead of integer coding." />
+    <MESSAGE value="Updating customers working properly (state instead of Int division ID) and updating TableView and mySQL database correctly." />
+    <MESSAGE value="Appointments displayed in TableView in localtime, stored in UTC for both update and add methods." />
+    <MESSAGE value="Added report view and controller with Tableviews necessary to populate. Basic navigation functionality added between views." />
+    <MESSAGE value="Report view's Appointment TableView populating by contact filter correctly. Second report showing appointments by month/type basic functionality." />
+    <MESSAGE value="Reports view producing accurate reports (for contacts, appointments, and divisions)." />
+    <MESSAGE value="Two interfaces added and two lambda expressions added to code (Inventory class methods)." />
+    <MESSAGE value="Removed many unused Getters and Setters throughout program. Also removed obsolete comments. Login 15-minute warning now correctly functioning." />
+    <MESSAGE value="Corrected time storage issues - time being handled properly across appointment additions &amp; modifications (LT) and in database (UTC). Upcoming appointment warning corrected to only show future meetings within a 15 minute window." />
+    <MESSAGE value="Printing out console status messages when scheduling appointments on weekends or outside of business hours (0800 - 2200EST). Will convert this to input validation." />
+    <MESSAGE value="functional checks in place for appointment overlaps for given customer IDs when adding or updating appointments." />
+    <MESSAGE value="Added date/time input validation and non-selection validation for changing/adding appointments and users." />
+    <MESSAGE value="Added language selection comboBox to main view and language translation upon selection. Complete JavaDocs documentation for Inventory model." />
+    <MESSAGE value="Complete JavaDocs documentation for all models and controllers." />
+    <MESSAGE value="Corrected bug where newly-added customer couldn't be updated. Generated current JavaDocs and included log.txt file" />
+    <MESSAGE value="Corrected logical error where login statement was operating inversed." />
+    <MESSAGE value="Updated Readme.md with current dummy userName and password values." />
+    <MESSAGE value="Corrected language settings to display ALL information (including alerts) in system language. Removed language selection box as was unnecessary. Adding appointments finally working when system time zone changed (and DB staying in UTC)." />
+    <MESSAGE value="Another attempt at handling Appointment additions/updates with proper exception handling...to be checked thoroughly tomorrow." />
+    <MESSAGE value="Changed log file name to &quot;login_activity.txt&quot; to match rubric and changed location to root folder of application." />
+    <MESSAGE value="Included application version (1.1) in README.md." />
+    <option name="LAST_COMMIT_MESSAGE" value="Included application version (1.1) in README.md." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/reportController.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/project/wgusoftware2project/controllers/addCustomerController.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
